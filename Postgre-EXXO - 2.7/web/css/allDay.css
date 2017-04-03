@@ -1,0 +1,34 @@
+.name .second {font-size: 14px;}
+#date {color: #3B3B8F; font-size: 14px; margin: 10px; cursor: pointer; display: inline-block; padding:4px; vertical-align: middle; position: relative;}
+.date1 {font-size: 14px; color:#972626; font-weight: bold;}
+.f td {padding-bottom: 10px;}
+.kill {display: block;font-size: 10px; text-align: right; margin-bottom:0; margin-top: 14px;}
+#new {display: block;padding-left: 10px; font-size: 12px;text-align: left; margin-top:0;}
+.table-about {border: 0}
+.table-about span,#table-about a {display: inline; font-size: 11px; padding-right: 5px;}
+span.fname {padding-right: 10px; padding-left: 5px;}
+div.f {display: inline-block; width: 300px; padding: 10px; vertical-align: top; margin: 5px; border: 1px solid #dedede; font-size: 12px; margin-top: 16px;border-top: 1px solid #bfbfbf; border-radius: 4px; background-color: rgb(252,252,252);position: relative;}
+.files {font-size: 11px;}
+.filesLink td {padding-bottom: 0px;}
+.files a {color: black;}
+.f a { text-decoration: none;}
+.f a:hover {text-decoration: underline;}
+.f:hover #files a{color:#972626;}
+.f:hover a{color:#972626;}
+#content {padding: 14px; width: auto;}
+.fname {color: gray;}
+#down, #up {display: inline-block; width: 24px; height: 14px; margin: 0px; padding: 6px;vertical-align: middle;}
+#up {background-image: url('../small/forward1.png');background-repeat: no-repeat; background-position: center;}
+#down {background-image: url('../small/backward1.png');background-repeat: no-repeat; background-position: center;}
+#up:hover {background-image: url('../small/forward.png');background-repeat: no-repeat; background-position: center;}
+#down:hover {background-image: url('../small/backward.png');background-repeat: no-repeat; background-position: center;}
+.closeBut {position: absolute; width: 16px; height: 16px; top: 0px; right: 0px; z-index: 1; padding: 2px;  cursor: pointer; visibility: hidden;}
+.f:hover .closeBut{visibility: visible;}
+#nothing {text-align: center; margin-top: 100px; font-size: 24px; color: #bfbfbf;}
+#headDate {width: 360px; margin: 0px auto;}
+.date1 .notactual {color: gray;}
+.free:hover {cursor:pointer; background-color: rgb(252,204,204);}
+#calendar {position: absolute; z-index: 1000;}
+table {border-collapse: collapse;}
+td, div, ul, ol, li, h1, h2, h3, h4, h5, h6, p, form, input, textarea, th, span {padding:0; margin: 0;}
+.files td.second {color: #bfbfbf;}

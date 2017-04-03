@@ -93,8 +93,8 @@
             <table id="grid" class="grid">
                 <%=res%>
             </table>
-            <jsp:include page="FOOTER" flush="true" /><
-            /div>
+            <jsp:include page="FOOTER" flush="true" />
+        </div>
             <div id="imger"><div id="close"><span>ЗАКРЫТЬ</span></div><div id="imgerViewer"></div></div>
             <script type="text/javascript">
                 AUI().ready('aui-overlay-mask', 'aui-io-request', 'anim', 'aui-scroller', 'scrollview', 'scrollview-paginator', 'datatype-number', function (A) {
