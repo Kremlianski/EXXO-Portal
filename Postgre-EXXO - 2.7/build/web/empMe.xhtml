@@ -1,0 +1,46 @@
+<ui:composition  xmlns="http://www.w3.org/1999/xhtml" 
+                 xmlns:h="http://xmlns.jcp.org/jsf/html"
+                 xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+                 xmlns:EXXO="http://xmlns.jcp.org/jsf/composite/EXXO"
+                 xmlns:f="http://xmlns.jcp.org/jsf/core">
+    <div id="main" class="empIns_jsp exxo-shadow">
+        <h:outputStylesheet library="css" name="empMe.css"></h:outputStylesheet>
+        <div id="exxo-start-ins">
+            <h:form id="emp1" prependId="false" enctype="multipart/form-data">
+                <h:panelGrid columns="2" columnClasses="left, right" id="formGrid1">
+                    <h:outputLabel>Фамилия Имя Отчество</h:outputLabel><h:outputText value="#{empUpdBean.emp.fio}" escape="false" ></h:outputText>
+                    <h:outputLabel for="file">Фотография</h:outputLabel><h:panelGroup rendered="#{not empUpdBean.emp.photo}">
+                        <h:inputFile id="file1" value="#{empUpdBean.file}"></h:inputFile>
+                    </h:panelGroup>
+                    <h:panelGroup rendered="#{empUpdBean.emp.photo}" style="white-space: normal;">
+                        <img src="IMG?id=#{empUpdBean.emp.id}" /><br />
+                        <h:commandLink action="#{empUpdBean.dropImg}" value="Удалить фотографию"></h:commandLink>
+                    </h:panelGroup>
+                    <h:outputLabel>Хобби</h:outputLabel><h:inputTextarea value="#{empUpdBean.emp.hobby}"></h:inputTextarea>
+                    <h:outputLabel>Комментарии</h:outputLabel><h:inputTextarea value="#{empUpdBean.emp.comment}"></h:inputTextarea>
+                    <h:outputLabel>Дата рождения</h:outputLabel>
+                    <h:outputText value="#{empUpdBean.birthday.properTime}"></h:outputText>
+                    <h:outputLabel>Дата приема на работу</h:outputLabel>
+                    <h:outputText value="#{empUpdBean.work.properTime}"></h:outputText>
+                    <h:outputLabel>Подразделение</h:outputLabel>
+                    <span>#{empUpdBean.emp.unit.unit}</span>
+                    <h:outputLabel>Должность</h:outputLabel><h:outputText value="#{empUpdBean.emp.position}" class="aui-field-required"></h:outputText>
+                    <h:outputLabel>Должностные обязанности</h:outputLabel><h:outputText value="#{empUpdBean.emp.responsibility}" escape="false"></h:outputText>
+                    <h:outputLabel>Образование</h:outputLabel><h:outputText value="#{empUpdBean.emp.education}" escape="false"></h:outputText>
+                    <h:outputLabel>Офис</h:outputLabel><h:outputText value="#{empUpdBean.emp.office.name}"></h:outputText>
+                    <h:outputLabel>Комната</h:outputLabel><h:outputText value="#{empUpdBean.emp.room}"></h:outputText>
+                    <h:outputLabel>Телефон городской</h:outputLabel><h:outputText value="#{empUpdBean.emp.tel}"></h:outputText>
+                    <h:outputLabel>Телефон местный</h:outputLabel><h:outputText value="#{empUpdBean.emp.tellocal}"></h:outputText>
+                    <h:outputLabel>Телефон мобильный</h:outputLabel><h:outputText value="#{empUpdBean.emp.tellmob}"></h:outputText>
+                    <h:outputLabel>Электронная почта</h:outputLabel><h:outputText value="#{empUpdBean.emp.email}" class="aui-field-email"></h:outputText>
+                </h:panelGrid>
+                <div id='messages'><h:messages></h:messages></div>
+                <h:panelGroup id="butTable1" layout="block">
+                    <h:commandButton action="#{empUpdBean.photoUpdTarget()}" value="Дальше" actionListener="#{empUpdBean.loadImg()}" id="save1" rendered="#{not empUpdBean.emp.photo}" class="aui-button-input" />
+                    <h:commandButton action="#{empUpdBean.empUpdTarget()}" value="Сохранить" actionListener="#{empUpdBean.updateBirthday()}" rendered="#{empUpdBean.emp.photo}" class="aui-button-input save" />
+                </h:panelGroup>
+            </h:form>  
+        </div>
+        <h:outputScript library="scripts" name="empMe.js" target="body" rendered="#{not empUpdBean.notMe}"></h:outputScript>    
+    </div>
+</ui:composition>

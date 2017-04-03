@@ -1,0 +1,27 @@
+<ui:composition  xmlns="http://www.w3.org/1999/xhtml" 
+                 xmlns:h="http://xmlns.jcp.org/jsf/html"
+                 xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+                 xmlns:cc="http://xmlns.jcp.org/jsf/composite">
+    <cc:interface>
+        <cc:attribute name="page"></cc:attribute>
+    </cc:interface>
+    <cc:implementation>
+        <div class="#{cc.attrs.page}" id="exxo-start-top-menu">
+            <h:outputLink styleClass="mainA" value="index.xhtml">
+                <h:outputText value="Главная" /> 
+            </h:outputLink>
+            <h:outputLink styleClass="insertA" value="emp.xhtml" rendered="#{!start.demo}">
+                <h:outputText value="Добавить сотрудника" /> 
+            </h:outputLink>   
+            <h:outputLink styleClass="startA" value="start.xhtml" rendered="#{start.demo}">
+                <h:outputText value="Создать портал" /> 
+            </h:outputLink>
+            <h:outputLink value="changeLog">
+                <h:outputText value="ВЫХОД" /> 
+            </h:outputLink>
+            <h:outputLink value="http://exxo.ru/intranet-start/" target="_blank">
+                <h:outputText value=" ? " /> 
+            </h:outputLink>        
+        </div>    
+    </cc:implementation>
+</ui:composition>

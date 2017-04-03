@@ -1,0 +1,119 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:ui="http://java.sun.com/jsf/facelets">
+    <h:head><meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <title>Редактирование списка рабочих групп</title>
+        <link rel="stylesheet" href="alloy/build/aui-skins/core/css/main.css" type="text/css" />
+        <link rel="stylesheet" href="alloy/build/aui-skins/classic/css/custom.css" type="text/css" />
+        <link rel="stylesheet" href="alloy/build/aui-skins/core/css/form.css" type="text/css" /> 
+        <style type="text/css">
+            #container {padding:5px;margin:10px auto;height: 100%;background-color: white; width: 800px;border: 1px solid gray; text-align: left;}
+            body {width:100%;height:100%; background-color: #d8d8ff; font-size: 11px; text-align: center;}    
+            #content {font-size:11pt;margin-top:10px;}
+            #content table{width:100%;background-color: white;}
+            .first {width:60%;padding-left: 10px;}
+            .second{width:20%;padding-left:10px;}
+            .third{width:20%;padding-left:10px;}
+            th {color:white;background-color:  #426487;padding:5px;border-left: 1px solid white;}
+            #content table td{border-bottom-color: #DEDEDE;border-bottom-style: solid;border-bottom-width: 1px;}
+            .hover {background-color: #ffae40;cursor:pointer;}
+            #topik {width:100%;text-align: right;margin-bottom: 30px;}
+            #topik a{ text-decoration: none;margin-right: 30px;}
+            h1{font-size: 16px; font-weight: normal;text-align: left; margin-left: 10px} 
+            .even {background-color: #e3e3e3;}   
+            .third a,.second a {text-decoration: none; display: block;   padding: 5px; padding-left: 30px;}
+            .edit{background-image: url('edit.png'); background-position: 5px 5px; background-repeat: no-repeat;}
+            .drop{background-image: url('drop.png'); background-position: 5px 6px; background-repeat: no-repeat;}
+            #topik a{padding-left: 25px;background-image: url('add.png'); background-position: center left; background-repeat: no-repeat;}
+            .third a:hover,.second a:hover {background-color:#ffc473;color: black;}
+        </style>
+    </h:head>
+    <h:body><ui:component>
+            #{groupListBean.setProject(param['pr'])}
+            <div id="container" class="exxo-shadow">
+                <div id="content">
+                    <h:dataTable value="#{groupListBean.getGroupResultData()}" var="r"
+                                 styleClass="list-table"
+                                 headerClass="list-table-header"
+                                 rowClasses="odd, even"
+                                 columnClasses="first, second, third"
+                                 >
+
+                        <h:column>
+                            <!-- column header -->
+                            <f:facet name="header">Рабочая группа</f:facet>
+                            <!-- row record -->
+                            <a href="groupEdit.jsp?gr=#{r.id}">#{r.name}</a>
+                        </h:column>
+
+                        <h:column>
+                            <f:facet name="header">Изменить</f:facet>
+                            <a href="javascript:;" class="edit" id="a#{r.id}">Изменить</a>
+                        </h:column>
+                        <h:column>
+                            <!-- column header -->
+                            <f:facet name="header">Удалить</f:facet>
+                            <!-- row record -->
+
+                            <a href="javascript: {if(window.confirm('Удалить?')) location='dropGroup?id=#{r.id}&amp;pr=#{r.project}';}" class="drop">Удалить</a>
+
+                        </h:column>
+
+                    </h:dataTable></div></div>
+            <script type="text/javascript">
+                AUI().ready('anim-node-plugin', 'aui-overlay-mask', 'aui-io', function (A) {
+                    var overlayMask = new A.OverlayMask().render();
+                    var opener = A.one('#docStat');
+                    A.one(".aui-overlaymask-content").setStyle("height", "100%");
+                    var conf = {
+                        from: {opacity: 0},
+                        to: {opacity: 1},
+                        on: {'start': function () {
+                                if (!this.get('reverse')) {
+                                    overlayMask.set('target', document).show();
+                                    this.get('node').setStyle('display', 'block');
+                                }
+                            }},
+                        after: {'end': function () {
+                                this.set('reverse', !this.get('reverse'));
+                                this.stop();
+                                if (this.get('node').getStyle('opacity') == 0)
+                                    this.get('node').setStyle('display', 'none');
+                                if (!this.get('reverse'))
+                                    overlayMask.set('target', document).hide();
+                            }}};
+                    opener.plug(A.Plugin.NodeFX, conf);
+                    A.one('#finish').on('click', function () {
+                        location = 'groups.jsp?id=${groupListBean.project}';
+                    })
+                    A.one('#addgroup').on('click', function () {
+                        editor(null);
+                    });
+                    A.all('.edit').each(function () {
+                        this.on('click', function () {
+                            editor(this)
+                        })
+                    });
+                    A.one('#docStat .close span').on('click', function (event) {
+                        closer(A.one('#docStat'));
+                    });
+                    function closer(node) {
+                        node.fx.run();
+                    }
+                    function editor(node) {
+                        var data = {pr: '${groupListBean.project}'};
+                        if (node != null)
+                            data = {id: node.getAttribute('id').substring(1)};
+                        opener.fx.run();
+                        A.one("#docstatus").unplug(A.Plugin.IO);
+                        A.one("#docstatus").plug(A.Plugin.IO, {uri: 'settingGroup.xhtml', method: 'POST', data: data});
+                    }
+                });
+            </script>
+        </ui:component>
+
+    </h:body>
+</html>

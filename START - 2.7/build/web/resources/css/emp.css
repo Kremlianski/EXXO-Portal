@@ -1,0 +1,17 @@
+#unit {cursor: pointer;}
+#formGrid {width: 600px; margin: 20px auto;}
+#formGrid td {padding: 5px;}
+#formGrid input[type=text],#formGrid textarea {width: 100%; box-sizing: border-box; -moz-box-sizing:border-box; border:1px solid #dedede;}
+#formGrid input[type=text]:hover,#formGrid textarea:hover {border: 1px solid #bfbfbf;}
+#formGrid textarea {overflow: auto;}
+td.left {color: gray;}
+input[type=submit] {padding: 5px;width: 6em; margin-right: 10px; cursor: pointer; font-size: 11px;}
+div.item {display: block;width: 160px;padding: 20px 10px;border: 1px solid #BFBFBF; margin: 10px;color: #3C3D58;background-color:#E2E4EE;font-size: 12px;
+          text-align: left;}
+div.inno {padding-left: 70px;}
+.item:hover {background-color:white;color: red;cursor: pointer;}
+#messages {padding-left: 100px; padding-right: 50px; color: red;}
+.str {font-weight: bold;}
+#dateSelected, #workDateSelected, #unit {color: rgb(70,70,112);}
+.aui-form-validator-message {font-size: 10px; font-weight: bold; color: red;}
+#butTable {margin: 50px; margin-left: 100px;}

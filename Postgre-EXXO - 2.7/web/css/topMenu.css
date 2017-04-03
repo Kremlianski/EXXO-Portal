@@ -1,0 +1,9 @@
+ ul.topMenu li {display: inline-block; ;padding:0;list-style:none;}
+ ul.topMenu {list-style:none; margin: 0;}
+.innerMenu {display:block;width:350px;list-style-image: none;list-style-position: outside;list-style-type: none; }
+.innerMenu li{display: block;list-style-image: none;list-style-position: outside;list-style-type: none;text-align: center;cursor: auto;}
+.inneMenuContainer {width: 300px; height: auto; background-color: #7f7f8f; font-size: 14px; border: 1px solid #7f7f8f; border-bottom: 1px solid #7f7f8f; padding: 20px; border-radius: 7px; padding-left: 50px;}
+.innerMenuTable {width: 100%; border:0;}
+.innerMenuTable td {padding: 5px; vertical-align: top; text-align: left; width: 50%;}
+.innerMenuTable a {display: block; font-size: 14px; color: white; text-decoration: none; margin-bottom: 5px;color: white;}
+ul.topMenu .howto {font-size: 12px; color: rgb(201, 201, 194);border: 1px solid rgb(201, 201, 194);padding: 0px 4px;border-radius: 10px;margin-left: 10px;}

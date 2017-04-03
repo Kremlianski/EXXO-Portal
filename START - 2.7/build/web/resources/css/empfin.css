@@ -1,0 +1,10 @@
+#mainGrid td, #autoriz td {padding: 5px; border-bottom: 1px solid #dedede;}
+#mainGrid, #autoriz {width: 100%; border-top:1px solid #dedede;}
+#mainGrid td.right, #autoriz td.right {padding-left: 25px; color: gray; width: 260px;}
+#exxo-start-content input[type=submit], #exxo-start-content input[type=button] {display: block; width: 10em; padding: 5px; cursor: pointer; font-size: 11px; margin-right: 10px;}
+#butTable {margin: 50px; margin-left: 20px;}
+#autoriz td.right {color: black;}
+#autoriz {margin-top: 20px;}
+#autoriz input{width: 150px; border: 1px solid #dedede;}
+#autoriz input:hover {border: 1px solid #bfbfbf;}
+.error {display: block; color: red; font-size: 10px;}

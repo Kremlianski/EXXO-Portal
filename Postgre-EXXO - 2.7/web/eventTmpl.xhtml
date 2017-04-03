@@ -1,0 +1,31 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:f="http://java.sun.com/jsf/core">
+    <h:head>
+        <title>Facelet Title</title>
+    </h:head>
+    <h:body>
+        <ui:component>
+            #{eventTmplBean.initParams(date)}
+            <ui:repeat var="e" value="#{eventTmplBean.events}">
+                <div class="f exxo-shadow"><div class="closeBut"><a class="aui-icon aui-icon-closethick" href="eventsKill?id=#{e.id}&amp;date=#{eventTmplBean.today}"></a></div>
+                    <h:form id="event" styleClass="exxo-form">
+                        <table>
+                            <tr class="date1"><td class="second"><span class="timeH"><h:outputFormat value="{0}" escape="false"><f:param value="#{e.data}"></f:param></h:outputFormat></span><h:graphicImage value="small/important.png" rendered="#{e.important}"></h:graphicImage>
+                                    <h:graphicImage value="small/phone_stop.png" rendered="#{e.nophone}"></h:graphicImage>
+                                    <h:graphicImage value="small/door_out.png" rendered="#{e.outside}"></h:graphicImage>
+                                    <h:graphicImage value="small/attach.png" rendered="#{e.files}"></h:graphicImage>
+                                </td></tr>
+                            <tr class="name"><td class="second"><h:outputFormat value="{0}" escape="false"><f:param value="#{e.name}"></f:param></h:outputFormat></td></tr>
+                            <tr class="descr"><td class="second"><h:outputFormat value="{0}" escape="false"><f:param value="#{e.descr}"></f:param></h:outputFormat></td></tr>
+                        </table>      
+                    </h:form> 
+                </div>
+            </ui:repeat>
+        </ui:component>
+    </h:body>
+</html>
+

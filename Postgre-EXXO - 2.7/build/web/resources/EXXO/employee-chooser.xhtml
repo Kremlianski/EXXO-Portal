@@ -1,0 +1,39 @@
+<ui:composition  xmlns="http://www.w3.org/1999/xhtml" 
+                 xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+                 xmlns:cc="http://xmlns.jcp.org/jsf/composite"
+                 xmlns:h="http://xmlns.jcp.org/jsf/html"
+                 xmlns:EXXO="http://xmlns.jcp.org/jsf/composite/EXXO"
+                 xmlns:f="http://xmlns.jcp.org/jsf/core">
+    <cc:interface>
+        <cc:attribute name="employees" required="true" type="java.util.ArrayList" />
+        <cc:attribute name="choose" method-signature="String choose()" />
+    </cc:interface>
+    <cc:implementation>
+        <div id="searchContainer">   
+<EXXO:seach name="query" nodes=".emps" 
+data="var res='';node.all('.q1').each(function(){res+=this.text();});return res;" 
+placeholder="поиск по имени" query="#{employeesBean.q}" />
+<EXXO:seach name="query1" nodes=".emps" 
+data="var res='';node.all('.q2').each(function(){res+=this.text();});return res;" 
+placeholder="поиск по должности" /></div>
+<div class="exxo-shadow" id="tableChooserContainer">
+<h:dataTable var="emp" value="#{cc.attrs.employees}" class="exxo-table" rowClasses="emps">
+<h:column>
+    <h:commandLink class="q1" id='link1' action="#{cc.attrs.choose}"><h:outputText value="#{emp.fio}" />
+        <f:param name="add_id" value="#{emp.id}" />
+    </h:commandLink>
+</h:column>
+<h:column>
+    <h:commandLink class="q2" id='link2' action="#{cc.attrs.choose}"><h:outputText value="#{emp.position}" />
+        <f:param name="add_id" value="#{emp.id}" />
+    </h:commandLink>
+</h:column>
+<h:column>
+    <h:commandLink class="q2" id='link3' action="#{cc.attrs.choose}"><h:outputText value="#{emp.unit.unit}" />
+        <f:param name="add_id" value="#{emp.id}" />
+    </h:commandLink>
+</h:column>
+</h:dataTable></div>
+        <h:outputStylesheet library="css" name="employee-chooser.css" />
+</cc:implementation>
+</ui:composition>

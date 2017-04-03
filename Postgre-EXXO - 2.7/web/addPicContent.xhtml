@@ -1,0 +1,34 @@
+<ui:composition  xmlns="http://www.w3.org/1999/xhtml" 
+                 xmlns:h="http://xmlns.jcp.org/jsf/html"
+                 xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
+    <h:outputStylesheet library="css" name="addPic.css"></h:outputStylesheet>
+    <h:outputScript library="scripts" name="addPic.js" target="body"></h:outputScript>
+    <div id="main" class="addPic_xhtml exxo-shadow">
+        <div id="gal">#{param['gal']}</div><div id="own">#{param['owner']}</div>
+        <div id="uploaderContainer">
+            <div id="selectFilesButtonContainer">
+            </div>
+            <div id="uploadFilesButtonContainer">
+                <button type="button" id="uploadFilesButton"
+                        class="yui3-button disabled" style="width:180px; height:35px;">Загрузить файлы</button>
+            </div>
+            <div id="overallProgress">
+            </div>
+        </div>
+
+        <div id="filelist">
+            <table id="filenames">
+                <thead>
+                    <tr id="headers" class="disabled"><th>Имя файла</th><th>Размер</th><th>% загрузки</th><th>Сохранено</th></tr>
+                    <tr id="nofiles">
+                        <td colspan="4" id="ddmessage">
+                            <strong>Не выбрано ни одного файла</strong>
+                        </td>
+                    </tr>
+                </thead>
+                <tbody>
+                </tbody>
+            </table>
+        </div>    
+    </div>
+</ui:composition>

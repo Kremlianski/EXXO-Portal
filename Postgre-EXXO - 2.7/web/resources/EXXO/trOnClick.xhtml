@@ -1,0 +1,21 @@
+<ui:composition  xmlns="http://www.w3.org/1999/xhtml" 
+xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+xmlns:cc="http://xmlns.jcp.org/jsf/composite"
+xmlns:h="http://xmlns.jcp.org/jsf/html">
+<cc:interface>
+<cc:attribute name="hrefs" required="true"></cc:attribute>
+<cc:attribute name="tr" required="true"></cc:attribute>
+</cc:interface>
+<cc:implementation>
+<h:outputScript target="body">
+AUI().ready('aui-node', function(A){
+A.all('#{cc.attrs.tr}').each(function(){
+var href = "";
+if(this.one('#{cc.attrs.hrefs}')!=null) {href=this.one('#{cc.attrs.hrefs}').getAttribute('onclick');
+this.on('click', function(){eval(href.substring(0,href.indexOf('return')));});
+this.setStyle('cursor','pointer');
+}});
+});   
+</h:outputScript>
+</cc:implementation>
+</ui:composition>

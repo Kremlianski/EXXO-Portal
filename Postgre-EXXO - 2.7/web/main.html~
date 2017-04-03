@@ -1,0 +1,397 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+<title></title>
+
+<meta http-equiv="content-type" content="text/html; charset=UTF-8"/>
+
+<meta http-equiv="content-style-type" content="text/css"/>
+<link rel="stylesheet" href="alloy/build/aui-skins/core/css/main.css" type="text/css" /> 
+<link rel="stylesheet" href="alloy/build/aui-skins/classic/css/custom.css" type="text/css" /> 
+<style type="text/css"> 
+	#content-wrapper {
+		width: 950px;
+		height:500px;
+	}
+ 
+	.column {
+		background: lightyellow;
+		padding: 10px;
+		border: 1px solid;
+	}
+ 
+	.portlet {
+		background: #EEEFB3;
+		margin: 10px;
+	}
+ 
+	.aui-portal-layout-proxy {
+		position: absolute;
+		width: 100px;
+		height: 20px;
+		background: black;
+		opacity: .7;
+	    filter: alpha(opacity=70);
+	}
+ 
+	.portlet-list {
+		border: 1px solid;
+		left: 960px;
+		position: absolute;
+		top: 51px;
+		width: 128px;
+	}
+ 
+	.portlet-list .portlet-item {
+		background: lightblue;
+		margin: 10px;
+		padding: 5px;
+		height: 30px;
+		width: 100px;
+	}
+ 
+	.aui-portal-layout-drag-target-indicator  {
+		margin: 2px 0;
+	}
+
+      table#grid {
+      width:950px;
+      height:500px;
+
+      }
+table#grid td.column {
+width: 50%;
+
+}
+	</style> 
+
+<script type="text/javascript" charset="utf-8" src="alloy/build/yui/yui-min.js"></script> 
+<script type="text/javascript" charset="utf-8" src="alloy/build/aui-base/aui-base-debug.js"></script> 
+</head>
+<body>
+<div id="content-wrapper"> 
+	<table id="grid" class="grid"> 
+		<tbody> 
+			<tr> 
+				<td valign="top" id="column-1" class="column"> 
+					
+					
+				</td> 
+				<td valign="top" id="column-2" class="column"> 
+					
+						
+					</div> 
+				</td> 
+				
+			</tr> 
+			
+		</tbody> 
+	</table> 
+</div> 
+ 
+<div class="portlet-list"> 
+	
+	<div class="portlet-item" id="text-element">Текстовый элемент</div> 
+	<div class="portlet-item" id="my-calendar">Мой календарь</div> 
+
+</div> 
+ 
+
+ 
+<script type="text/javascript"> 
+ 
+AUI().ready('aui-portal-layout', 'dump','aui-panel', 'datatype-date', 'datatype-xml','aui-io-request','dataschema', function(A) {
+ var Year;
+var Day;
+var Month;
+var now=new Date();
+var user=10;
+A.DataType.Date.Locale['ru'] = A.merge(A.DataType.Date.Locale, {
+"a":["вс","пн","вт","ср","чт","пт","сб"],
+"A":["Воскресенье","Понедельник","Вторник","Среда","Четверг","Пятница","Суббота"],
+"b":["янв.","февр.","марта","апр.","мая","июня","июля","авг.","сент.","окт.","нояб.","дек."],
+"B":["январь","февраль","март","апрель","май","июнь","июль","август","сентябрь","октябрь","ноябрь","декабрь"],
+"c":"%a, %d %b %Y %k:%M:%S %Z","p":["AM","PM"],
+"P":["am","pm"],
+"x":"%d.%m.%y",
+"X":"%k:%M:%S"
+    });
+Year=now.getFullYear()
+Month=now.getMonth();
+Day=now.getDate();
+
+
+
+
+
+	var DDM = A.DD.DDM;
+ 
+	var proxyNode = A.Node.create('<div class="aui-portal-layout-proxy"></div>');
+ 
+	var portalLayout = new A.PortalLayout({
+		dragNodes: '.portlet',
+		dropNodes: '.column',
+		proxyNode: proxyNode,
+		lazyStart: true,
+		after:{'drag:end':function(event){fixElements();}}
+	});
+
+
+A.all(".text").each(function(){
+var ins=this;
+ins.empty();
+var id=ins.getAttribute('id');
+
+
+var instance = new A.Panel({
+collapsible: true,
+collapsed: false,
+headerContent: '',
+bodyContent: '',
+icons:[
+{icon:'close',handler: {fn: function(e){alterText(user,id,'deleteText');ins.empty().unplug().remove();fixElements();}, type: 'click'}},
+{icon:'pencil', handler: {fn: function(e){window.open('editor.jsp?id='+id+'&user='+user+'')}, type: 'click'}},
+{icon: 'refresh', handler: {fn: function(e){textR(ins,instance);}, type: 'click'}}
+]
+}).render(ins);
+
+textR(ins,instance);
+
+});
+
+function textR(ins,instance){
+var id=ins.getAttribute('id');
+var title='';
+var text='';
+
+var io=A.io.request('textOut', {
+			dataType: 'text',
+			cache: false,
+			data: {
+			user: '10',
+			id: id
+			
+		},
+		method: 'post',
+
+			on: {
+				success: function(event, id, xhr) {
+
+				  var Datas=this.get('responseData');
+
+				  try {
+				  data = A.JSON.parse(Datas);
+				  title=data[0];
+				  text=data[1];
+				  }
+				  catch (e) {
+				  alert("Invalid product data");
+				      }   
+//A.one('#text_1').html(text);
+//A.one('#title').setAttribute('value',title);
+				  
+instance.set('bodyContent',text);
+
+				}	
+			    }
+});
+
+}
+
+
+
+
+
+	var PortletItem = function() {
+		PortletItem.superclass.constructor.apply(this, arguments);
+	};
+ 
+	PortletItem.NAME = 'PortletItem';
+ 
+	PortletItem.ATTRS = {
+		dd: {
+			value: {
+				target: false
+			}
+		},
+ 
+		lazyStart: {
+			value: true
+		},
+ 
+		proxyNode: {
+			value: proxyNode
+		},
+ 
+		itemContainer: {
+			value: A.one('.portlet-list')
+		}
+	};
+
+	A.extend(PortletItem, A.PortalLayout, {
+		_getAppendNode: function() {
+			var instance = this;
+ 
+			instance.appendNode = DDM.activeDrag.get('node').cloneNode(true);
+ 
+			return instance.appendNode;
+		}
+	});
+ 
+	var portletList = new PortletItem({
+		dragNodes: '#my-calendar'
+	});
+ 
+	portletList.on('drag:end', function(event) {
+	
+		var newCalendar = A.Node.create('<div class="portlet" id="calendar"></div>');
+ 
+		if (portletList.appendNode && portletList.appendNode.inDoc()) {
+			portletList.appendNode.replace(
+				newCalendar
+			);
+ 
+			portalLayout.addDragTarget(newCalendar);
+		}
+
+var BodyContent='<span class="aui-button-icon aui-icon aui-icon-loading"></span>';
+var inst;
+var instance = new A.Panel({
+collapsible: false,
+collapsed: false,
+headerContent: '',
+bodyContent: BodyContent,
+icons:[
+{icon:'close',handler: {fn: function(e){newCalendar.empty().unplug().remove();fixElements();}, type: 'click'}},
+{icon:'pencil', handler: {fn: function(e){window.open('talking-room.html')}, type: 'click'}},
+{icon: 'refresh', handler: {fn: function(e){xmlR(inst);}, type: 'click'}}
+],
+after:{init:function(event){
+inst=this;
+xmlR(this);
+fixElements();
+}}
+}).render(newCalendar);	
+	});
+
+
+
+
+
+function xmlR(panel){
+
+var time=new Date(Year,Month,Day);
+var list=A.DataType.Date.format(time,{format:'%A,  %e %b', locale:'ru'})+'<br/>';
+var io=A.io.request('CalendarOut', {
+			dataType: 'xml',
+			cache: false,
+			data: {
+			user: '10',
+			date: Year+'-'+(Month+1)+'-'+Day
+			
+		},
+		method: 'post',
+
+			on: {
+				success: function(event, id, xhr) {
+
+				   var Datas=this.get('responseData');
+
+				  var mySchema = {
+    metaFields: {Year:"//@year", Month:"//@month", Day:"//@day"},
+    resultListLocator: "item", 
+   resultFields: [{key:"Hours", locator:"hours"}, {key:"Minutes", locator:"minutes"}, {key:"Long", locator:"long"}, {key:"Name", locator:"name"}]
+};
+var myOutput = A.DataSchema.XML.apply(mySchema, Datas); 
+if(myOutput.results.length==0){
+
+var loading = '<span class="red">Пока ничего не назначено</span>';
+list+=loading;
+
+}
+
+for(var i=0;i<myOutput.results.length;i++){
+var Hours=parseInt(myOutput.results[i].Hours,10);
+var Minutes=parseInt(myOutput.results[i].Minutes,10);
+var Long=parseInt(myOutput.results[i].Long,10);
+var Name=myOutput.results[i].Name;
+var time=new Date(Year,Month,Day,Hours,Minutes,0);
+var Minfin=Minutes+Long;
+var timeFin=new Date(Year,Month,Day,Hours,Minfin,0);
+
+list+='<span class="blue">'+A.DataType.Date.format(time,{format:'%H:%M'})+'-'+A.DataType.Date.format(timeFin,{format:'%H:%M'})+'</span>   '+Name+'<br/>';
+}
+panel.set('bodyContent',list);
+				}
+			}
+		});
+
+
+}
+var portletListT = new PortletItem({
+		dragNodes: '#text-element'
+	});
+ 
+	portletListT.on('drag:end', function(event) {
+	var D=new Date();
+	var id='text_'+D.getTime()+'-'+10;
+alterText(user,id,'insertText');
+		var newText = A.Node.create('<div class="portlet" id="'+id+'"></div>');
+ 
+		if (portletListT.appendNode && portletListT.appendNode.inDoc()) {
+			portletListT.appendNode.replace(
+				newText
+			);
+ 
+			portalLayout.addDragTarget(newText);
+		}
+
+var BodyContent='<span class="aui-button-icon aui-icon aui-icon-loading"></span>';
+var instance = new A.Panel({
+collapsible: false,
+collapsed: false,
+headerContent: '',
+bodyContent: BodyContent,
+icons:[
+{icon:'close',handler: {fn: function(e){alterText(user,id,'deleteText');newText.empty().unplug().remove();fixElements();}, type: 'click'}},
+{icon:'pencil', handler: {fn: function(e){window.open('editor.jsp?id='+id+'&user='+user+'')}, type: 'click'}},
+{icon: 'refresh', handler: {fn: function(e){textR(newText, instance);}, type: 'click'}}
+],
+after:{init:function(event){
+fixElements();
+}}
+
+}).render(newText);	
+	});
+
+function alterText(user,id, servlet){
+var io=A.io.request(servlet, {
+			cache: false,
+			data: {
+			user: user,
+			id: id
+			
+		},
+		method: 'post'});
+
+}
+function fixElements(){
+var node=A.Node.create(A.one('#grid').html());
+node.all('td.column').removeClass('yui3-dd-drop');
+node.all('td.column div').setAttribute('class','portlet').empty();
+
+var structure=node.outerHTML();
+node.remove();
+node.destroy();
+var page_id=2;
+
+//alert(structure);
+
+alterText(page_id,structure,'insStructure');
+
+}
+});
+ 
+</script> 
+</body>
+</html>

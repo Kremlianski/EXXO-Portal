@@ -1,0 +1,6 @@
+#mainGrid {width: 600px; margin: 0px auto;}
+#mainGrid td {padding: 5px; border-bottom: 1px solid #dedede;}
+#mainGrid td.right {padding-left: 25px; color: gray; width: 260px;}
+input[type=submit] {display: block; width: 10em; padding: 5px; cursor: pointer; font-size: 11px; margin-right: 10px;}
+#butTable {margin: 50px; margin-left: 20px;}
+#main {background-color: white; padding: 20px; margin-bottom: 20px; width: 600px; font-size: 12px; border: 1px solid #dedede; border-bottom: 1px solid #bfbfbf;}

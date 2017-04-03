@@ -1,0 +1,26 @@
+<ui:composition  xmlns="http://www.w3.org/1999/xhtml" 
+                 xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+                 xmlns:cc="http://xmlns.jcp.org/jsf/composite"
+                 xmlns:h="http://xmlns.jcp.org/jsf/html"
+                 xmlns:f="http://xmlns.jcp.org/jsf/core"
+                 xmlns:c="http://xmlns.jcp.org/jsp/jstl/core">
+    <cc:interface>
+        <cc:attribute name="start" method-signature="void start()" ></cc:attribute>
+        <cc:attribute name="name" default="Продолжить"></cc:attribute>
+    </cc:interface>
+    <cc:implementation>
+        <div class="exxo-start-yes-no-but">
+            <h:form prependId="true" id="form">
+                <h:panelGrid columns="2" class="grid" columnClasses="first, second">
+                    <h:outputLabel value="Я согласен с условиями использования"></h:outputLabel>
+                    <h:selectBooleanCheckbox id="yes" value="#{yesNoBut.yes}">
+                        <f:ajax render="but"></f:ajax>
+                    </h:selectBooleanCheckbox>    
+                </h:panelGrid>
+                <h:commandButton action="#{cc.attrs.start}" value="#{cc.attrs.name}" id="but" disabled="#{not yesNoBut.yes}" 
+                                 class="submitBut"></h:commandButton>
+            </h:form>
+        </div>
+        <h:outputStylesheet library="css" name="yes-no-but.css"></h:outputStylesheet>
+    </cc:implementation>
+</ui:composition>

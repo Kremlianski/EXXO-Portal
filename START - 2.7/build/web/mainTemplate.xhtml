@@ -1,0 +1,30 @@
+<?xml version='1.0' encoding='UTF-8' ?> 
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html">
+    <h:head>
+        <ui:insert name="head" >head</ui:insert>
+        <ui:insert name="head-bot" >head</ui:insert>
+    </h:head>
+    <h:body>
+        <table id="exxo-start-grid">
+            <tr>
+                <td id="exxo-start-top">
+                    <ui:insert name="top" >Top</ui:insert>
+                </td>
+            </tr>
+            <tr>
+                <td id="exxo-start-content">
+                    <ui:insert name="content">Content</ui:insert>
+                </td>
+            </tr>
+            <tr>
+                <td id="exxo-start-bottom">
+                    <ui:insert name="bottom"><a href="changeLog">ВЫХОД</a></ui:insert>
+                </td>
+            </tr>
+        </table>
+        <ui:insert name="container"></ui:insert>    
+    </h:body>
+</html>

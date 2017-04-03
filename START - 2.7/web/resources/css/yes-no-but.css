@@ -1,0 +1,4 @@
+.exxo-start-yes-no-but table.grid {margin-bottom: 50px; text-align: left;}
+.exxo-start-yes-no-but table.grid td.second {padding-left: 50px;}
+.exxo-start-yes-no-but input.submitBut {padding: 10px; cursor: pointer;}
+.exxo-start-yes-no-but input.submitBut[disabled] {opacity: 0.5;}

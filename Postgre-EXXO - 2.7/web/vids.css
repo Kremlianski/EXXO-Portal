@@ -1,0 +1,88 @@
+.fil {padding-left: 20px;font-size: 11px;color: gray; height: 20px;}
+.fil a{font-size: 12px;margin-right: 10px;text-decoration: none;} 
+.fil .fio {color:black;}
+.file {padding-left: 20px;font-size: 11px;color: gray; height: 20px;}
+.file a{font-size: 12px;margin-right: 20px;text-decoration: none;}
+#docsH3 , #docsKH3, #newsH3, #galH3, #galKH3 ,#deskH3, #blogH3 {text-align: left;}
+.gal {background-image: url("small/photo_album.png");background-position: left;background-repeat: no-repeat; padding: 4px; padding-left: 25px;margin:10px 5px;}
+.gal a{margin-right: 10px;text-decoration: none;}
+.BUS a{color: #0f1f99;}
+.HBlog a {text-decoration: none;}
+.blog .timer {font-size: 11px;padding-right: 5px; color: blue;}
+div.blog {margin-top:8px;}
+.bname a {color:black;}
+.BUS .bname a {color:#0f1f99;}
+.img {display:inline-block;background-color: transparent;width: 120px;height: 120px;  margin: 2px;background-position: center;background-repeat: no-repeat;}
+.IMG {height: 150px;background-color: white;position: relative;overflow-y: auto;overflow-x: hidden; background-color: rgb(82, 82,136);}
+#imger {position: absolute;display: none;left:20px;top:20px;padding: 10px;background-color: rgb(90,90,90);z-index: 9999999; border: 1px solid black; border-radius: 5px;}
+#close,#closer{color:red;width:100%;text-align:right;}
+#containerNC h3 {color:  #dedede; font-size: 12px; padding: 5px;margin-bottom: 4px;border-radius: 5px 5px 0px 0px; border-bottom: 1px dotted #bfbfbf;}
+#containerNC.exxo-vids-small img {width: 60px; height: 80px;}
+#containerNC img {width: auto; height: auto; border-radius: 4px; border: 1px solid #5B5A64; margin: 0;}
+#containerNC {text-align: center; border-radius: 5px;}
+#containerNC a {display: inline-block; margin: 5px;border-radius: 4px;}
+#newGal, #newDocsK, #newDocs, #newKGal {text-align: left;}
+#docsH3 a, #docsKH3 a, #newsH3 a , #galH3 a, #galKH3 a, #blogH3 a {text-decoration: none;font-size: 12px;font-weight: normal;color: #dedede;display:block;margin-bottom:0px;}
+#docsH3 a:hover, #docsKH3 a:hover, #newsH3 a:hover , #galH3 a:hover, #galKH3 a:hover, #deskH3 a:hover, #blogH3 a:hover {color: white;text-decoration: underline;}
+#newsH3 a {font-size: 22px;}
+#newDocs table {width: 100%;}
+#newBBlog img, #newBlog img {margin-right: 4px;}
+table.exxo-table {border-top: 1px solid #dedede;}
+.exxo-table tr.docs:nth-of-type(odd) td{background-color: #f2f2f5;}
+.exxo-table tr.docs:hover td{background-color: #E3E2FD;}
+.docs td.first {width: 20px;}
+.timeBlog {font-weight: bold;}
+.timeBlog::after {font-weight: bold;content:' - '}
+.blog .type {width: 16px; padding: 4px;}
+.blog .bname .owners a {padding-left: 5px; color: gray;}
+table tr.docs td {padding:6px;}
+table tr.docs td.first {padding:2px; min-width:16px;}
+table tr.docs td.first {padding:2px;}
+div.portlet-text, div.portlet-news, td#column-1 .portlet div.portlet-text, td#column-3 .portlet div.portlet-text, td#column-1 .portlet div.portlet-news {margin:20px;margin-left:50px;margin-right:40px;}
+a.notopend {font-weight: bold;}
+tr.docs td.dop { width: 16px;}
+#birthH3 {font-size: 12px; font-weight: bold; background-image: url("img/cake.png"); background-repeat: no-repeat; background-position: 6px center; display: block; padding: 5px; border-radius: 4px 4px 0px 0px; padding-left: 28px; background-color: #B93117; color: #dedede; text-decoration: none;}
+#Birthday img {width: 30px; height: 40px;}
+#birthdayList {width:100%;}
+#Birthday img {margin: 2px; border-radius: 4px;}
+#Birthday tr.today {font-weight: bold;}
+.birthFIO {padding-left: 3px; padding-top: 3px; text-align: center;}
+.birth {padding-left: 5px; color: #B93117;}
+.birthFIO a{text-decoration: none; color: black;}
+.birthFIO a:hover {color:#972626;text-decoration: underline;}
+#menu-td #Birthday img {margin:0; display:none;}
+#birthdayList tr:nth-child(even) {background-color: #FCF2F2;}
+#birthdayList tr:nth-child(odd) {background-color: white;}
+#Birthday {background-image: none; background-color: white; text-align: left;}
+.birthPhoto {width: 30px; padding-right: 6px;}
+.exxo-vids-small #birthdayList td{padding-top: 5px; padding-bottom: 5px; text-align: left;}
+#birthdayList tr {border-bottom: 1px solid #dedede;}
+#birthH3:hover {color: white; text-decoration: underline;}
+#birthdayList td.empty {padding: 10px; color: #bfbfbf;}
+#deskH3 {padding: 5px; background-color: rgb(125,125,125);border-radius: 4px 4px 0px 0px;}
+#deskH3 a {font-weight: bold; color: #dedede; text-decoration: none;}
+#deskH3 a:hover {color: white;}
+div.portlet-desk {margin: 0;}
+.desk div.desk-item {border-bottom: 1px dotted #bfbfbf; padding-left: 10px; padding-right: 5px;}
+.desk {width: 100%; margin-top: 10px;}
+#newComers {background-image: none; background-color: rgb(85, 85, 107); border-radius: 5px;}
+#galH3, #galKH3 {padding: 5px; border-radius: 5px 5px 0px 0px; background-color: rgb(50,50,50);}
+.newGalsContent li.gal {background-color: gray;}
+.newGalsContent li.gal a{background-color: gray;}
+#newGal, #newKGal {background-color: rgb(50,50,50); background-image: none;border-radius: 5px;}
+.calendar .red {display: block; padding: 5px; color: #bfbfbf; padding-top: 20px; padding-bottom: 20px; background-color: white; border-radius: 10px 10px 0px 0px; border:0;}
+#menu-td .portlet {font-size: 11px;}
+#calendar {border-radius: 10px 10px 4px 4px;}
+#calendar span.blue {display:block;text-align: left;color: #AA1414;background-color: #EDEFF7;padding-left: 10px;  padding-top: 5px; padding-bottom: 5px; border-radius: 10px 10px 0px 0px; font-weight: bold; border: 1px solid #dedede;}
+#calendar a.cal {display: block;color: #dedede; padding: 5px; background-color: rgb(148, 26, 21); border-radius: 10px 10px 0px 0px; border-bottom-width: 0px; padding-left: 10px;}
+.calendar div:first-of-type {background-color: rgb(148, 26, 21); }
+.calendar {background-color: rgb(148, 26, 21); border-radius: 10px 10px 4px 4px; }
+.calendar div {background-color: white; }
+.portlet-text.exxo-width-small, .portlet-news.exxo-width-small {margin: 10px;}
+.portlet-text.exxo-width-small h1, .portlet-text.exxo-width-small h2,.portlet-text.exxo-width-small h3,.portlet-text.exxo-width-small h4 {font-size: 12px;}
+.portlet-text ul, .portlet-news ul , .portlet-text ol, .portlet-news ol {list-style-position: inside;}
+.portlet-text li, .portlet-news li {margin: 10px 0px;}
+.exxo-width-small #birthdayList td {padding: 5px;}
+td#column-4 .portlet-text, td#column-4 .portlet-news {margin: 10px 20px;}
+.IMG li {background-color: #bfbfbf;}
+.portlet-photos, #newPhotos {border-radius: 10px 10px 4px 4px;}

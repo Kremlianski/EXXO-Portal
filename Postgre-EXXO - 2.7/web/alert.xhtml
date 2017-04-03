@@ -1,0 +1,44 @@
+<ui:composition  xmlns="http://www.w3.org/1999/xhtml" 
+                 xmlns:h="http://xmlns.jcp.org/jsf/html"
+                 xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+                 template="./main.xhtml" 
+                 xmlns:f="http://xmlns.jcp.org/jsf/core"
+                 xmlns:EXXO="http://xmlns.jcp.org/jsf/composite/EXXO"
+                 xmlns:c="http://xmlns.jcp.org/jsp/jstl/core">
+    <ui:define name="title">Предупреждение!!!</ui:define>
+    <ui:define name="mainMenu">
+    </ui:define>
+    <ui:define name="mainContent">
+        <div id="main" class="exxo-shadow">
+            <h3>Внимание!</h3>
+            <h:outputFormat value="{0}" escape="false">
+                <f:param value="${alertBean.alert(param['p'])}"></f:param>
+            </h:outputFormat> 
+            <div id="back"><a href="javascript: history.go(-1)">НАЗАД</a></div>
+        </div>
+
+        <h:outputStylesheet library="css" name="alert.css" />
+        <h:outputScript library="scripts" name="alert.js" />
+    </ui:define>
+    <ui:define name="head">
+        <link rel="stylesheet" href="index.css" type="text/css" />    
+        <link rel="stylesheet" href="css/topMenu.css" type="text/css" />
+        <link rel="stylesheet" href="css/exxo.css" type="text/css" />
+        <h:outputStylesheet>
+            <h:outputText value="#{cSS.css}" escape="false" />
+            <h:outputText value="#{cSS1.getCss('alert.xhtml')}" escape="false" />
+        </h:outputStylesheet>
+    </ui:define>
+    <ui:define name="topMenu" >
+        <ul class="topMenu">
+            <ui:include src="topMenu.xhtml"></ui:include>
+        </ul>    
+    </ui:define>
+    <ui:define name="METAS">
+        <f:metadata>
+            <c:set var="body_id" value="alert_xhtml" />
+        </f:metadata>
+    </ui:define>
+    <ui:define name="container">
+    </ui:define>
+</ui:composition>

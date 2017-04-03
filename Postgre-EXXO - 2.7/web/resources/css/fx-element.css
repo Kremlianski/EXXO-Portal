@@ -1,0 +1,6 @@
+div.exxo-fx-element {display: none; top:0px; left: 0px; position: absolute; z-index: 99999; width: 100%;}
+div.exxo-fx-element .exxo-imgesInner {position: relative; width: 300px; height: auto; background-image: url(/EXXO/small/fx-bg.png); background-repeat: repeat; background-position: center;border-radius: 5px; border: 1px solid #dedede; margin: 20px;}
+.exxo-target-container {display: none;}
+div.exxo-fx-close {text-align: right; padding: 6px; color: red; font-size: 11px; padding-right: 20px;}
+div.exxo-fx-close span {cursor: pointer;}
+div.exxo-fx-content {padding: 30px;}

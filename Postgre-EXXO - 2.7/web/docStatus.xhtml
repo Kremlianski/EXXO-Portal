@@ -1,0 +1,32 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:f="http://java.sun.com/jsf/core">
+    <h:head>
+        <title>Facelet Title</title>
+    </h:head>
+    <h:body id="docStatus_xhtml">
+        <ui:component>
+            #{docStatusBean.getList(param['vid'])}
+            <h:dataTable value="#{docStatusBean.myResultData}" var="r"
+                         styleClass="list-sign"
+                         headerClass="list-sign-header"
+                         rowClasses="odd, even"
+                         columnClasses="firs-sign, second-sign, third-sign"
+                         ><h:column>
+                    <f:facet name="header">УТВЕРЖДАЮ:</f:facet>
+                    <a href="empCard.jsp?id=#{r.owner}">#{r.fio}</a>
+                </h:column>
+                <h:column>
+                    <f:facet name="header"></f:facet>
+                    <h:outputFormat value="{0}" escape="false">
+                        <f:param value=" #{r.d}"></f:param>
+                    </h:outputFormat> 
+                </h:column>
+            </h:dataTable>
+        </ui:component>
+    </h:body>
+</html>
+

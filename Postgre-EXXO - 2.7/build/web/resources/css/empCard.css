@@ -1,0 +1,22 @@
+.exxo-employee-card {width:575px; margin-left: 10px; border-color: #DEDEDE #DEDEDE #BFBFBF #DEDEDE;border-width: 1px;border-style: solid; }
+.exxo-employee-card table.table {background-color: white;}
+.exxo-employee-card .table a {color: #5B677D;text-decoration: none;}
+.exxo-employee-card .table a:hover {text-decoration: underline;}
+.exxo-employee-card label {font-weight: normal;font-size:12px;}
+.exxo-employee-card .table td.left {text-align:right;padding:10px;padding-right:20px;}
+.exxo-employee-card .table td.right {text-align:left; padding: 10px 5px;}
+.exxo-employee-card .table tr:first-of-type td.right {vertical-align: top; padding: 5px;}
+.exxo-employee-card .table tr {border-bottom: 1px solid #dfdfdf;}
+.exxo-employee-card #img{width:110px;height:147px;background-color:gray;margin:3px;float: right;}
+.exxo-employee-card #img img {width:110px;height:147px;}
+.exxo-employee-card .maininfo{font-size: 14px; margin-top: 10px;}
+.exxo-employee-card #birthday {font-size: 12px;}
+.exxo-employee-card #submenu {font-size: 14px; padding:5px; background-color: white; text-align: center; border-bottom: 1px solid #dedede;}
+.exxo-employee-card #submenu a {margin-right: 10px; color: black; text-decoration: none;}
+.exxo-employee-card table.table {font-size: 12px;}
+.exxo-employee-card td.left {color: gray; width: 200px;}
+.exxo-employee-card a.servs {display: block;}
+.exxo-employee-card div#birthday {color:#5F6186;margin-top: 20px;}
+.exxo-employee-card #position {margin-top: 8px; font-size: 12px; font-style: italic;}
+.exxo-employee-card #company {margin-top: 8px;}
+.exxo-employee-card table.table tr:hover a {color:#972626;}

@@ -1,0 +1,30 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html">
+    <h:head><meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <title>Авторизация</title>
+        <style type='text/css'>
+            body {background-color:#d8d8ff;  text-align: center;font-size: 12px; font-family: Arial, Helvetica, sans-serif;line-height: normal;}
+            #f {background-color:white; padding:40px; width: 400px; margin: auto auto; display: block; border: 1px solid gray; -moz-border-radius: 8px;
+                -webkit-border-radius: 8px; border-radius: 8px;}
+            input {width: 200px;} 
+            .in { border: 1px solid gray; -moz-border-radius: 8px;
+                  -webkit-border-radius: 8px; border-radius: 8px; padding: 3px; background-color: #d8d8ff;}
+            #f td {padding: 20px 0px;}
+            #f table {margin-bottom: 20px; width:100%;}
+            td.one {text-align: left; padding-right: 10px;}
+            td.two {text-align: right; padding-left: 10px;}
+        </style>
+    </h:head>
+    <h:body><div id='f'>${startBean.getMassage()}
+            <h:form id="form"><table><tr><td class='one'>Фамилия Имя Отчество</td><td class='two'>
+                            <h:inputText id="login" label="login" required="true" value="#{startBean.user}"  styleClass="in" /></td></tr><tr><td class='one'>Пароль для регистрации</td><td class='two'>
+                            <h:inputSecret id="pass" label="password" required="true" value="#{startBean.pass}"  styleClass="in" /></td></tr></table>
+                <h:commandButton id="submit" value="Зарегистрироваться" action="startPage.xhtml" actionListener="#{startBean.log()}" />
+                ${startBean.setMassage()}
+            </h:form>   
+        </div>
+    </h:body>
+</html>
+

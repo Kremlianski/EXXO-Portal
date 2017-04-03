@@ -1,0 +1,53 @@
+<ui:composition  xmlns="http://www.w3.org/1999/xhtml" 
+                 xmlns:h="http://xmlns.jcp.org/jsf/html"
+                 xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+                 template="./main.xhtml" 
+                 xmlns:f="http://xmlns.jcp.org/jsf/core"
+                 xmlns:EXXO="http://xmlns.jcp.org/jsf/composite/EXXO"
+                 xmlns:c="http://xmlns.jcp.org/jsp/jstl/core">
+    <ui:define name="title">Список сотрудников</ui:define>
+    <ui:define name="mainMenu">
+        <ui:include src="menu-emp.xhtml"></ui:include>
+    </ui:define>
+    <ui:define name="mainContent">
+        <div id="searchContainer">   
+            <EXXO:seach name="query" nodes=".emps" 
+                        data="var res='';node.all('.q1').each(function(){res+=this.text();});return res;" 
+                        placeholder="поиск по имени" query="#{employeesBean.q}" />
+            <EXXO:seach name="query1" nodes=".emps" 
+                        data="var res='';node.all('.q2').each(function(){res+=this.text();});return res;" 
+                        placeholder="поиск по должности" /></div>
+        <EXXO:employeesBlock employees="#{employeesBean.emp}" >
+        </EXXO:employeesBlock>
+        <h:outputStylesheet library="css" name="findEmployee.css" />
+    </ui:define>
+    <ui:define name="head">
+        <link rel="stylesheet" href="index.css" type="text/css" />    
+        <link rel="stylesheet" href="css/topMenu.css" type="text/css" />
+        <link rel="stylesheet" href="css/exxo.css" type="text/css" />
+        <h:outputStylesheet>
+            <h:outputText value="#{cSS.css}" escape="false" />
+            <h:outputText value="#{cSS1.getCss('employees.xhtml')}" escape="false" />
+        </h:outputStylesheet>
+    </ui:define>
+    <ui:define name="topMenu" >
+        <ul class="topMenu">
+            <ui:include src="topMenu.xhtml"></ui:include>
+            <li><a href="emp.xhtml" class="footmenu">Настройка</a></li>
+            <li>
+                <h:outputLink value="http://exxo.ru/howto/staff-howto.html#find" class="footmenu howto" target="_blank">
+                    <h:outputText value="?"></h:outputText>
+                </h:outputLink>
+            </li>
+        </ul>    
+    </ui:define>
+    <ui:define name="METAS">
+        <f:metadata>
+            <f:viewAction action="#{employeesBean.init()}" />
+            <f:viewParam name="q" value="#{employeesBean.q}" />
+            <c:set var="body_id" value="employees_xhtml" />
+        </f:metadata>
+    </ui:define>
+    <ui:define name="container">
+    </ui:define>
+</ui:composition>

@@ -1,0 +1,34 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html">
+    <h:head>
+        <title>Активация ключа</title>
+        <style type='text/css'>
+            body {
+                background-color:#d8d8ff; width: 100%; display: block; text-align: center;font-size: 11px; font-family: Arial, Helvetica, sans-serif;line-height: normal;}
+            #f {background-color:white; padding:50px; width: 500px; margin: auto auto; display: block; border: 1px solid gray; text-align: left;}
+            input {width: 200px;border-radius: 5px;border: 1px solid #dedede;} 
+            #f td {padding: 20px 0px;}
+            #note {color:red;font-size:9pt; margin-bottom:20px;padding:10px;}
+            #f table {margin-bottom: 20px;margin-top: 60px;width: 100%;font-size: 14px;}
+            td.one {text-align: left; padding-right: 10px;}
+            td.two {text-align: right; padding-left: 10px;}
+            input[type=submit] {width: 170px;display: block;padding: 10px;border-radius: 10px;cursor: pointer;font-size: 16px;color: #bfbfbf;margin: 0px auto;}
+            #f a {display: block;margin-top: 20px;text-decoration: none;text-align: right;}
+            #f a:hover {text-decoration: underline;}
+            input:hover {border: 1px solid #bfbfbf;}
+            input[type=submit]:hover {border:1px solid #bfbfbf; color: black;}
+        </style>
+    </h:head>
+    <h:body><div id='f'>
+            #{authBean.getCount()}
+            <h:form id="form"><table><tr><td class='one'>Ключ активации</td><td class='two'>
+                            <h:inputText id="key" label="key" required="true" value="#{authBean.key}" /></td></tr></table>   
+                <h:commandButton id="submit" value="Активировать" action="register.xhtml" actionListener="#{authBean.register()}" />
+            </h:form>   
+            <a href="/WELLCOME/">Закончить</a>
+        </div>
+    </h:body>
+</html>
+

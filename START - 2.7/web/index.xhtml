@@ -1,0 +1,21 @@
+<ui:composition  xmlns="http://www.w3.org/1999/xhtml" 
+                 xmlns:h="http://xmlns.jcp.org/jsf/html" 
+                 xmlns:ui="http://xmlns.jcp.org/jsf/facelets" 
+                 xmlns:EXXO-START="http://xmlns.jcp.org/jsf/composite/EXXO-START" 
+                 template="./mainTemplate.xhtml" >
+    <ui:define name="top">
+        <EXXO-START:top-menu page="main-class"></EXXO-START:top-menu>
+    </ui:define>
+    <ui:define name="head">
+        <EXXO-START:head title="Главная страница пользователя ROOT"></EXXO-START:head>
+    </ui:define>
+    <ui:define name="head-bot"></ui:define>
+    <ui:define name="content">
+        <h:panelGroup rendered="#{start.demo}">
+            <ui:include src="index/index-demo.xhtml"></ui:include>
+        </h:panelGroup>
+        <h:panelGroup rendered="#{not start.demo}">
+            <ui:include src="index/index-no-demo.xhtml"></ui:include>
+        </h:panelGroup>
+    </ui:define>
+</ui:composition>

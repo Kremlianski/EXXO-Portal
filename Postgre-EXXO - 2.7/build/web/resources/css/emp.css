@@ -1,0 +1,26 @@
+#unit {cursor: pointer;}
+#formGrid {width: 600px; margin: 0px auto;}
+#formGrid td {padding: 5px;}
+#formGrid input[type=text],#formGrid textarea {width: 100%; box-sizing: border-box; -moz-box-sizing:border-box; border:1px solid #dedede;}
+#formGrid input[type=text]:hover,#formGrid textarea:hover {border: 1px solid #bfbfbf;}
+#formGrid textarea {overflow: auto;}
+td.left {color: gray;}
+input[type=submit] {padding: 5px;width: 6em; margin-right: 10px; cursor: pointer; font-size: 11px;}
+input.save[type=submit] {width: 7em;}
+div.item {display: block;width: 160px;padding: 20px 10px;border: 1px solid #BFBFBF; margin: 10px;color: #3C3D58;background-color:#E2E4EE;font-size: 12px;
+text-align: left;}
+div.inno {padding-left: 70px;}
+.item:hover {background-color:white;color: red;cursor: pointer;}
+#messages {padding-left: 100px; padding-right: 50px; color: red;}
+.str {font-weight: bold;}
+#dateSelected, #workDateSelected, #unit {color: rgb(70,70,112);}
+.aui-form-validator-message {font-size: 10px; font-weight: bold; color: red;}
+#butTable {margin: 50px; margin-left: 100px;}
+#main {background-color: white; padding: 20px; margin-bottom: 20px; width: 600px; font-size: 12px; border: 1px solid #dedede; border-bottom: 1px solid #bfbfbf;}
+#notWork {border: 1px solid #dedede; border-bottom: 1px solid #bfbfbf; background-color: white; text-align: center; padding: 10px;padding-bottom: 20px; font-size: 12px; width: 600px;}
+#notWork h3{margin-bottom: 40px; color: gray;}
+#notWork input[type=submit] {width:10em;}
+#actionMenu {margin-top: 20px;width: 170px;background-color: #FDF2F2;padding: 0;margin-left:10px;}
+#actionMenu a{display: block; padding: 6px; text-decoration: none; border-top:1px solid #DEDEDE; font-size: 12px; color:#22225A;}
+#actionMenu a:hover {background-color: #E3E2FD;}
+#therest {text-align: right;font-size: 16px;color: gray;padding-right: 20px;}

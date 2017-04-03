@@ -1,0 +1,19 @@
+#content {position: relative; padding: 0; min-width: 960px;}
+div.day {position: relative;width: 14%;box-sizing: border-box; -moz-box-sizing: border-box; border: 1px solid #dedede;padding: 5px;font-size: 12px;display: inline-block;vertical-align: top; height: 108px; margin-top: 1px; margin-left: 1px; cursor: pointer;}
+div.wd {height: 30px; cursor: default;}
+.dayTitle {text-align: right; font-size: 14px; font-weight: bold;}
+.dayTitle a {text-decoration: none;}
+.dayBody {color: gray;}
+.dayBody span {color: rgb(14,14,104); font-size: 14px; font-weight: normal; padding-left: 25px;}
+.out {color: rgb(14,14,104); font-size: 14px; font-weight: normal; padding-left: 25px; background-image: url('../small/door_out.png'); background-repeat: no-repeat; background-position: left;}
+.imp {color: rgb(14,14,104); font-size: 14px; font-weight: normal; padding-left: 25px; background-image: url('../small/important.png'); background-repeat: no-repeat; background-position: left;}
+.nomonth .dayTitle a {color: #dedede; }
+.nomonth {background-color: rgb(245,245,245); color: gray;}
+div.nomonth span, div.nomonth .out, div.nomonth .imp{color: gray;}
+div.today {border: 1px solid #bfbfbf;}
+.weekend {background-color: rgb(253,239,239);}
+.weekMenu {font-size: 14px; padding: 10px; text-align: center;}
+.weekMenu a{font-size:11px; padding: 10px; text-decoration: none;}
+.weekMenu a:hover {text-decoration: underline;color:#972626;}
+.exxo-calendar-timer span {width: 1.5625%; padding:0; height: 6px; border-bottom-color: rgb(240,240,240); background-color: rgb(240,240,240);}
+.exxo-calendar-timer {position: absolute; left: 0px; bottom: 0px; width: 100%;}

@@ -1,0 +1,175 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<div style="height: auto;" class="aui-menu-content" role="presentation">
+    <ul id="topUl" class="first-of-type" role="presentation">
+        <li class="aui-menuitem" role="presentation">
+            <a id="aui-3-1-0-1-1331019803340133" class="aui-menuitem-content" role="menuitem" tabIndex="0" href="?id=2">Главная</a>
+        </li>
+        <li id="aui-3-1-0-1-1331019797875456" class="aui-menuitem item-menu item" role="presentation">
+            <a aria-haspopup="true" id="aui-3-1-0-1-133101980334079" class="aui-menu-label aui-menuitem-content" role="menuitem" tabIndex="-1" href="#comp">Портал</a>
+            <div aria-hidden="true" id="comp" class="aui-menu aui-menu-hidden" role="menu" aria-labelledby="aui-3-1-0-1-133101980334078">
+                <div class="aui-menu-content" role="presentation">
+                    <ul class="first-of-type" role="presentation"></ul>
+                </div>
+            </div> 
+        </li>
+        <li class="aui-menuitem item-menu item" role="presentation">
+            <a aria-haspopup="true" id="aui-3-1-0-1-133101980334082" class="aui-menu-label aui-menuitem-content" role="menuitem" tabIndex="-1" href="#impl">Справочник</a>
+            <div aria-hidden="true" id="impl" class="aui-menu aui-menu-hidden" role="menu" aria-labelledby="aui-3-1-0-1-133101980334081">
+                <div class="aui-menu-content" role="presentation">
+                    <ul class="first-of-type" role="presentation">
+                        <li id="aui-3-1-0-1-1333990195795650" class="aui-menuitem item" role="presentation">
+                            <a class="aui-menuitem-content" role="menuitem" href="territories.jsp">Офисы</a>
+                        </li>
+                        <li id="aui-3-1-0-1-1333990195795516" class="aui-menuitem item" role="presentation">
+                            <a class="aui-menuitem-content" role="menuitem" href="company.jsp">Структура компании</a>
+                        </li>
+                        <li id="aui-3-1-0-1-1333990195795522" class="aui-menuitem item" role="presentation">
+                            <a class="aui-menuitem-content" role="menuitem" href="empList.jsp">Поиск сотрудников</a>
+                        </li>
+                        <li id="aui-3-1-0-1-1333990195795530" class="aui-menuitem item" role="presentation">
+                            <a class="aui-menuitem-content" role="menuitem" href="empListComp.jsp">Список по подразделениям</a>
+                        </li>
+                        <li id="aui-3-1-0-1-1333990195795537" class="aui-menuitem item" role="presentation">
+                            <a class="aui-menuitem-content" role="menuitem" href="projects.jsp">Проекты и группы</a>
+                        </li>
+                        <li id="aui-3-1-0-1-1333990195795543" class="aui-menuitem item" role="presentation">
+                            <a class="aui-menuitem-content" role="menuitem" href="empPhoto.jsp">Фотографии</a>
+                        </li>
+                        <li id="aui-3-1-0-1-1333990195795549" class="aui-menuitem item" role="presentation">
+                            <a class="aui-menuitem-content" role="menuitem" href="birthday.jsp">Дни рождения</a>
+                        </li>
+                        <li id="aui-3-1-0-1-1333990195795556" class="aui-menuitem item" role="presentation">
+                            <a class="aui-menuitem-content" role="menuitem" href="former.jsp">Бывшие сотрудники</a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </li>
+        <li id="aui-3-1-0-1-1333990195795563" class="aui-menuitem item-menu item" role="presentation">
+            <a aria-haspopup="true" id="aui-3-1-0-1-133101980334085" class="aui-menu-label aui-menuitem-content" role="menuitem" tabIndex="-1" href="#docs">Документы</a>
+            <div aria-hidden="true" id="docs" class="aui-menu aui-menu-hidden" role="menu" aria-labelledby="aui-3-1-0-1-133101980334084">
+                <div class="aui-menu-content" role="presentation">
+                    <ul class="first-of-type" role="presentation">
+                        <li id="aui-3-1-0-1-1333990195795570" class="aui-menuitem item" role="presentation">
+                            <a class="aui-menuitem-content" role="menuitem" href="docClassic.jsp">Мои документы</a>
+                        </li>
+                        <li id="aui-3-1-0-1-1333990195795577" class="aui-menuitem item" role="presentation">
+                            <a class="aui-menuitem-content" role="menuitem" href="documents.jsp">Дерево папок</a>
+                        </li>
+                        <li id="aui-3-1-0-1-1333990195795604" class="aui-menuitem item" role="presentation">
+                            <a class="aui-menuitem-content" role="menuitem" href="docClassic.jsp?owner=-100">Общие документы</a>
+                        </li>
+                        <li id="aui-3-1-0-1-1333990195795598" class="aui-menuitem item" role="presentation">
+                            <a class="aui-menuitem-content" role="menuitem" href="newDoc.jsp">Новые документы</a>
+                        </li>
+                        <li id="aui-3-1-0-1-1333990195795592" class="aui-menuitem item" role="presentation">
+                            <a class="aui-menuitem-content" role="menuitem" href="newDocK.jsp">Новое в Компании</a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </li>
+        <li class="aui-menuitem item-menu item" role="presentation">
+            <a aria-haspopup="true" id="aui-3-1-0-1-133101980334088" class="aui-menu-label aui-menuitem-content" role="menuitem" tabIndex="-1" href="#res">Галереи</a>
+            <div aria-hidden="true" id="res" class="aui-menu aui-menu-hidden" role="menu" aria-labelledby="aui-3-1-0-1-133101980334087">
+                <div class="aui-menu-content" role="presentation">
+                    <ul class="first-of-type" role="presentation">
+                        <li class="aui-menuitem item" role="presentation">
+                            <a class="aui-menuitem-content" role="menuitem" href="galClassic.jsp">Мои галереи</a>
+                        </li>
+                        <li class="aui-menuitem item" role="presentation">
+                            <a class="aui-menuitem-content" role="menuitem" href="galClassic.jsp?owner=-100">Общие галереи</a>
+                        </li>
+                        <li id="aui-3-1-0-1-13339901957951417" class="aui-menuitem item" role="presentation">
+                            <a class="aui-menuitem-content" role="menuitem" href="newGalK.jsp">Новое в Компании</a>
+                        </li>
+                        <li id="aui-3-1-0-1-1333990195795997" class="aui-menuitem item" role="presentation">
+                            <a class="aui-menuitem-content" role="menuitem" href="newGal.jsp">Новые галереи</a>
+                        </li>
+                        <li id="aui-3-1-0-1-13339901957951008" class="aui-menuitem item" role="presentation">
+                            <a class="aui-menuitem-content" role="menuitem" href="newPhotos.jsp">Новые фоторгафии</a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </li>
+        <li id="aui-3-1-0-1-13339901957952816" class="aui-menuitem item-menu item" role="presentation">
+            <a aria-haspopup="true" id="aui-3-1-0-1-133101980334091" class="aui-menu-label aui-menuitem-content" role="menuitem" tabIndex="-1" href="#li_1291481259516-10">Блоги</a>
+            <div aria-hidden="true" id="aui-3-1-0-1-13310198033402774" class="aui-menu aui-menu-hidden" role="menu" aria-labelledby="aui-3-1-0-1-133101980334090">
+                <div class="aui-menu-content" role="presentation">
+                    <ul class="first-of-type" role="presentation">
+                        <li id="aui-3-1-0-1-13339901957951019" class="aui-menuitem item" role="presentation">
+                            <a class="aui-menuitem-content" role="menuitem" href="blogs.jsp">Мой блог</a>
+                        </li>
+                        <li class="aui-menuitem item" role="presentation">
+                            <a class="aui-menuitem-content" role="menuitem" href="newBlogs.jsp">Новые блоги</a>
+                        </li>
+                        <li id="aui-3-1-0-1-13339901957951478" class="aui-menuitem item" role="presentation">
+                            <a class="aui-menuitem-content" role="menuitem" href="newBlogsB.jsp">Новые "по делу"</a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </li>
+        <li id="aui-3-1-0-1-13339901957951030" class="aui-menuitem item-menu item" role="presentation">
+            <a aria-haspopup="true" id="aui-3-1-0-1-133101980334094" class="aui-menu-label aui-menuitem-content" role="menuitem" tabIndex="-1" href="#li_1291481543693-10">Сервисы</a>
+            <div aria-hidden="true" id="aui-3-1-0-1-13310198033402775" class="aui-menu aui-menu-hidden" role="menu" aria-labelledby="aui-3-1-0-1-133101980334093">
+                <div class="aui-menu-content" role="presentation">
+                    <ul class="first-of-type" role="presentation">
+                        <li id="aui-3-1-0-1-13339901957953344" class="aui-menuitem item" role="presentation">
+                            <a class="aui-menuitem-content" role="menuitem" href="services.jsp">Список сервисов</a>
+                        </li>
+                        <li id="aui-3-1-0-1-13339901957954035" class="aui-menuitem item" role="presentation">
+                            <a class="aui-menuitem-content" role="menuitem" href="jornal.jsp">Журнал операций</a>
+                        </li>
+                        <li id="aui-3-1-0-1-13339901957951041" class="aui-menuitem item" role="presentation">
+                            <a class="aui-menuitem-content" role="menuitem" href="myServices.jsp">Мои сервисы</a>
+                        </li>
+                        <li id="aui-3-1-0-1-13339901957951181" class="aui-menuitem item" role="presentation">
+                            <a class="aui-menuitem-content" role="menuitem" href="servControl.jsp">Контроль операций</a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </li>
+        <li id="aui-3-1-0-1-1333990195795674" class="aui-menuitem item-menu item" role="presentation">
+            <a aria-haspopup="true" id="aui-3-1-0-1-133101980334097" class="aui-menu-label aui-menuitem-content" role="menuitem" tabIndex="-1" href="#serv">Прочее</a>
+            <div aria-hidden="true" id="serv" class="aui-menu aui-menu-hidden" role="menu" aria-labelledby="aui-3-1-0-1-133101980334096">
+                <div class="aui-menu-content" role="presentation">
+                    <ul class="first-of-type" role="presentation">
+                        <li id="aui-3-1-0-1-1333990195795705" class="aui-menuitem item" role="presentation">
+                            <a id="aui-3-1-0-1-1333990195795803" class="aui-menuitem-content" role="menuitem" href="resources.jsp">Ресурсы</a>
+                        </li>
+                        <li id="aui-3-1-0-1-1327225465334838" class="aui-menuitem item-menu item" role="presentation">
+                            <a aria-haspopup="true" id="aui-3-1-0-1-13272254653341614" class="aui-menu-label aui-menuitem-content" role="menuitem" href="#li_1327225480085-1">База знаний</a>
+                            <div aria-hidden="true" id="li_1327225480085-1" class="aui-menu aui-menu-hidden" role="menu" aria-labelledby="aui-3-1-0-1-133101980334099">
+                                <div class="aui-menu-content" role="presentation">
+                                    <ul class="first-of-type" role="presentation">
+                                        <li id="aui-3-1-0-1-13272257906893199" class="aui-menuitem item" role="presentation">
+                                            <a id="aui-3-1-0-1-13272257906893424" class="aui-menuitem-content" role="menuitem" href="findTag.jsp">Поиск по тегам</a>
+                                        </li>
+                                        <li id="aui-3-1-0-1-13272257906891482" class="aui-menuitem item" role="presentation">
+                                            <a id="aui-3-1-0-1-13272257906891495" class="aui-menuitem-content" role="menuitem" href="tags.jsp" target="_blank">Редактирование</a>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </li>
+                        <li id="aui-3-1-0-1-1333990195795681" class="aui-menuitem item" role="presentation">
+                            <a id="aui-3-1-0-1-13339901957952154" class="aui-menuitem-content" role="menuitem" href="news.jsp">Новости компании</a>
+                        </li>
+                        <li id="aui-3-1-0-1-1333990195795720" class="aui-menuitem item" role="presentation">
+                            <a id="aui-3-1-0-1-13339901957952600" class="aui-menuitem-content" role="menuitem" href="desk.jsp">Доска объявлений</a>
+                        </li>
+                        <li id="aui-3-1-0-1-1333990195795714" class="aui-menuitem item" role="presentation">
+                            <a id="aui-3-1-0-1-13339901957953103" class="aui-menuitem-content" role="menuitem" href="calendar.jsp" target="_blank">Мой календарь</a>
+                        </li>
+                        <li id="aui-3-1-0-1-13339901957951150" class="aui-menuitem item" role="presentation">
+                            <a id="aui-3-1-0-1-13339901957953624" class="aui-menuitem-content" role="menuitem" href="votes.jsp">Голосования</a>
+                        </li>
+                    </ul>
+                </div>
+            </div> 
+        </li>
+    </ul>
+</div>

@@ -1,0 +1,16 @@
+.exxo-employee-mini-card:hover .fio a {color:#972626;}
+.exxo-employee-mini-card .fio a:hover {text-decoration: underline}
+.exxo-employee-mini-card .fio{font-size:12px; display:block;}
+.exxo-employee-mini-card .employee{width:100%}
+.exxo-employee-mini-card .position,.exxo-employee-mini-card .room,.exxo-employee-mini-card .tel{display: block;margin-bottom: 10px;}
+.exxo-employee-mini-card .position, .exxo-employee-mini-card .room, .exxo-employee-mini-card .tel {font-size: 12px;display: block;text-align: left;padding-right: 10px;}
+.exxo-employee-mini-card .fio {display: block;text-align: left;padding-right: 10px;}
+.exxo-employee-mini-card .fio a {text-decoration: none;}
+.exxo-employee-mini-card div.boss .fio {font-weight: bolder;}
+.exxo-employee-mini-card {width: 270px; display: inline-block; height: 150px; margin-right: 10px; padding-top: 0px; margin-top: 10px; vertical-align: top; background-color: #F3F3F3; margin-top: 10px;}
+.exxo-employee-mini-card img {width: 60px; height:80px; margin-top: 10px; border-radius: 4px;}
+.exxo-employee-mini-card span {display: block; width: auto;}
+.exxo-employee-mini-card .position {font-style: italic;}
+.exxo-employee-mini-card span.imgE {float: left; margin:0; margin-right: 10px; padding: 0; padding-left: 6px; width: 60px !important; height: 120px; display: block;}
+.exxo-employee-mini-card span.texts {padding-right: 10px; height: 140px; display: block; padding-top: 10px; border-radius: 5px;}
+.exxo-employee-mini-card  .other {font-size: 14px;}

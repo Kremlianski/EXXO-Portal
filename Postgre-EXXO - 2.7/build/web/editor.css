@@ -1,0 +1,15 @@
+div.fil:hover {background-color: #c2c1ff;padding: 10px !important; padding-bottom: 6px !important;font-style: normal;font-weight: normal;border: 1px solid #3573d9;
+               background-image:url("img/gallary.png");background-position: center;background-repeat: repeat-x;}
+div.fil img {border: 1px solid white;}
+div.fil div {width: 100%;height: auto;text-align: left; font-weight: bold;margin-top: 8px;}
+div.cat:hover {cursor: pointer;}
+div#closer:hover, div#close:hover {cursor: pointer;}
+img.photo:hover {cursor: pointer;}
+div.cat1 {background-image: url("small/photo_album.png");background-position: left;background-repeat: no-repeat;
+          padding-left: 30px;}
+div.cat1:hover {color:red; cursor: pointer;}
+div.fil {background-color: white;padding: 10px !important;padding-bottom: 6px !important;font-style: normal;font-weight: normal;border: 1px solid white;
+         background-image: none;background-position: center;background-repeat: repeat-x;display: inline-block;vertical-align: top;
+         width: 180px;height: auto;margin-top: 10px;margin-bottom: 10px;float: none;}
+.cat {background-position: left;background-repeat: no-repeat;display: inline-block; width: 180px;vertical-align: top;margin: 10px;font-weight: bold; }
+.cat span {display: block;width: 100%; margin-top: 8px; padding-left: 4px;}

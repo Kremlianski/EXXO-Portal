@@ -1,0 +1,5 @@
+div.exxo-fx-element {min-width: 100px; min-height: 100px; background-color: white; opacity: 0; display: none; top:40px; left: 90px; position: absolute; z-index: 99999; overflow: auto;}
+.exxo-target-container {display: none;}
+div.exxo-fx-close {text-align: right; padding: 4px; color: red; font-size: 11px;}
+div.exxo-fx-close span {cursor: pointer;}
+div.exxo-fx-content {padding: 30px;}

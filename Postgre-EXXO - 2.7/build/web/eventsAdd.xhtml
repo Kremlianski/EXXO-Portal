@@ -1,0 +1,65 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html" 
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:f="http://java.sun.com/jsf/core">
+    <h:head>
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <title>Редактирование события</title>	
+        <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
+        <meta http-equiv="content-style-type" content="text/css" />
+        <meta http-equiv="pragma" content="no-cache" />
+        <link rel="stylesheet" href="/FILES/alloy/build/aui-skin-classic/css/aui-skin-classic-all-min.css" type="text/css" media="screen" />
+        <script src="/FILES/alloy/build/aui/aui.js" type="text/javascript"></script>
+        <style type="text/css">
+            @import url('css/topMenu.css');
+            @import url('css/exxo.css');
+            @import url('css/eventsAdd.css');
+            @import url('css/calendars.css');
+        </style>
+        <h:outputStylesheet>
+            <h:outputText value="#{cSS.css}" escape="false" />
+            <h:outputText value="#{cSS1.getCss('eventsAdd.xhtml')}" escape="false" />
+        </h:outputStylesheet>
+    </h:head>
+    <h:body styleClass="yui3-skin-sam" id="eventsAdd_xhtml"><div id="body">
+            #{eventsAddBean.initParams(param['id'], param['date'])}    
+            <div id="topMenu"><div id="foot"><ul class="topMenu"><ui:include src="topMenu.xhtml" ></ui:include>
+                        <li> <a href="http://exxo.ru/howto/calendar-howto.html#introduction" class="footmenu howto" target="_blank">?</a></li> 
+                    </ul></div></div>
+            <div id="timeMenu"><ui:include src="calendarMenu.xhtml" ><ui:param name="page" value="event"></ui:param><ui:param name="date" value="#{eventsAddBean.date}"></ui:param></ui:include></div> 
+            <table id="content"><tr><td id="sch-container" class="sch-container-wide"><div id="scroller" class="exxo-shadow">
+                            <h:outputFormat value="{0}" escape="false"><f:param value="#{eventsAddBean.kill}"></f:param></h:outputFormat> 
+                            <div id="f">
+                                <h:form id="event" styleClass="exxo-form">
+                                    <table>
+                                        <tr id="name"><td class="first">Событие</td><td class="second"><h:inputText value="#{eventsAddBean.name}"></h:inputText></td></tr>
+                                        <tr id="date"><td class="first">Дата</td><td class="second"><div id="dateSelected" class="exxo-date"></div><div id="startMain"></div>
+                                                <h:inputHidden value="#{eventsAddBean.date}" id="day"></h:inputHidden>   
+                                            </td></tr>
+                                        <tr id="start"><td class="first">Время начала</td><td class="second"><select name="time" id="time"><option value="-" SELECTED="true">начало</option></select></td></tr>
+                                        <tr id="stop"><td class="first">Время завершения</td><td class="second"><select name="long" id="long"><option value="-"  SELECTED="true">завершение</option></select></td></tr>
+                                        <tr id="descr"><td class="first">Описание</td><td class="second"><h:inputTextarea value="#{eventsAddBean.descr}"></h:inputTextarea></td></tr>
+                                        <tr id="impotrant"><td class="first">Важное</td><td class="second"><h:selectBooleanCheckbox value="#{eventsAddBean.important}" /></td></tr>  
+                                        <tr id="outside"><td class="first">Вне офиса</td><td class="second"><h:selectBooleanCheckbox value="#{eventsAddBean.outside}" /></td></tr>  
+                                        <tr id="nophone"><td class="first">Не звонить</td><td class="second"><h:selectBooleanCheckbox value="#{eventsAddBean.nophone}" /></td></tr>  
+                                        <tr id="type"><td class="first"></td><td class="second"></td></tr>                    
+                                    </table>      
+                                    <div id="ar"><h:inputHidden value="#{eventsAddBean.time}"></h:inputHidden></div>
+                                    <div id="lon"><h:inputHidden value="#{eventsAddBean.lon}"></h:inputHidden></div>
+                                    <div id="user"><h:inputHidden value="#{eventsAddBean.user}"></h:inputHidden></div>
+                                    <div id="ev_id"><h:inputHidden value="#{eventsAddBean.id}"></h:inputHidden></div>
+                                    <h:commandButton action="eventsAdd.xhtml" actionListener="#{eventsAddBean.insertData}" value="Сохранить"  id="submit"/>
+                                </h:form> 
+                                <h:outputFormat value="{0}" escape="false">
+                                    <f:param value="#{eventsAddBean.add}"></f:param>
+                                </h:outputFormat> 
+                            </div>
+                            <script type="text/javascript" charset="utf-8" src="eventAdd.js"></script>
+                        </div></td>
+                    <td id="info"><div id="rightBig"  class="exxo-shadow"><div id="resName"></div><div id="right"></div></div></td></tr></table></div>
+        <script type="text/javascript" charset="utf-8" src="scripts/topMenu.js"></script>
+    </h:body>
+</html>
+

@@ -1,0 +1,66 @@
+<ui:composition  xmlns="http://www.w3.org/1999/xhtml" 
+ xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+ xmlns:cc="http://xmlns.jcp.org/jsf/composite"
+ xmlns:h="http://xmlns.jcp.org/jsf/html"
+ xmlns:c="http://xmlns.jcp.org/jsp/jstl/core">
+<cc:interface>
+<cc:attribute name="name" required="true"></cc:attribute>
+<cc:attribute name="query" />
+<cc:attribute name="placeholder" default="Введите несколько букв" />
+<cc:attribute name="nodes" rendered="true" />
+<cc:attribute name="data" rendered="true" />
+</cc:interface>
+<cc:implementation>
+<div class="exxo-search"><input class="query" type="text" name="#{cc.attrs.name}" value="" id="#{cc.attrs.name}"  placeholder="#{cc.attrs.placeholder}" /></div>
+<h:outputScript>
+AUI().ready('aui-live-search', 'node-event-simulate', function(A) {
+var liveSearch = new A.LiveSearch({
+input: '##{cc.attrs.name}',
+nodes: '#{cc.attrs.nodes}',
+data: function(node) {
+<h:outputText value="#{cc.attrs.data}" escape="false" />
+},
+show: function(node) {
+if (!node.hasClass('excluded')) {
+var data = node._OLD_DATA;
+if (!data) {
+data = node.html();
+node._OLD_DATA = data;
+}
+var search = this.get('searchValue');
+if (search&amp;&amp;search!=' ') {
+data = data.replace(new RegExp(search, 'gi'), '<b>' + search + '</b>');
+}
+node.html(data);
+node.show();
+node.setAttribute('nodeStatus', 'show');
+node.addClass('matched');
+}
+return node;
+},
+hide: function(node) {
+if (!node.hasClass('excluded')) {
+node.hide();
+node.setAttribute('nodeStatus', 'hide');
+node.removeClass('matched');
+}},
+on: {search: function(event) {
+}},
+after: {
+search: function(event) {
+if (!this.get('searchValue')) {
+this.get('nodes').removeClass('matched');
+}}}
+});
+<c:if test="#{cc.attrs.query!=null and cc.attrs.query!=''}" >
+    var q='#{cc.attrs.query}';
+liveSearch.after('init', function(){
+this.search(q);
+this.get('input').simulate('keyup');
+});
+</c:if>
+});
+</h:outputScript>
+<h:outputStylesheet library="css" name="search.css" />
+</cc:implementation>
+</ui:composition>

@@ -1,0 +1,35 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:f="http://java.sun.com/jsf/core">
+    <h:head>
+        <title>Title</title>
+    </h:head>
+    <h:body><ui:composition>
+            #{calendarNenuBean.setDate(date)}
+            #{calendarNenuBean.initParam(param['date'],page)}
+            <h:outputLink  value="#{calendarNenuBean.todaylink}">
+                <h:outputText value="СЕГОДНЯ"></h:outputText>
+            </h:outputLink>
+            <h:outputLink styleClass="#{calendarNenuBean.styleoneday}" value="allDay.xhtml">
+                <f:param value="#{calendarNenuBean.date}" name="#{calendarNenuBean.hasDate}"></f:param>
+                <h:outputText value="Один день"></h:outputText>
+            </h:outputLink>
+            <h:outputLink styleClass="#{calendarNenuBean.stylecompare}" value="calendarCompare.xhtml">
+                <f:param value="#{calendarNenuBean.date}" name="#{calendarNenuBean.hasDate}"></f:param>
+                <h:outputText value="Расписания"></h:outputText>
+            </h:outputLink>
+            <h:outputLink styleClass="#{calendarNenuBean.stylefive}" value="five.xhtml">
+                <f:param value="#{calendarNenuBean.date}" name="#{calendarNenuBean.hasDate}"></f:param>
+                <h:outputText value="5 дней"></h:outputText>
+            </h:outputLink>
+            <h:outputLink styleClass="#{calendarNenuBean.stylemonth}" value="month.xhtml">
+                <f:param value="#{calendarNenuBean.date}" name="#{calendarNenuBean.hasDate}"></f:param>
+                <h:outputText value="Месяц"></h:outputText>
+            </h:outputLink>
+        </ui:composition>
+    </h:body>
+</html>
+

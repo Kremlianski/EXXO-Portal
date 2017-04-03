@@ -1,0 +1,130 @@
+<ui:composition  xmlns="http://www.w3.org/1999/xhtml" 
+                 xmlns:h="http://xmlns.jcp.org/jsf/html"
+                 xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+                 template="./main.xhtml" 
+                 xmlns:f="http://xmlns.jcp.org/jsf/core"
+                 xmlns:EXXO="http://xmlns.jcp.org/jsf/composite/EXXO"
+                 xmlns:c="http://xmlns.jcp.org/jsp/jstl/core">
+    <ui:define name="title">#{emploeeBean.employee.fio}</ui:define>
+    <ui:define name="METAS">
+        <f:metadata>
+            <f:viewParam id="id" name="id" value="#{emploeeBean.id}" />
+            <f:viewAction action="#{emploeeBean.init()}" />
+            <c:set var="body_id" value="employee_xhtml" />
+        </f:metadata>
+    </ui:define>
+    <ui:define name="mainMenu">
+        <ui:include src="menu-emp.xhtml"></ui:include>
+    </ui:define>
+    <ui:define name="mainContent">
+        <EXXO:empCard employee="#{emploeeBean.employee}" />
+        <h:outputStylesheet library="css" name="employee.css" />
+    </ui:define>
+    <ui:define name="underMainMenu">
+        <div id="actionMenu" class="exxo-shadow" >
+            <h:outputLink value="javascript:;"  rendered="true" id='rolesTrig'>Роли</h:outputLink>
+            <h:outputLink value="javascript:;"  rendered="true" id='ratingTrig'>Компетенции</h:outputLink>
+        </div>
+        <div id='schedular' class="exxo-shadow"><div id='trig'>Занят:</div><div id="schedule1"></div><div id="schedule"></div></div>
+        <c:set var="lasttime" value="#{emploeeBean.employee.getLastTime()}" />
+        <div id="lasttime"><div>Последний визит: <h:outputText value="#{lasttime}" rendered="#{not empty lasttime}">
+                    <f:convertDateTime dateStyle="short" />
+                </h:outputText>
+                <h:outputText value="еще не было"  rendered="#{empty lasttime}"></h:outputText>
+            </div></div>
+        <h:outputScript target="body">
+            AUI().ready('aui-calendar', 'datatype-date-format', 'aui-io', function(A){
+            var user=#{param.id};
+            var Year;
+            var Day;
+            var Month;
+            var eventsArr=new Array();
+            var now=new Date();
+            Year=now.getFullYear()
+            Month=now.getMonth()+1;
+            Day=now.getDate();
+            var StrDate=Year+'-'+Month+''+Day;
+            info();   
+            A.DataType.Date.Locale['ru'] = A.merge(A.DataType.Date.Locale['en'], {
+            "a":["вс","пн","вт","ср","чт","пт","сб"],"A":["Воскресенье","Понедельник","Вторник","Среда","Четверг","Пятница","Суббота"],
+            "b":["января","февраля","марта","апреля","мая","июня","июля","августа","сентября","октября","ноября","декабря"],
+            "B":["январь","февраль","март","апрель","май","июнь","июль","август","сентябрь","октябрь","ноябрь","декабрь"],
+            "c":"%a, %d %b %Y %k:%M:%S %Z","p":["AM","PM"],"P":["am","pm"],"x":"%d.%m.%y","X":"%k:%M:%S"});
+            var calendar2 = new A.Calendar({
+            locale: 'ru',
+            visible: false,
+            firstDayOfWeek: 1,
+            on: {select: function(event) {
+            Year= event.date.detailed[0].year;
+            Month= event.date.detailed[0].month+1;
+            Day= event.date.detailed[0].day;
+            StrDate=Year+'-'+Month+'-'+Day;
+            this.hide();
+            info();
+            }}
+            }).render('#schedule1'); 
+            A.one('#trig').on('click', function(){
+            if(!calendar2.get('visible'))
+            calendar2.show();
+            else calendar2.hide();
+            });
+            function info(){    
+            A.one("#schedule").unplug(A.Plugin.IO);
+            A.one("#schedule").plug( A.Plugin.IO, { uri:'eventsEmpVid',
+            method: 'POST',
+            data:{date:StrDate, id: user},
+            on:{success:function(){
+            A.one('#grid').setStyle('minHeight',A.DOM.winHeight()-250+'px');
+            }}});
+            }
+            });
+        </h:outputScript>
+    </ui:define>
+    <ui:define name="head">
+        <link rel="stylesheet" href="index.css" type="text/css" />    
+        <link rel="stylesheet" href="css/topMenu.css" type="text/css" />
+        <link rel="stylesheet" href="css/exxo.css" type="text/css" />
+        <h:outputStylesheet>
+            <h:outputText value="#{cSS.css}" escape="false" />
+            <h:outputText value="#{cSS1.getCss('employee.xhtml')}" escape="false" />
+        </h:outputStylesheet>
+    </ui:define>
+    <ui:define name="topMenu" >
+        <ul class="topMenu">
+            <ui:include src="topMenu.xhtml"></ui:include>
+            <li>
+                <h:outputLink value="empUpd.xhtml" class="footmenu" >
+                    <h:outputText value="Настройка" />
+                    <f:param name="id" value="#{emploeeBean.employee.id}" />
+                </h:outputLink>
+            </li>
+            <li>
+                <h:outputLink value="http://exxo.ru/howto/staff-howto.html#edit" class="footmenu howto" target="_blank">
+                    <h:outputText value="?"></h:outputText>
+                </h:outputLink>
+            </li>
+        </ul>    
+    </ui:define>
+    <ui:define name="container">
+        <div id="rolesCont" style="display: none;">
+            <div id="roles">
+                <h:outputLink id="changeRoles" value="empRoles.xhtml" rendered="#{not empty emploeeBean.roles}">
+                    <h:outputText value="Изменить" />
+                    <f:param name="id" value="#{emploeeBean.employee.id}" />
+                </h:outputLink>
+                <h:panelGroup id="tableContainer" class="exxo-shadow" layout="block"  rendered="#{not empty emploeeBean.roles}">
+                    <h:dataTable value="#{emploeeBean.roles}" var="r" class="exxo-table" id="empRoles" columnClasses="name, descr" rendered="#{not empty emploeeBean.roles}">
+                        <h:column><f:facet name="header">Роль</f:facet><h:outputText value="#{r.name}"></h:outputText></h:column>
+                        <h:column><f:facet name="header">Описание</f:facet><h:outputText value="#{r.description}"></h:outputText></h:column>
+                    </h:dataTable></h:panelGroup>
+                <h:panelGroup class="worn" rendered="#{empty emploeeBean.roles}"><h3>Сотрудник не зарегистрирован в портале!</h3></h:panelGroup>
+            </div></div>
+        <div  style="display: none;">
+            <div id="empRatings">
+                <EXXO:ratingsBlock employeeId="#{emploeeBean.employee.id}" />
+            </div>
+        </div>
+        <EXXO:fx-element trigger="#ratingTrig" elementId="fx-rating" targetId="empRatings" centered="centered" width="460px" />   
+        <EXXO:fx-element trigger="#rolesTrig" autoSize="autosize" elementId="fx-element" targetId="roles" />    
+    </ui:define>
+</ui:composition>

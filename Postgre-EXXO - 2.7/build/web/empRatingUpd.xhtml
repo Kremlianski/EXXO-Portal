@@ -1,0 +1,101 @@
+<ui:composition  xmlns="http://www.w3.org/1999/xhtml" 
+                 xmlns:h="http://xmlns.jcp.org/jsf/html"
+                 xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+                 template="./main.xhtml" 
+                 xmlns:f="http://xmlns.jcp.org/jsf/core"
+                 xmlns:EXXO="http://xmlns.jcp.org/jsf/composite/EXXO"
+                 xmlns:c="http://xmlns.jcp.org/jsp/jstl/core">
+    <ui:define name="title">Редактирование списка компетенций</ui:define>
+    <ui:define name="mainMenu">
+        <ui:include src="menu-emp.xhtml"></ui:include>
+    </ui:define>
+    <ui:define name="underMainMenu">
+        <div id="plus"><span class="aui-button-icon aui-icon aui-icon-plusthick"></span> <a href="javascript:;" id="add"> Добавить</a></div>
+    </ui:define>
+    <ui:define name="mainContent">
+        <div class="exxo-table-container exxo-shadow">
+            <h:form>
+                <h:dataTable var="r" value="#{empRatingUpdBean.er}" class="exxo-table" columnClasses="one,two,tree,fore">
+                    <h:column>
+                        <f:facet name="header">Название компетенции</f:facet>
+                        <h:outputText value="#{r.name}"/>
+                    </h:column>
+                    <h:column>
+                        <f:facet name="header">Описание</f:facet>
+                        <h:outputText value="#{r.description}" />
+                    </h:column>
+                    <h:column>
+                        <f:facet name="header"><div class="change">Удалить</div></f:facet>
+                        <h:commandButton value="Удалить" action="#{empRatingUpdBean.drop(r)}"  image="/drop.png"/>
+                    </h:column>
+                    <h:column>
+                        <f:facet name="header"><div class="change">Изменить</div></f:facet>
+                        <h:commandButton value="Изменить" actionListener="#{empRatingUpdBean.setRating(r)}" class="drop" image="/edit.png">
+                            <f:ajax execute="@this" render=":updateContainer" immediate="true" />
+                        </h:commandButton>
+                    </h:column>
+                </h:dataTable>
+            </h:form>
+        </div>
+        <h:outputStylesheet library="css" name="empRatingUpd.css" />
+    </ui:define>
+    <ui:define name="head">
+        <link rel="stylesheet" href="index.css" type="text/css" />    
+        <link rel="stylesheet" href="css/topMenu.css" type="text/css" />
+        <link rel="stylesheet" href="css/exxo.css" type="text/css" />
+        <h:outputStylesheet>
+            <h:outputText value="#{cSS.css}" escape="false" />
+            <h:outputText value="#{cSS1.getCss('empRatingUpd.xhtml')}" escape="false" />
+        </h:outputStylesheet>
+    </ui:define>
+    <ui:define name="topMenu" >
+        <ul class="topMenu">
+            <ui:include src="topMenu.xhtml"></ui:include>
+            <li>
+                <h:outputLink value="empRatings.xhtml" class="footmenu">
+                    <h:outputText value="Закончить"></h:outputText>
+                </h:outputLink>
+            </li>
+            <li>
+                <h:outputLink value="http://exxo.ru/howto/staff-howto.html#compete" class="footmenu howto" target="_blank">
+                    <h:outputText value="?"></h:outputText>
+                </h:outputLink>
+            </li>
+        </ul>    
+    </ui:define>
+    <ui:define name="METAS">
+        <f:metadata>
+            <f:viewAction action="#{empRatingUpdBean.init}" />
+            <c:set var="body_id" value="empRatingUpd_xhtml" />
+        </f:metadata>
+    </ui:define>
+    <ui:define name="container">
+        <div style="display:none;">
+            <div id="inputContainer">
+                <h:form class="exxo-form">
+                    <h:panelGrid columns="2" columnClasses="name,description">
+                        <h:outputLabel value="Название"></h:outputLabel>
+                        <h:inputText value="#{empRatingUpdBean.name}" required="true" id="name" requiredMessage="Название компетанции не введено!" />
+                        <h:outputLabel value="Описание" />
+                        <h:inputTextarea value="#{empRatingUpdBean.description}" />
+                    </h:panelGrid>
+                    <h:commandButton value="Сохранить компетенцию" action="#{empRatingUpdBean.input()}" />
+                </h:form>
+            </div>
+            <h:panelGroup id="updateContainer" layout="block">
+                <h:form class="exxo-form" >
+                    <h:panelGrid columns="2" columnClasses="name,description" rendered="#{empRatingUpdBean.rating!=null}">
+                        <h:outputLabel value="Название"></h:outputLabel>
+                        <h:inputText value="#{empRatingUpdBean.rating.name}" required="true" id="rname" requiredMessage="Название компетанции не введено!" />
+                        <h:outputLabel value="Описание" />
+                        <h:inputTextarea value="#{empRatingUpdBean.rating.description}" />
+                    </h:panelGrid>
+                    <h:commandButton value="Изменить компетенцию" action="#{empRatingUpdBean.update}" rendered="#{empRatingUpdBean.rating!=null}" />
+                </h:form>
+            </h:panelGroup>
+        </div>
+        <h:outputScript library="scripts" name="fixBag.js" />
+        <EXXO:fx-element height="auto" width="600px" targetId="inputContainer" trigger="#plus a" elementId="input" />
+        <EXXO:fx-element height="auto" width="600px" targetId="updateContainer" trigger=".drop" elementId="update" />
+    </ui:define>
+</ui:composition>

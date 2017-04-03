@@ -1,0 +1,56 @@
+.aui-widget-bd  {overflow-y: hidden;overflow-x: hidden;position:relative;}
+#scroller  {overflow: hidden;position:relative; width: 500px;  height: auto; background-color: rgb(253, 253, 255); padding: 20px;border: 1px solid #DEDEDE;border-bottom: 1px solid #BFBFBF;}
+#rightBig {position: relative;width: 350px;margin: 25px;margin-left: 0px;padding: 10px;background-color: white;border: 1px solid #DEDEDE;border-bottom: 1px solid #BFBFBF;}
+span#date, span.blue, #rightBig a {font-size: 12px;}
+div#topMenu {width: 100%; height: 36px; background-color: gray;background-image: url("/EXXO/img/spr.png");background-position: bottom;background-repeat: repeat-x;}
+#content {width: 100%; position: relative; background-color:white;}
+#menu {width: 250px; vertical-align: top; min-width: 250px;}
+table#content td {border-collapse: separate;vertical-align: top;}
+.exxo-shadow {moz-box-shadow: 0px 3px 5px 0 rgba(0,0,0,0.12);
+-webkit-box-shadow: 0px 3px 5px 0 rgba(0,0,0,0.12);
+-o-box-shadow: 0px 3px 5px 0 rgba(0,0,0,0.12);
+box-shadow: 0px 3px 5px 0 rgba(0,0,0,0.12);
+border-radius: 0 0 4px 4px;
+}
+#sch-container {padding:25px; padding-bottom: 0px;}
+table#content {font-size: 12px;}
+span.aui-button-icon {margin-top: 0px;}
+#today {margin-left:10px;}
+td#sch-container {width: 550px; padding-right: 10px;}
+#right { line-height: 1.5;}
+#resName {margin-bottom: 20px;}
+#resName a {text-decoration: none; font-size: 14px;}
+#resName a:hover {text-decoration: underline; color:#972626;}
+#right span {margin-right: 20px;}
+#right a {text-decoration: none; border-bottom: 0px; color:gray;}
+#right a:hover {text-decoration: underline; color: #972626;}
+.times {color:#43436D}
+.blue {color:#3B3B8F}
+#foot {height: 30px;padding-top: 6px;margin: 0;background-color: transparent;width: auto;border: 0;text-align: left;padding-left: 275px;background-image: none;}
+.footmenu {font-size: 15px;text-decoration: none;color: white;background-color: transparent; padding: 5px; display: inline-block;}
+.footmenu:hover {padding: 4px;background-color: #0b0974;border:1px solid white;background-image:url("img/whiteFoot.png");background-position: bottom;background-repeat: repeat-x;}
+body {background-color:white;}
+#right div.pointed  a{color: black;}
+#right div.pointed  a:hover{color: #972626;}
+div.pointed  {color: black;}
+.exxo-shadow1 {moz-box-shadow: 0px 4px 15px 0 rgba(0,0,0,0.4);-webkit-box-shadow: 0px 4px 15px 0 rgba(0,0,0,0.4);-o-box-shadow: 0px 4px 15px 0 rgba(0,0,0,0.4);box-shadow: 0px 4px 15px 0 rgba(0,0,0,0.4);}
+#f table {width: 100%;}
+#f table td {padding: 10px 4px;}
+#f input {width: 100%; padding: 2px;}
+#f textarea {width: 100%; height: 100px; padding: 2px;}
+#f input[type=submit] {width: auto; padding: 5px; cursor: pointer;}
+div#right {color: gray;}
+#new {display: block; margin-top: 20px; text-align: right; text-decoration: none;}
+#new:hover {text-decoration: underline; color: #972626;}
+span.timeInfo {width: 80px;display: inline-block;color: #3B3B8F;}
+#kill {text-decoration:none;display: block; margin-bottom: 20px;text-align: right;}
+#kill:hover, #file:hover {color: #972626; text-decoration: underline; }
+#file {text-decoration:none;}
+td.first {color: gray; width: 120px;}
+#right div {margin-bottom: 8px;}
+#f table td.first {text-align: right; padding-right: 30px;}
+#right div {margin-bottom: 8px; border-bottom: 1px solid #dedede}
+#right div:last-of-type {border-bottom:0}
+#outside td.first {background-image: url('../small/door_out.png'); background-position: right; background-repeat: no-repeat;}
+#impotrant td.first {background-image: url('../small/important.png'); background-position: right; background-repeat: no-repeat;}
+#nophone td.first {background-image: url('../small/phone_stop.png'); background-position: right; background-repeat: no-repeat;}

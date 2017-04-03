@@ -1,0 +1,44 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html">
+    <h:head><meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <title>Авторизация</title>
+        #{update.update()}
+        <style type='text/css'>
+            body {background-color:white;  text-align: center;font-size: 11px; font-family: Arial, Helvetica, sans-serif;line-height: normal;}
+            #f {background-color: white; padding:30px; width: 300px; margin: 50px auto; display: block; border: 1px solid #bfbfbf;
+                border-bottom-color: #bfbfbf; box-shadow: 0 4px 15px #BFBFBF; border-radius: 6px; background-image: url('back.png'); background-position: top; background-repeat: repeat-x;}
+            input[type=text], input[type=password] {width: 180px;} 
+            .in { border: 1px solid #bfbfbf; padding: 3px; color: black; border-radius: 4px; text-align: center; font-size: 14px; }
+            .in:hover {border: 1px solid #972626; color:#972626;}
+            #f td {padding: 12px 0px;}
+            #f table {margin-bottom: 5px; width:100%;}
+            td.one {text-align: left; padding-right: 10px; font-size: 14px; color: #8C8E94; font-weight: normal;}
+            #f td.two {text-align: left; padding-left: 40px;}
+            td.change {font-size: 11px; font-weight: normal;}
+            #but a {color: #bfbfbf; text-decoration: none;}
+            #but {text-align: right;}
+            #but a:hover {text-decoration: underline; color: #972626; }
+            input[type=submit] {cursor: pointer; padding: 5px 20px; font-size: 14px;}
+        </style>
+    </h:head>
+    <h:body><div id='f'>#{indexBean.getMassage()}
+            <h:form id="form"><table><tr><td class='one'>Логин</td><td class='two'>
+                            <h:inputText id="login" label="login" required="true" value="#{indexBean.user}"  styleClass="in"/></td></tr><tr><td class='one'>Пароль</td><td class='two'>
+                            <h:inputSecret id="pass" label="password" required="true" value="#{indexBean.pass}"  styleClass="in"/></td></tr>   
+                    <tr><td></td><td></td></tr>
+                    <tr><td class='one change'>Изменить</td><td class='two'><h:selectBooleanCheckbox id="change" label="chane" value="#{indexBean.change}" /></td></tr></table>
+                <h:commandButton id="submit" value="Войти" action="index.xhtml" actionListener="#{indexBean.log()}" />
+                #{indexBean.setMassage()}
+            </h:form><br/>
+            <h:form id="g">
+                <h:commandButton id="guest" value="Войти как гость" action="index.xhtml" 
+                                 actionListener="#{indexBean.logGuest()}" rendered="#{indexBean.isGuest()}" />
+
+            </h:form>
+            <div id="but">
+                <h:link outcome="start.xhtml" rendered="${indexBean.startRedirect()}" value="Зарегистрироваться" /></div>
+        </div>
+    </h:body>
+</html>

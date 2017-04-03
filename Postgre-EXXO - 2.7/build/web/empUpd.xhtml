@@ -1,0 +1,147 @@
+<ui:composition  xmlns="http://www.w3.org/1999/xhtml" 
+                 xmlns:h="http://xmlns.jcp.org/jsf/html"
+                 xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+                 template="./main.xhtml" 
+                 xmlns:f="http://xmlns.jcp.org/jsf/core"
+                 xmlns:EXXO="http://xmlns.jcp.org/jsf/composite/EXXO"
+                 xmlns:c="http://xmlns.jcp.org/jsp/jstl/core">
+    <ui:define name="title">#{empUpdBean.emp.fio}</ui:define>
+    <ui:define name="METAS">
+        <f:metadata>
+            <f:viewParam name="id" value="#{empUpdBean.id}"></f:viewParam>
+            <f:viewAction action="#{empUpdBean.initParams()}"></f:viewAction>
+            <c:set var="body_id" value="empUpd_xhtml" />
+        </f:metadata>
+    </ui:define>
+    <ui:define name="mainMenu">
+        <ui:include src="menu-emp.xhtml"></ui:include>
+    </ui:define>
+    <ui:define name="underMainMenu">
+        <h:panelGroup id="actionMenu" class="exxo-shadow" layout="block">
+            <h:form prependId="false" id="menuForm">
+                <h:commandLink action="#{empActionBean.fired()}" value="Уволить" rendered="#{(not empUpdBean.emp.fired) and empUpdBean.notMe}" />
+                <h:commandLink action="#{empActionBean.switchOff()}" value="Отключить от портала" rendered="#{empUpdBean.user.portalUser and empUpdBean.notMe}" />
+                <h:commandLink action="#{empActionBean.switchOn()}" value="Подключить к порталу" rendered="#{(not empUpdBean.user.portalUser) and empUpdBean.registerd and empUpdBean.notMe}" />
+                <h:commandLink action="#{empActionBean.dropUser()}" value="Отменить регистрацию" rendered="#{empUpdBean.registerd and empUpdBean.notMe}" />
+                <h:outputLink rendered="#{empUpdBean.sendOn and empUpdBean.registerd and empUpdBean.notMe}" value="changePass" >
+                    <h:outputText value="Обновить пароль"></h:outputText>
+                    <f:param name="id" value="#{empUpdBean.id}" />
+                </h:outputLink>
+                <h:outputLink rendered="#{empUpdBean.sendOn and not empUpdBean.registerd and not empUpdBean.emp.fired}" value="sendPass" >
+                    <h:outputText value="Выслать логин и пароль"></h:outputText>
+                    <f:param name="id" value="#{empUpdBean.id}" />
+                </h:outputLink>
+            </h:form>  
+        </h:panelGroup>
+    </ui:define>
+    <ui:define name="mainContent">
+        <h:panelGroup rendered="#{empUpdBean.notMe and not empUpdBean.emp.fired}">
+            <div id="main" class="empIns_jsp exxo-shadow">
+
+                <h:outputStylesheet library="css" name="emp.css"></h:outputStylesheet>
+                <div id="exxo-start-ins">
+                    <h:form id="emp" prependId="false" enctype="multipart/form-data">
+                        <h:panelGrid columns="2" columnClasses="left, right" id="formGrid">
+                            <h:outputLabel for="fio" class="str">Фамилия Имя Отчество</h:outputLabel><h:inputText id="fio" value="#{empUpdBean.emp.fio}" class="aui-field-required"></h:inputText>
+                            <h:outputLabel for="file">Фотография</h:outputLabel><h:panelGroup rendered="#{not empUpdBean.emp.photo}">
+                                <h:inputFile id="file" value="#{empUpdBean.file}"></h:inputFile>
+                            </h:panelGroup>
+                            <h:panelGroup rendered="#{empUpdBean.emp.photo}" style="white-space: normal;">
+                                <img src="IMG?id=#{empUpdBean.emp.id}" /><br />
+                                <h:commandLink action="#{empUpdBean.dropImg}" value="Удалить фотографию"></h:commandLink>
+                            </h:panelGroup>
+                            <h:outputLabel id="birthdayLabel" class="str">Дата рождения</h:outputLabel>
+                            <h:panelGroup>
+                                <div id="dateSelected">Нужно выбрать день рожденья!</div>
+                                <EXXO:date-picker dayScript="#{empUpdBean.birthday.dateScript}" dayString="#{empUpdBean.birthday.dateString}" yearInterval="-30"
+                                                  target="#dateSelected" nodeId="birth" yearRange="[1935, Year-12]"></EXXO:date-picker>
+                            </h:panelGroup>
+                            <h:outputLabel>Дата приема на работу</h:outputLabel>
+                            <h:panelGroup>
+                                <div id="workDateSelected">Укажите дату приема на работу!</div>
+                                <EXXO:date-picker dayScript="#{empUpdBean.work.dateScript}" dayString="#{empUpdBean.work.dateString}" 
+                                                  target="#workDateSelected" nodeId="work" yearRange="[Year-50, Year]" inputClass=""></EXXO:date-picker>   
+                            </h:panelGroup>
+                            <h:outputLabel for="units" class="str">Подразделение</h:outputLabel>
+                            <h:panelGroup id="unitBlock">
+                                <h:inputText value="#{empUpdBean.emp.unit.id}" id="units" style="display: none;"></h:inputText>
+                                <h:inputHidden id='supervizor' value="${empUpdBean.emp.unit.unit}"></h:inputHidden>
+                                <span id="unit">#{empUpdBean.emp.unit.unit}</span>
+                            </h:panelGroup>
+                            <h:outputLabel for="position" class="str">Должность</h:outputLabel><h:inputText id="position" value="#{empUpdBean.emp.position}" class="aui-field-required"></h:inputText>
+                            <h:outputLabel>Руководитель подразделения</h:outputLabel><h:selectBooleanCheckbox value="#{empUpdBean.emp.head}"></h:selectBooleanCheckbox>
+                            <h:outputLabel>Должностные обязанности</h:outputLabel><h:inputTextarea value="#{empUpdBean.emp.responsibility}"></h:inputTextarea>
+                            <h:outputLabel>Образование</h:outputLabel><h:inputTextarea value="#{empUpdBean.emp.education}"></h:inputTextarea>
+                            <h:outputLabel>Офис</h:outputLabel><h:selectOneMenu value="#{empUpdBean.emp.office.name}">
+                                <f:selectItems value="#{empUpdBean.emp.office.options}"></f:selectItems>
+                            </h:selectOneMenu>
+                            <h:outputLabel>Комната</h:outputLabel><h:inputText value="#{empUpdBean.emp.room}"></h:inputText>
+                            <h:outputLabel>Телефон городской</h:outputLabel><h:inputText value="#{empUpdBean.emp.tel}"></h:inputText>
+                            <h:outputLabel>Телефон местный</h:outputLabel><h:inputText value="#{empUpdBean.emp.tellocal}"></h:inputText>
+                            <h:outputLabel>Телефон мобильный</h:outputLabel><h:inputText value="#{empUpdBean.emp.tellmob}"></h:inputText>
+                            <h:outputLabel>Электронная почта</h:outputLabel><h:inputText value="#{empUpdBean.emp.email}" class="aui-field-email"></h:inputText>
+                            <h:outputLabel>Хобби</h:outputLabel><h:inputTextarea value="#{empUpdBean.emp.hobby}"></h:inputTextarea>
+                            <h:outputLabel>Комментарии</h:outputLabel><h:inputTextarea value="#{empUpdBean.emp.comment}"></h:inputTextarea>
+                        </h:panelGrid>
+                        <div id='messages'><h:messages></h:messages></div>
+                        <h:panelGroup id="butTable" layout="block">
+                            <h:commandButton action="#{empUpdBean.photoUpdTarget()}" value="Дальше" actionListener="#{empUpdBean.loadImg()}" id="save" rendered="#{not empUpdBean.emp.photo}" class="aui-button-input"></h:commandButton>
+                            <h:commandButton action="#{empUpdBean.empUpdTarget()}" value="Сохранить" actionListener="#{empUpdBean.updateBirthday()}" rendered="#{empUpdBean.emp.photo}" class="aui-button-input save">
+                            </h:commandButton>
+                        </h:panelGroup>
+                    </h:form>  
+                </div>
+                <h:outputScript library="scripts" name="emp.js" target="body" rendered="#{empUpdBean.notMe}"></h:outputScript>
+                <h:outputScript library="scripts" name="emp-validate.js" target="body" rendered="#{(not photoBean.photo) and empUpdBean.notMe}"></h:outputScript>
+                <h:outputScript library="scripts" name="emp-validate1.js" target="body" rendered="#{photoBean.photo and empUpdBean.notMe}"></h:outputScript>
+            </div>
+        </h:panelGroup>
+        <h:panelGroup rendered="#{(not empUpdBean.notMe) and (not empUpdBean.emp.fired) and empUpdBean.registerd}">
+            <ui:include src="empMe.xhtml"></ui:include>   
+        </h:panelGroup>
+        <h:panelGroup rendered="#{empUpdBean.emp.fired}">
+            <h:form id="noworkform" prependId="false">
+                <div id="notWork" class="exxo-shadow">
+                    <h3> #{empUpdBean.emp.fio} больше не работает</h3>
+                    <h:commandButton action="#{empActionBean.unfired()}" value="Восстановить" />
+                    <br /><br /><br />
+                    <h:commandLink action="#{empActionBean.drop()}" value="Удалить все данные" /><br />
+                    (не рекомендуется)
+                </div></h:form>
+        </h:panelGroup>
+    </ui:define>
+    <ui:define name="head">
+        <link rel="stylesheet" href="index.css" type="text/css" />    
+        <link rel="stylesheet" href="css/topMenu.css" type="text/css" />
+        <link rel="stylesheet" href="css/exxo.css" type="text/css" />
+        <h:outputStylesheet>
+            <h:outputText value="#{cSS.css}" escape="false" />
+            <h:outputText value="#{cSS1.getCss('empUpd.xhtml')}" escape="false" />
+        </h:outputStylesheet>
+    </ui:define>
+    <ui:define name="topMenu" >
+        <ul class="topMenu">
+            <ui:include src="topMenu.xhtml"></ui:include>
+            <li>
+                <h:outputLink value="employees.xhtml" class="footmenu" >
+                    <h:outputText value="Закончить" /> 
+                </h:outputLink>
+            </li>
+            <li>
+                <h:outputLink value="http://exxo.ru/howto/staff-howto.html#edit" class="footmenu howto" target="_blank">
+                    <h:outputText value="?"></h:outputText>
+                </h:outputLink>
+            </li>
+        </ul>    
+    </ui:define>
+    <ui:define name="container">
+        <EXXO:fx-element elementId="moveMain" trigger="#unit" targetId="comp" autoSize="autosize" triggerEvent="closeEvent" rendered="#{empUpdBean.notMe}"></EXXO:fx-element>
+        <div class="exxo-target-container">
+
+            <div id="comp"><h:outputFormat value="{0}" escape="false">
+                    <f:param value="#{empUpdBean.emp.unit.company}" />
+                </h:outputFormat></div>
+
+        </div>
+    </ui:define>
+</ui:composition>

@@ -1,0 +1,15 @@
+<ui:composition  xmlns="http://www.w3.org/1999/xhtml" 
+                 xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+                 xmlns:cc="http://xmlns.jcp.org/jsf/composite">
+    <cc:interface>
+        <cc:attribute name="title" default=""></cc:attribute>
+    </cc:interface>
+    <cc:implementation>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+        <title>#{cc.attrs.title}</title>
+        <link rel="stylesheet" href="/FILES/alloy/build/aui-skin-classic/css/aui-skin-classic-all-min.css" type="text/css" media="screen" />
+        <script src="/FILES/alloy/build/aui/aui.js" type="text/javascript"></script>
+        <link href="./resources/css/default.css" rel="stylesheet" type="text/css" />
+        <link href="./resources/css/tableLayout.css" rel="stylesheet" type="text/css" />  
+    </cc:implementation>
+</ui:composition>

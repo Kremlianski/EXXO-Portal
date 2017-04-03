@@ -1,0 +1,14 @@
+#column-3 table {font-size: 12px;}
+#tableContainer {width: auto; margin-right: 20px;}
+table.exxo-table th {border: 0;}
+#rolesContainer {display: none;}
+#rolesList {border: 1px solid #dedede; font-size: 12px;}
+#rolesList .first, .name {font-weight: bold;}
+#plus {margin: 10px; margin-left: 15px; font-size: 12px;}
+#plus a {color:#5b677d; text-decoration: none;}
+a.drop {background-image: url('/EXXO/drop.png'); background-position: 0px 0px; background-repeat: no-repeat; text-decoration: none; padding-left: 20px;}
+#empRoles {width: 100%;}
+#small td {vertical-align: top;}
+.worn h3{text-align: center;}
+#empRoles_xhtml div.exxo-employee-mini-card {margin:0; border:0;}
+table#small {width: 90%;}

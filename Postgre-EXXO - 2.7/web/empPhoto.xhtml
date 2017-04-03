@@ -1,0 +1,64 @@
+<ui:composition  xmlns="http://www.w3.org/1999/xhtml" 
+                 xmlns:h="http://xmlns.jcp.org/jsf/html"
+                 xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+                 template="./main.xhtml" 
+                 xmlns:f="http://xmlns.jcp.org/jsf/core"
+                 xmlns:EXXO="http://xmlns.jcp.org/jsf/composite/EXXO"
+                 xmlns:c="http://xmlns.jcp.org/jsp/jstl/core">
+    <ui:define name="title">Фотографии сотрудников</ui:define>
+    <ui:define name="mainMenu">
+        <ui:include src="menu-emp.xhtml"></ui:include>
+    </ui:define>
+    <ui:define name="mainContent">
+        <div id="content">
+            <div id='container'>
+                <h:form prependId="false">
+                    <ui:repeat value="#{empPhotoBean.employees}" var="emp">
+                        <h:commandButton actionListener="#{empPhotoBean.setEmployee(emp)}" image="IMG?id=#{emp.id}" class="photo" title="#{emp.fio}, #{emp.unit.unit}" id="pic">
+                            <f:ajax render=":card" />
+                        </h:commandButton>
+                    </ui:repeat>
+                </h:form>
+                <h:outputStylesheet library="css" name="empPhoto.css" />
+            </div> 
+        </div>
+    </ui:define>
+    <ui:define name="head">
+        <link rel="stylesheet" href="index.css" type="text/css" />    
+        <link rel="stylesheet" href="css/topMenu.css" type="text/css" />
+        <link rel="stylesheet" href="css/exxo.css" type="text/css" />
+        <h:outputStylesheet>
+            <h:outputText value="#{cSS.css}" escape="false" />
+            <h:outputText value="#{cSS1.getCss('empPhoto.xhtml')}" escape="false" />
+        </h:outputStylesheet>
+    </ui:define>
+    <ui:define name="topMenu" >
+        <ul class="topMenu">
+            <ui:include src="topMenu.xhtml"></ui:include>
+            <li><a href="emp.xhtml" class="footmenu">Настройка</a></li>
+            <li>
+                <h:outputLink value="http://exxo.ru/howto/staff-howto.html#find" class="footmenu howto" target="_blank">
+                    <h:outputText value="?"></h:outputText>
+                </h:outputLink>
+            </li>
+        </ul>    
+    </ui:define>
+    <ui:define name="METAS">
+        <f:metadata>
+            <f:viewAction action="#{empPhotoBean.init()}" />
+            <c:set var="body_id" value="empPhoto_xhtml" />
+        </f:metadata>
+    </ui:define>
+    <ui:define name="container">
+        <div id="empContainer" style="display: none;">
+            <div id="employee">
+                <h:panelGroup id="card">
+                    <div id="innerEmployee">
+                        <EXXO:empCard employee="#{empPhotoBean.employee}" rendered="#{not empty empPhotoBean.employee}"/>
+                    </div>
+                </h:panelGroup>
+            </div>
+        </div>
+        <EXXO:fx-element trigger=".photo" targetId="employee" elementId="fx-emp" resetDiv="#innerEmployee" width="600px" height="auto" centered="centered"/>
+    </ui:define>
+</ui:composition>

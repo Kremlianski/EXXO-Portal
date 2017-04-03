@@ -1,0 +1,127 @@
+body{
+    background-color: #f6f3ef;
+}
+#content-wrapper {
+    background-color: #f6f3ef;
+}
+.column div{
+
+
+
+}
+
+.portlet {
+    background-color: white;
+    background-image: url("white.png");
+    background-position: bottom;
+    background-repeat: repeat-x;
+}
+div.portlet h1{
+    background-color: #787878;
+    color: #fde47e;
+    padding: 10px;
+    margin: 0px;
+
+    border-color: #DEDEDE #BFBFBF #BFBFBF #DEDEDE;
+    border-style: solid;
+    border-width: 1px;
+    text-align: center;
+    margin-bottom: 10px;
+    display: block;
+
+    -moz-border-radius: 8px;
+    -webkit-border-radius: 8px;
+    border-radius: 8px;
+}
+
+div.portlet h2{
+    background-color: #919191;
+    background-image: url("h2bw.png");
+    background-position: top;
+    background-repeat: repeat-x;
+    color: white;
+    padding: 10px;
+    margin: 0px;
+    border-color: #DEDEDE #BFBFBF #BFBFBF #DEDEDE;
+    border-style: solid;
+    border-width: 1px;
+    text-align: center;
+    margin-bottom: 10px;
+    -moz-border-radius: 8px;
+    -webkit-border-radius: 8px;
+    border-radius: 8px;
+}
+div.portlet h3{
+    color: #c39110;
+    text-align: center;
+    margin-top: 2px;
+}
+
+#menus ul, #menus li {
+    background: #5e5e5e;
+}
+
+#menus li {
+    border-bottom: 1px solid #DEDEDE;
+}
+#menus li a {
+    color: white;
+}
+
+td#menu-td .portlet{
+    background-color: #eeeeee;
+    background-image: url("undermenuBW.png");
+    background-position: bottom;
+    background-repeat: repeat-x;
+}
+
+td#column-4 .portlet{
+    background-color: #eeeeee;
+    background-image: url("undermenuBW.png");
+    background-position: bottom;
+    background-repeat: repeat-x;
+}
+div#header{
+    background-color: #302c23;
+}
+
+#poisk{
+    background-color: #d7d7d7;
+    -moz-border-radius: 8px;
+    -webkit-border-radius: 8px;
+    border-radius: 8px;
+}
+#tdlogo{
+    background-color: #786454;
+    background-image: url("headBW.png");
+    background-repeat: repeat-x;
+    background-position: top;
+}
+#head {
+    background-color: #f9ffdd;
+    background-image: url("headBW.png");
+    background-repeat: repeat-x;
+
+}
+#foot {
+    background-color: #666666;
+}
+.footmenu {
+    color:white;
+
+}
+#slogan{
+    color: #c39110;
+}
+#brownBG {
+
+}
+.hover{
+    background-color: #f69901;
+    color: white;
+
+}
+#menus li a:hover {
+    background: #666666;
+    color:#f69901;
+}

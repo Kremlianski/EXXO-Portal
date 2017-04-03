@@ -1,0 +1,13 @@
+#timeMenu {padding-left: 10px;}
+#timeMenu a {font-size: 11px; display: inline; padding-right: 20px;}
+#body {min-width: 1024px;}
+.exxo-calendar-scale {position: relative; }
+.exxo-calendar-scale span {display: inline-block; width: 1.5625%; text-align: right; color: gray;}
+.exxo-calendar-schedule span {display: inline-block; width: 1.5625%; border-bottom: 1px solid #bfbfbf; border-right: 1px solid #dedede; height: 4px; box-sizing: border-box;-moz-box-sizing:border-box;}
+.exxo-calendar-schedule span.graf {border-right: 1px solid #bfbfbf; height: 4px;}
+.exxo-calendar-timer span {display: inline-block; width: 1.5625%; border-bottom: 1px solid #bfbfbf; height: 6px;}
+.exxo-calendar-timer span.busy {background-color: red;}
+table {border-collapse: collapse;}
+td, div, ul, ol, li, h1, h2, h3, h4, h5, h6, p, form, input, textarea, th {padding:0; margin: 0;}
+.exxo-calendar-schedule {line-height: 0px;}
+.exxo-calendar-timer {line-height: 0px;}

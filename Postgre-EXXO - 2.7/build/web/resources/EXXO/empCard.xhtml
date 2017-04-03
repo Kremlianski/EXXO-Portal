@@ -1,0 +1,51 @@
+<ui:composition  xmlns="http://www.w3.org/1999/xhtml" 
+                 xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+                 xmlns:cc="http://xmlns.jcp.org/jsf/composite"
+                 xmlns:h="http://xmlns.jcp.org/jsf/html"
+                 xmlns:c="http://xmlns.jcp.org/jsp/jstl/core"
+                 xmlns:f="http://xmlns.jcp.org/jsf/core">
+    <cc:interface>
+        <cc:attribute name="employee" required="true" type="ru.EXXO.employee.Employee"></cc:attribute>
+    </cc:interface>
+    <cc:implementation>
+        <div id="content" class="exxo-shadow exxo-employee-card">
+            <h:panelGrid columns="2" columnClasses="left,right" class="table">
+                <div id="img"><a href="employee.xhtml?id=#{cc.attrs.employee.id}"><img src="IMG?id=#{cc.attrs.employee.id}" class='exxo-shadow1' /></a></div>
+                <h:panelGroup>
+                    <div class="maininfo"><strong>#{cc.attrs.employee.fio}</strong></div>
+                    <div class="maininfo" id="birthday"><h:outputText value="#{cc.attrs.employee.birthday}" >
+                     <f:convertDateTime pattern="d MMM yyyy, EEEEEEEEEE" /></h:outputText></div>
+                    <div class="maininfo" id="position">#{cc.attrs.employee.position}</div>
+                    <div class="maininfo" id="company" ><a href="empListComp.jsp?uid=1">#{cc.attrs.employee.unit.unit}</a></div>
+                </h:panelGroup>
+            </h:panelGrid>
+                <div id="submenu">
+                    <a href="empDoc.jsp?own=1" id="docs">Документы</a><a href="galClassic.jsp?owner=1" id="gals">Фотоальбомы</a><a href="blogs.jsp?owner=1" id="blogs">Сообщения</a>
+                </div>
+            <h:panelGrid columns="2" columnClasses="left,right" class="table">
+                <h:outputLabel value="Работает с" rendered="#{not empty cc.attrs.employee.worksince}"/><h:outputText value="#{cc.attrs.employee.worksince}" rendered="#{not empty cc.attrs.employee.worksince}">
+                    <f:convertDateTime dateStyle="medium" />
+                </h:outputText>
+                <h:outputLabel value="Должностные обязанности" rendered="#{not empty cc.attrs.employee.responsibility}"/><h:outputText value="#{cc.attrs.employee.responsibility}" escape="false"  rendered="#{not empty cc.attrs.employee.responsibility}" />
+                <h:outputLabel value="Образование" rendered="#{not empty cc.attrs.employee.education}" /><h:outputText value="#{cc.attrs.employee.education}" escape="false" rendered="#{not empty cc.attrs.employee.education}" />
+                <h:outputLabel value="Адрес офиса" rendered="#{not empty cc.attrs.employee.office.address}" /><h:outputText value="#{cc.attrs.employee.office.address}" escape="false"  rendered="#{not empty cc.attrs.employee.office.address}" />
+                <h:outputLabel value="Комната" rendered="#{not empty cc.attrs.employee.room}" /><h:outputText value="#{cc.attrs.employee.room}"  rendered="#{not empty cc.attrs.employee.room}" />
+                <h:outputLabel value="Телефон городской" rendered="#{not empty cc.attrs.employee.tel}" /><h:outputText value="#{cc.attrs.employee.tel}" rendered="#{not empty cc.attrs.employee.tel}" />
+                <h:outputLabel value="Телефон местный" rendered="#{not empty cc.attrs.employee.tellocal}" /><h:outputText value="#{cc.attrs.employee.tellocal}" rendered="#{not empty cc.attrs.employee.tellocal}" />
+                <h:outputLabel value="Телефон мобильный" rendered="#{not empty cc.attrs.employee.tellmob}"/><h:outputText value="#{cc.attrs.employee.tellmob}" rendered="#{not empty cc.attrs.employee.tellmob}"/>
+                <h:outputLabel value="Электронная почта" rendered="#{not empty cc.attrs.employee.email}" /><h:outputText value="#{cc.attrs.employee.email}"  rendered="#{not empty cc.attrs.employee.email}" />
+                <h:outputLabel value="Хобби" rendered="#{not empty cc.attrs.employee.hobby}" /><h:outputText value="#{cc.attrs.employee.hobby}" escape="false" rendered="#{not empty cc.attrs.employee.hobby}" />
+                <h:outputLabel value="Комментарии" rendered="#{not empty cc.attrs.employee.comment}" /><h:outputText value="#{cc.attrs.employee.comment}" escape="false"  rendered="#{not empty cc.attrs.employee.comment}" />
+                <h:outputLabel value="БОЛЬШЕ НЕ РАБОТАЕТ" rendered="#{not empty cc.attrs.employee.firedsince}"/><h:outputText value="#{cc.attrs.employee.firedsince}" rendered="#{not empty cc.attrs.employee.firedsince}">
+                    <f:convertDateTime dateStyle="medium" />
+                </h:outputText>                
+                <c:set var="serv" value="#{cc.attrs.employee.findServicesList()}" />
+                <h:outputLabel value="Сервисы" rendered="#{not empty serv}" /><ui:repeat var="ser" value="#{serv}" rendered="#{not empty serv}"  >
+                    <h:outputLink value="serviceCard.jsp?id=#{ser.id}" class="servs"><h:outputText value="#{ser.name}"/></h:outputLink>
+                </ui:repeat>
+                <h:outputLabel value="Роли" rendered="false"/><h:outputText value="" escape="false" rendered="false"/>
+            </h:panelGrid>
+        </div>
+        <h:outputStylesheet name="empCard.css" library="css" />
+    </cc:implementation>
+</ui:composition>

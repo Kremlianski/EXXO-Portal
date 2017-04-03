@@ -1,0 +1,62 @@
+<ui:composition  xmlns="http://www.w3.org/1999/xhtml" 
+                 xmlns:h="http://xmlns.jcp.org/jsf/html"
+                 xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+                 xmlns:EXXO="http://xmlns.jcp.org/jsf/composite/EXXO"
+                 xmlns:f="http://xmlns.jcp.org/jsf/core">
+    <h:outputStylesheet library="css" name="emp.css"></h:outputStylesheet>
+    <div id="exxo-start-ins">
+        <h:form id="emp" prependId="false" enctype="multipart/form-data">
+            <h:panelGrid columns="2" columnClasses="left, right" id="formGrid">
+                <h:outputLabel for="fio" class="str">Фамилия Имя Отчество</h:outputLabel><h:inputText id="fio" value="#{empBean.emp.fio}" class="aui-field-required"></h:inputText>
+                <h:outputLabel for="file">Фотография</h:outputLabel><h:panelGroup rendered="#{not photoBean.photo}">
+                    <h:inputFile id="file" value="#{empBean.file}"></h:inputFile>
+                </h:panelGroup>
+                <h:panelGroup rendered="#{photoBean.photo}">
+                    <img src="preImgLoader" /><br />
+                    <a href="DropEmpPhoto">Удалить рисунок</a>
+                </h:panelGroup>
+                <h:outputLabel id="birthdayLabel" class="str">Дата рождения</h:outputLabel>
+                <h:panelGroup>
+                    <div id="dateSelected">Нужно выбрать день рожденья!</div>
+                    <EXXO:date-picker dayScript="#{empBean.birthday.dateScript}" dayString="#{empBean.birthday.dateString}" yearInterval="-30"
+                                      target="#dateSelected" nodeId="birth" yearRange="[1935, Year-12]"></EXXO:date-picker>
+                </h:panelGroup>
+                <h:outputLabel>Дата приема на работу</h:outputLabel>
+                <h:panelGroup>
+                    <div id="workDateSelected">Укажите дату приема на работу!</div>
+                    <EXXO:date-picker dayScript="#{empBean.work.dateScript}" dayString="#{empBean.work.dateString}" 
+                                      target="#workDateSelected" nodeId="work" yearRange="[Year-50, Year]" inputClass=""></EXXO:date-picker>   
+                </h:panelGroup>
+                <h:outputLabel for="units" class="str">Подразделение</h:outputLabel>
+                <h:panelGroup id="unitBlock">
+                    <h:inputText value="#{empBean.emp.unit.id}" id="units" style="display: none;"></h:inputText>
+                    <h:inputHidden id='supervizor' value="${empBean.supervizor}"></h:inputHidden>
+                    <span id="unit">#{empBean.supervizor}</span>
+                </h:panelGroup>
+                <h:outputLabel for="position" class="str">Должность</h:outputLabel><h:inputText id="position" value="#{empBean.emp.position}" class="aui-field-required"></h:inputText>
+                <h:outputLabel>Руководитель подразделения</h:outputLabel><h:selectBooleanCheckbox value="#{empBean.emp.head}"></h:selectBooleanCheckbox>
+                <h:outputLabel>Должностные обязанности</h:outputLabel><h:inputTextarea value="#{empBean.emp.responsibility}"></h:inputTextarea>
+                <h:outputLabel>Образование</h:outputLabel><h:inputTextarea value="#{empBean.emp.education}"></h:inputTextarea>
+                <h:outputLabel>Офис</h:outputLabel><h:selectOneMenu value="#{empBean.emp.office.name}">
+                    <f:selectItems value="#{empBean.emp.office.options}"></f:selectItems>
+                </h:selectOneMenu>
+                <h:outputLabel>Комната</h:outputLabel><h:inputText value="#{empBean.emp.room}"></h:inputText>
+                <h:outputLabel>Телефон городской</h:outputLabel><h:inputText value="#{empBean.emp.tel}"></h:inputText>
+                <h:outputLabel>Телефон местный</h:outputLabel><h:inputText value="#{empBean.emp.tellocal}"></h:inputText>
+                <h:outputLabel>Телефон мобильный</h:outputLabel><h:inputText value="#{empBean.emp.tellmob}"></h:inputText>
+                <h:outputLabel>Электронная почта</h:outputLabel><h:inputText value="#{empBean.emp.email}" class="aui-field-email"></h:inputText>
+            </h:panelGrid>
+            <div id='messages'><h:messages></h:messages></div>
+            <h:panelGrid columns="2" id="butTable">
+                <h:commandButton action="#{empBean.empTarget(false)}" value="Обновить" rendered="#{empBean.edit}"></h:commandButton>
+                <h:commandButton action="#{empBean.photoTarget()}" value="Дальше" actionListener="#{empBean.loadImg()}" id="save" rendered="#{not photoBean.photo}" class="aui-button-input"></h:commandButton>
+                <h:commandButton action="#{empBean.photoTarget()}" value="Дальше" actionListener="#{empBean.updateBirthday()}" rendered="#{photoBean.photo}" class="aui-button-input"></h:commandButton>
+            </h:panelGrid>
+
+        </h:form>  
+    </div>
+    <h:outputScript library="scripts" name="emp.js" target="body"></h:outputScript>
+    <h:outputScript library="scripts" name="emp-validate.js" target="body" rendered="#{not photoBean.photo}"></h:outputScript>
+    <h:outputScript library="scripts" name="emp-validate1.js" target="body" rendered="#{photoBean.photo}"></h:outputScript>
+</ui:composition>
+

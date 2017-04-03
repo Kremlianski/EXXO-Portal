@@ -1,0 +1,69 @@
+<ui:composition  xmlns="http://www.w3.org/1999/xhtml" 
+                 xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+                 xmlns:cc="http://xmlns.jcp.org/jsf/composite"
+                 xmlns:h="http://xmlns.jcp.org/jsf/html"
+                 xmlns:c="http://xmlns.jcp.org/jsp/jstl/core">
+    <cc:interface>
+        <cc:attribute name="elementId" required="true"></cc:attribute>
+        <cc:attribute name="trigger" required="true"></cc:attribute>
+        <cc:attribute name="targetId" required="true"></cc:attribute>
+    <cc:attribute name="width" default="auto"></cc:attribute>
+    <cc:attribute name="height" default="auto"></cc:attribute>
+    <cc:attribute name="autoSize" default="no-autosize"></cc:attribute>
+    <cc:attribute name="centered" default="no-centerd"></cc:attribute>
+    <cc:attribute name="mask" default="1"></cc:attribute>
+    <cc:attribute name="triggerEvent"></cc:attribute>
+    <cc:attribute name="resetDiv"/>
+    </cc:interface>
+    <cc:implementation>
+        <div id="#{cc.attrs.elementId}" class="exxo-fx-element"><div class="exxo-imgesInner">
+        <div class="exxo-fx-close"><span>ЗАКРЫТЬ</span></div>    
+        <div class="exxo-fx-content"></div></div>
+        </div>
+<h:outputScript>
+AUI().ready('anim-node-plugin','aui-overlay-mask','event-custom', function(A){
+var div = A.one("##{cc.attrs.elementId}");
+var inner = A.one("##{cc.attrs.elementId} .exxo-imgesInner");
+if('#{cc.attrs.centered}'=='centered'){inner.setStyle('margin','20px auto');}
+var conf={
+from:{opacity: 0},
+to: {opacity: 1},
+on:{'start': function(){
+if(!this.get('reverse')){
+overlayMask.set('target', document).show();
+this.get('node').setStyle('display','block');
+}}},
+after: {'end': function(){
+this.set('reverse', !this.get('reverse')); 
+this.stop();
+if(this.get('node').getStyle('opacity')==0) this.get('node').setStyle('display','none');
+if(!this.get('reverse'))overlayMask.set('target', document).hide();
+}}};
+inner.setStyle('width','#{cc.attrs.width}');
+inner.setStyle('height','#{cc.attrs.height}');
+if('#{cc.attrs.autoSize}'=='autosize'){
+inner.setStyle("width","auto");
+inner.setStyle("minHeight",A.DOM.winHeight()-12+"px");
+inner.setStyle("margin","10px");
+}
+div.setStyle('opacity',0);
+div.plug(A.Plugin.NodeFX, conf);
+var overlayMask = new A.OverlayMask().render();
+var target=A.one("##{cc.attrs.targetId}");
+target.appendTo(div.one(".exxo-fx-content"));
+var trigger=A.all("#{cc.attrs.trigger}");
+trigger.each(function(){this.on('click', function(){div.fx.run();if('#{cc.attrs.autoSize}'=='autosize'){div.setY(A.one('win').get('docScrollY'));}
+else {div.setY(A.one('win').get('docScrollY'));}
+<c:if test="#{!empty cc.attrs.resetDiv}">
+div.one('#{cc.attrs.resetDiv}').html('загружается.....');
+</c:if>
+});});
+div.one('.exxo-fx-close span').on('click', function(){div.fx.run();});
+<c:if test="#{!empty cc.attrs.triggerEvent}">
+A.Global.on('#{cc.attrs.triggerEvent}',function(e){div.fx.run();});
+</c:if>
+});
+</h:outputScript>
+<h:outputStylesheet library="css" name="fx-element.css"></h:outputStylesheet>
+</cc:implementation>
+</ui:composition>

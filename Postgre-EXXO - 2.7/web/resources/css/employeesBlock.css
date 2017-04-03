@@ -1,0 +1,8 @@
+#exxo-employee-list #tableContainer {border: 1px solid #dedede; border-bottom: 1px solid #bfbfbf; font-size: 14px;}
+#exxo-employee-list .empBlockMenu td {padding: 0px; padding-right: 8px; }
+#exxo-employee-list .empBlockMenu input {border: 4px solid #dedede; border-radius: 4px; background-color: #dedede;}
+#exxo-employee-list .empListEmpty h2 {color: #bfbfbf; text-align: center; margin-top: 50px;}
+#exxo-employee-list .active {width: 24px; height: 2px; background-color: #bfbfbf;}
+#exxo-employee-list .empBlockMenu {margin-bottom: 10px;}
+#exxo-employee-list .birthTd {width: 140px; display: block; font-size: 14px; padding-left: 10px;}
+#exxo-employee-list .roomTd {width: 100px; display: block; font-size: 14px; padding-left: 10px;}

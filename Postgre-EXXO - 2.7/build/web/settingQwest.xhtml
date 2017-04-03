@@ -1,0 +1,78 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html" xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:ui="http://java.sun.com/jsf/facelets">
+    <h:head>
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <title>Пользователи</title>
+
+        <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
+        <meta http-equiv="content-style-type" content="text/css" />
+        <meta http-equiv="pragma" content="no-cache" />
+        <link rel="stylesheet" href="alloy/build/aui-skins/core/css/main.css" type="text/css" />
+        <link rel="stylesheet" href="alloy/build/aui-skins/classic/css/custom.css" type="text/css" />
+        <link rel="stylesheet" href="alloy/build/aui-skins/core/css/form.css" type="text/css" /> 
+        <style type="text/css">
+            body {background-color:#d8d8ff; width: 100%; display: block; text-align: center;font-size: 12px; font-family: Arial, Helvetica, sans-serif;}
+            #f {background-color:white; padding:50px; padding-top: 20px; width: 500px; margin: auto auto; display: block; border: 1px solid gray;}
+            input {width: 200px;} 
+            #f td {padding: 20px 0px;}
+            #f table {margin-bottom: 20px; width:100%;}
+            td.one {text-align: left; padding-right: 10px;}
+            td.two {text-align: right; padding-left: 10px;}
+            .answerDiv {padding: 5px;text-align: left;}
+            .itemText {padding-left: 10px;}
+            #answersMain {display: none;}
+            #topik {text-align: right;}
+            #topik a {text-decoration: none; margin-bottom: 30px;}
+        </style>
+        <script type="text/javascript" charset="utf-8" src="alloy/build/yui/yui-min.js"></script>
+        <script type="text/javascript" charset="utf-8" src="alloy/build/aui-base/aui-base-debug.js"></script>
+    </h:head>
+    <h:body>
+        <ui:component>
+            #{settingQwestBean.initParams(param['quest_id'])}   
+
+            <div id="f" class="exxo-shadow">
+                <h:form id="setting" styleClass="exxo-form">
+                    <table>
+                        <tr id="anonim">
+                            <td class='one'>Анонимный опрос?</td>
+                            <td class='two'><h:selectBooleanCheckbox value="#{settingQwestBean.anonim}" id="anonim" disabled="false"></h:selectBooleanCheckbox></td>
+                        </tr>
+                        <tr id="question">
+                            <td class='one'>Вопрос</td>
+                            <td class='two'><h:inputTextarea value="#{settingQwestBean.question}" required="true" id="question"></h:inputTextarea></td>
+                        </tr>
+                        <tr id="answers">
+                            <td class='one'>Варианты ответов</td>
+                            <td class='two'>
+                                <div id="answersTop"></div>
+                                <div id="answersMain">
+                                    <h:outputFormat value="{0}" escape="false">
+                                        <f:param value="#{settingQwestBean.getList()}"></f:param>
+                                    </h:outputFormat> 
+
+                                </div>
+                                <h:inputHidden value="#{settingQwestBean.answers}" required="true" id="answers"></h:inputHidden>
+                            </td>
+                        </tr>
+                        <tr id="start">
+                            <td class='one'>Дата начала</td>
+                            <td class='two'><div id="startMain"><div id="dateSelected" class="exxo-date"></div><h:inputHidden value="#{settingQwestBean.start}" required="true" id="start"></h:inputHidden></div></td>
+                        </tr>
+                        <tr id="stop">
+                            <td class='one'>Дата окончания</td>
+                            <td class='two'><div id="stopMain"><div id="dateSelected1" class="exxo-date"></div>
+                                    <h:inputHidden value="#{settingQwestBean.stop}" id="stop"></h:inputHidden></div></td>
+                        </tr>
+                    </table>
+                    <h:inputHidden value="#{settingQwestBean.id}"  id="id"/><br/><br/>
+                    <h:commandButton action="settingQwest.jsp" actionListener="#{settingQwestBean.insertData}" value="Сохранить"  id="submit"/>
+                </h:form></div>
+            <script type="text/javascript" charset="utf-8" src="settingQwest.js"></script>
+        </ui:component>
+    </h:body>
+</html>
+

@@ -1,0 +1,75 @@
+<ui:composition  xmlns="http://www.w3.org/1999/xhtml" 
+                 xmlns:h="http://xmlns.jcp.org/jsf/html"
+                 xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+                 template="./main.xhtml" 
+                 xmlns:f="http://xmlns.jcp.org/jsf/core"
+                 xmlns:EXXO="http://xmlns.jcp.org/jsf/composite/EXXO"
+                 xmlns:c="http://xmlns.jcp.org/jsp/jstl/core">
+    <ui:define name="title">Список офисов</ui:define>
+    <ui:define name="mainMenu">
+        <ui:include src="menu-emp.xhtml"></ui:include>
+    </ui:define>
+    <ui:define name="mainContent">
+        <div class="exxo-table-container exxo-shadow">
+            <h:form prependId="false">
+                <h:dataTable var="o" value="#{territoriesBean.o}" class="exxo-table" id="terList" rowClasses="datas">
+                    <h:column>
+                        <f:facet name="header">
+                            <h:outputText value="Территория" />
+                        </f:facet>
+                        <h:outputText value="#{o.name}" />
+                        <input type="hidden" value="#{territoriesBean.encode(o.name)}"/>
+                    </h:column>
+                    <h:column>
+                        <f:facet name="header">
+                            <h:outputText value="Адрес" />
+                        </f:facet>
+                        <h:outputText value="#{o.address}" />
+                    </h:column>
+                    <h:column>
+                        <f:facet name="header">
+                            <h:outputText value="Телефоны" />
+                        </f:facet>           
+                        <h:outputText value="#{o.telephon}" />
+                    </h:column>
+                </h:dataTable>
+            </h:form>
+        </div>
+        <h:outputScript>
+            AUI().ready( 'aui-node', function(A) {A.all("tr.datas").each(function(){this.on("click",function(){location="empListTer.xhtml?office="+this.one("input").get('value')});});});
+        </h:outputScript>
+        <h:outputStylesheet library="css" name="territories.css" />
+    </ui:define>
+    <ui:define name="head">
+        <link rel="stylesheet" href="index.css" type="text/css" />    
+        <link rel="stylesheet" href="css/topMenu.css" type="text/css" />
+        <link rel="stylesheet" href="css/exxo.css" type="text/css" />
+        <h:outputStylesheet>
+            <h:outputText value="{cSS.css}" escape="false" />
+            <h:outputText value="{cSS1.getCss('territories.xhtml')}" escape="false" />
+        </h:outputStylesheet>
+    </ui:define>
+    <ui:define name="topMenu" >
+        <ul class="topMenu">
+            <ui:include src="topMenu.xhtml"></ui:include>
+            <li>
+                <h:outputLink value="territoriesMod.jsp" class="footmenu" >
+                    <h:outputText value="Настройка" />
+                </h:outputLink>
+            </li>
+            <li>
+                <h:outputLink value="http://exxo.ru/howto/staff-howto.html#find" class="footmenu howto" target="_blank">
+                    <h:outputText value="?"></h:outputText>
+                </h:outputLink>
+            </li>
+        </ul>    
+    </ui:define>
+    <ui:define name="METAS">
+        <f:metadata>
+            <f:viewAction action="#{territoriesBean.init}" />
+            <c:set var="body_id" value="territories_xhtml" />
+        </f:metadata>
+    </ui:define>
+    <ui:define name="container">
+    </ui:define>
+</ui:composition>

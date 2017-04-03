@@ -1,0 +1,68 @@
+<ui:composition  xmlns="http://www.w3.org/1999/xhtml" 
+                 xmlns:h="http://xmlns.jcp.org/jsf/html"
+                 xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+                 template="./main.xhtml" 
+                 xmlns:f="http://xmlns.jcp.org/jsf/core"
+                 xmlns:c="http://xmlns.jcp.org/jsp/jstl/core"
+                 xmlns:EXXO="http://xmlns.jcp.org/jsf/composite/EXXO">
+    <ui:define name="title">Добавление изображений</ui:define>
+    <ui:define name="mainMenu">
+        <ui:include src="menu-pic.xhtml"></ui:include>
+    </ui:define>
+    <ui:define name="mainContent">
+        <ui:include src="addPicContent.xhtml"></ui:include> 
+    </ui:define>
+    <ui:define name="head">
+        <link rel="stylesheet" href="index.css" type="text/css" />    
+        <link rel="stylesheet" href="css/topMenu.css" type="text/css" />
+        <link rel="stylesheet" href="css/exxo.css" type="text/css" />
+        <h:outputStylesheet>
+            <h:outputText value="#{cSS.css}" escape="false" />
+            <h:outputText value="#{cSS1.getCss('addPic.xhtml')}" escape="false" />
+        </h:outputStylesheet>
+    </ui:define>
+    <ui:define name="topMenu" >
+        <ul class="topMenu">
+            <ui:include src="topMenu.xhtml"></ui:include>
+            <li>
+                <h:outputLink value="galClassic.jsp" class="footmenu" id="back">
+                    <h:outputText value="Закончить" /> 
+                    <f:param name="owner" value="${param['owner']}" disable="${empty param.owner}" ></f:param>
+                    <f:param name="id" value="${param['gal']}"></f:param>
+                </h:outputLink>
+            </li>
+            <li>
+                <h:outputLink value="http://exxo.ru/intranet/howto/gallary/edit/#m" class="footmenu howto" target="_blank">
+                    <h:outputText value="?"></h:outputText>
+                </h:outputLink>
+            </li>
+        </ul>    
+    </ui:define>
+    <ui:define name="METAS">
+        <f:metadata>
+            <c:set var="body_id" value="addPic_xhtml" />
+            <f:viewAction action="#{addPicBean.init()}" />
+        </f:metadata>
+    </ui:define>
+    <ui:define name="container">
+        <div style="display: none;">
+            <div id="form">
+                <h:form prependId="false" class="exxo-form">
+                    <h:panelGrid columns="2">
+                        <h:outputLabel value="Префикс к имени" /><h:inputText id="name" value="#{addPicBean.name}" />
+                        <h:outputLabel value="Описание" /><h:inputTextarea id="description" value="#{addPicBean.description}" />
+                        <h:outputLabel value="Теги" /><h:inputTextarea id="tags" value="#{addPicBean.tags}" />
+                        <h:outputLabel value="Не афишировать" /><h:selectBooleanCheckbox id="notshow" value="#{addPicBean.notshow}" />
+                    </h:panelGrid>
+                    <h:commandButton value="Да"  >
+                        <f:ajax event="click" execute="name description tags notshow" />
+                    </h:commandButton>
+                </h:form>
+            </div>
+        </div>
+        <EXXO:fx-element width="500px" height="auto" targetId="form" trigger="#trigger" elementId="metas" triggerEvent="formClose" centered="centered"></EXXO:fx-element>
+    </ui:define>
+    <ui:define name="underMainMenu">
+        <div id='lMenu' class='exxo-shadow'><a href="javascript:;" id="trigger">Метаданные</a></div>
+    </ui:define>
+</ui:composition>

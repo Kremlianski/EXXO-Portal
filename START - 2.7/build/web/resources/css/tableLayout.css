@@ -1,0 +1,8 @@
+#exxo-start-grid {width: 800px; background-color: white; border: 1px solid #dedede; margin: 10px auto; padding: 0;}
+#exxo-start-top {height: auto; width: 100%; background-color: white; vertical-align: middle; background-image: url("/START/resources/imges/back.png"); background-repeat: repeat-x; background-position: top;}
+#exxo-start-top-menu {margin-left: 100px;}
+#exxo-start-top-menu a{ display: inline-block; padding: 10px;}
+#exxo-start-top .main-class a.mainA, #exxo-start-top .insert-class a.insertA , #exxo-start-top .start-class a.startA{background-color: white; color: black; border-radius: 10px 10px 0px 0px;}
+#exxo-start-grid  {moz-box-shadow: 0px 3px 5px 0 rgba(0,0,0,0.12); -webkit-box-shadow: 0px 3px 5px 0 rgba(0,0,0,0.12); -o-box-shadow: 0px 3px 5px 0 rgba(0,0,0,0.12);box-shadow: 0px 3px 5px 0 rgba(0,0,0,0.12);border-radius: 0 0 4px 4px;}
+#exxo-start-bottom {font-size: 11px; text-align: right; padding: 5px;}
+

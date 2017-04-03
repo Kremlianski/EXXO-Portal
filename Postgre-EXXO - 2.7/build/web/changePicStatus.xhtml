@@ -1,0 +1,29 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:ui="http://java.sun.com/jsf/facelets">
+    <h:head>
+    </h:head>
+    <h:body>
+        <ui:component>
+            #{changePicStatusBean.initParams(param['id'])}
+            <div id="content" class="exxo-shadow">
+                <h:form>
+                    <h:selectBooleanCheckbox value="#{changePicStatusBean.blocked}" id="blocked"/><span id="bb">Заблокировать</span> <br /><br/>
+                    <h:inputTextarea value="#{changePicStatusBean.blockedText}" id="blockedText" cols="50" rows="5" /><br /><br/>
+                    <h:inputHidden value="#{changePicStatusBean.id}" id="id"/>
+                    <h:inputHidden value="#{changePicStatusBean.user}" id="user"/>
+                    <h:commandButton action="changePicStatus.jsp" actionListener="#{changePicStatusBean.insertData()}" value="Сохранить"/>
+                </h:form>
+            </div>
+            <script type="text/javascript">
+                AUI().ready('aui-node', function (A) {
+                    A.one('a#back').on('click', function () {
+                        location = 'pic.jsp?id=${changePicStatusBean.id}';
+                    })
+                });
+            </script>
+        </ui:component>
+    </h:body>
+</html>

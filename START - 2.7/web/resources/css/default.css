@@ -1,0 +1,7 @@
+body {background-color: white; display: block;width: 100%;font-family: Arial, Helvetica, sans-serif;line-height: normal; height:100%; font-size: 14px; background-image: url("/FILES/resources/imges/backblock.png"); background-repeat: repeat;}
+table {border-collapse: separate; border-spacing: 0;}
+td, div, ul, ol, li, h1, h2, h3, h4, h5, h6, p, form, input, textarea, th {padding:0; margin: 0;}
+ol li {text-align: left;}
+td {border-collapse: separate;}
+a {text-decoration: none;}
+a:hover {color:#972626;text-decoration: underline;}

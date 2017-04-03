@@ -1,0 +1,90 @@
+<ui:composition  xmlns="http://www.w3.org/1999/xhtml" 
+                 xmlns:h="http://xmlns.jcp.org/jsf/html"
+                 xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+                 template="./main.xhtml" 
+                 xmlns:f="http://xmlns.jcp.org/jsf/core"
+                 xmlns:EXXO="http://xmlns.jcp.org/jsf/composite/EXXO"
+                 xmlns:cc="http://xmlns.jcp.org/jsf/composite"
+                 xmlns:c="http://xmlns.jcp.org/jsp/jstl/core">
+    <ui:define name="title">Роли сотрудника</ui:define>
+    <ui:define name="METAS">
+        <f:metadata>
+            <f:viewParam name="id" value="#{empRolesBean.id}" id="id" />
+            <f:viewAction action="#{empRolesBean.initParams}" />
+            <c:set var="body_id" value="empRoles_xhtml" />
+        </f:metadata>
+    </ui:define>
+    <ui:define name="mainMenu">
+        <ui:include src="menu-emp.xhtml"></ui:include>
+    </ui:define>
+    <ui:define name="mainContent">
+        <table id="small"><tbody><tr><td>
+                        <h:form prependId="false">
+                            <div id="tableContainer" class="exxo-shadow">
+                                <h:dataTable value="#{empRolesBean.roles}" var="r" class="exxo-table" id="empRoles" columnClasses="name, descr, remove" rendered="#{not empty empRolesBean.roles}">
+                                    <h:column><f:facet name="header">Роль</f:facet><h:outputText value="#{r.name}"></h:outputText></h:column>
+                                    <h:column><f:facet name="header">Описание</f:facet><h:outputText value="#{r.description}"></h:outputText></h:column>
+                                    <h:column><f:facet name="header"></f:facet><h:commandLink action="#{empRolesBean.navigate()}" class="drop">
+                                            <h:outputText value="Удалить"></h:outputText>
+                                            <f:actionListener binding="#{empRolesBean.dropRole(r)}" rendered="#{empRolesBean.sec}"/>
+                                            <f:param name="id" value="#{empRolesBean.id}"></f:param>    
+                                        </h:commandLink></h:column>
+                                </h:dataTable></div>
+                            <h:panelGroup class="worn" rendered="#{empty empRolesBean.roles}"><h3>Сотрудник не зарегистрирован в портале!</h3></h:panelGroup>
+                        </h:form>
+                    </td><td id="info">
+                        <EXXO:empMiniCard employee="#{empRolesBean.emp}" outcome="javascript:;" />
+                    </td></tr></tbody></table>
+    </ui:define>
+    <ui:define name="head">
+        <link rel="stylesheet" href="index.css" type="text/css" />    
+        <link rel="stylesheet" href="css/topMenu.css" type="text/css" />
+        <link rel="stylesheet" href="css/exxo.css" type="text/css" />
+        <h:outputStylesheet library="css" name="empRoles.css"></h:outputStylesheet>
+        <h:outputStylesheet>
+            <h:outputText value="#{cSS.css}" escape="false" />
+            <h:outputText value="#{cSS1.getCss('empUpd.xhtml')}" escape="false" />
+        </h:outputStylesheet>
+    </ui:define>
+    <ui:define name="topMenu" >
+        <ul class="topMenu">
+            <ui:include src="topMenu.xhtml"></ui:include>
+            <li>
+                <h:outputLink value="employees.xhtml" class="footmenu" >
+                    <h:outputText value="Закончить" /> 
+                </h:outputLink>
+            </li>
+            <li>
+                <h:outputLink value="http://exxo.ru/howto/staff-howto.html#roles" class="footmenu howto" target="_blank">
+                    <h:outputText value="?"></h:outputText>
+                </h:outputLink>
+            </li>
+        </ul>
+    </ui:define>
+    <ui:define name="container">
+        <div id="rolesContainer">
+            <div id="roles">
+                <h:form prependId="false">
+                    <h:dataTable value="#{empRolesBean.roleList}" var="rl" class="exxo-table" id="rolesList" columnClasses="first,second"  rendered="#{not empty empRolesBean.roles}">
+                        <h:column><f:facet name="header">Роль</f:facet><h:commandLink action="#{empRolesBean.navigate()}" actionListener="#{empRolesBean.addRole(rl)}" class="href"  disabled="#{not empRolesBean.sec}">
+                                <h:outputText value="#{rl.name}"></h:outputText>
+                                <f:param name="id" value="#{empRolesBean.id}"></f:param>
+                            </h:commandLink></h:column>
+                        <h:column><f:facet name="header">Описание</f:facet><h:outputText value="#{rl.description}"></h:outputText></h:column>
+                    </h:dataTable>
+                    <h:panelGroup class="worn" rendered="#{empty empRolesBean.roles}"><h3>Сотрудник не зарегистрирован в портале!</h3></h:panelGroup>  
+                </h:form>
+            </div></div>
+        <EXXO:fx-element trigger="#add" autoSize="autosize" elementId="fx-element" targetId="roles" />
+        <EXXO:trOnClick hrefs="a.href" tr="#rolesList tr" />
+        <div id="empContainer" style="display: none;">
+            <div id="employee">
+                <EXXO:empCard employee="#{empRolesBean.emp}" />
+            </div>
+        </div>
+        <EXXO:fx-element trigger="#info a" targetId="employee" elementId="fx-emp" centered="centered" width="650px" />
+    </ui:define>
+    <ui:define name="underMainMenu"><h:panelGroup  rendered="#{empRolesBean.sec}"><div id="plus"><span class="aui-button-icon aui-icon aui-icon-plusthick"></span>
+                <a href="javascript:;" id="add">Добавить роль</a></div></h:panelGroup>
+    </ui:define>
+</ui:composition>

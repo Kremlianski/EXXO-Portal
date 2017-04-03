@@ -1,0 +1,286 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+<title></title>
+
+<meta http-equiv="content-type" content="text/html; charset=UTF-8"/>
+
+<meta http-equiv="content-style-type" content="text/css"/>
+<link rel="stylesheet" href="alloy/build/aui-skins/core/css/main.css" type="text/css" /> 
+<link rel="stylesheet" href="alloy/build/aui-skins/classic/css/custom.css" type="text/css" /> 
+
+<style type="text/css"> 
+#pim {
+font-size:10pt;
+width: 250px;
+}
+.menu {
+	position: absolute;
+	width: 150px;
+	background: #FFFFFF;
+	border-color: #DEDEDE #BFBFBF #BFBFBF #DEDEDE;
+	border-style: solid;
+	border-width: 1px;
+}
+ 
+.menu ul, .menu li {
+	margin: 0;
+}
+ 
+.menu li {
+	border-bottom: 1px solid #DEDEDE;
+	display: block;
+	padding: 2px;
+}
+ 
+.menu li a {
+	display: block;
+	padding: 2px 5px;
+	text-decoration: none;
+	color: #336699;
+}
+ 
+.menu li a:hover {
+	background: #ccc;
+	color:red;
+}
+
+.item-hover {
+
+background: red;
+
+}
+ .item-hover  a {
+
+color: white;
+
+}
+/*
+Copyright (c) 2010, Yahoo! Inc. All rights reserved.
+Code licensed under the BSD License:
+http://developer.yahoo.com/yui/license.html
+version: 3.1.1
+build: 47
+*/
+/*
+.aui-menu .aui-menu{position:absolute;z-index:1;}.aui-menu .aui-shim{position:absolute;top:0;left:0;z-index:-1;opacity:0;filter:alpha(opacity=0);border:none;margin:0;padding:0;height:100%;width:100%;}.aui-menu-hidden{top:-10000px;left:-10000px;visibility:hidden;}.aui-menu li{list-style-type:none;}.aui-menu ul,.aui-menu li{margin:0;padding:0;}.aui-menu-label,.aui-menuitem-content{text-align:left;white-space:nowrap;display:block;}.aui-menu-horizontal li{float:left;width:auto;}.aui-menu-horizontal li li{float:none;}.aui-menu-horizontal ul{*zoom:1;}.aui-menu-horizontal ul ul{*zoom:normal;}.aui-menu-horizontal>.aui-menu-content>ul:after{content:"";display:block;clear:both;line-height:0;font-size:0;visibility:hidden;}.aui-menu-content{*zoom:1;}.aui-menu-hidden .aui-menu-content{*zoom:normal;}.aui-menuitem-content,.aui-menu-label{_zoom:1;}.aui-menu-hiden .aui-menuitem-content,.aui-menu-hiden .aui-menu-label{_zoom:normal;}.aui-skin-sam .aui-menu-content,.aui-skin-sam .aui-menu .aui-menu .aui-menu-content{font-size:93%;line-height:1.5;*line-height:1.45;border:solid 1px #808080;background:#fff;padding:3px 0;}.aui-skin-sam .aui-menu .aui-menu .aui-menu-content{font-size:100%;}.aui-skin-sam .aui-menu-horizontal .aui-menu-content{line-height:2;*line-height:1.9;background:url(../../../../assets/skins/sam/sprite.png) repeat-x 0 0;padding:0;}.aui-skin-sam .aui-menu ul,.aui-skin-sam .aui-menu ul ul{margin-top:3px;padding-top:3px;border-top:solid 1px #ccc;}.aui-skin-sam .aui-menu ul.first-of-type{border:0;margin:0;padding:0;}.aui-skin-sam .aui-menu-horizontal ul{padding:0;margin:0;border:0;}.aui-skin-sam .aui-menu li,.aui-skin-sam .aui-menu .aui-menu li{_border-bottom:solid 1px #fff;}.aui-skin-sam .aui-menu-horizontal li{_border-bottom:0;}.aui-skin-sam .aui-menubuttonnav li{border-right:solid 1px #ccc;}.aui-skin-sam .aui-splitbuttonnav li{border-right:solid 1px #808080;}.aui-skin-sam .aui-menubuttonnav li li,.aui-skin-sam .aui-splitbuttonnav li li{border-right:0;}.aui-skin-sam .aui-menu-label,.aui-skin-sam .aui-menu .aui-menu .aui-menu-label,.aui-skin-sam .aui-menuitem-content,.aui-skin-sam .aui-menu .aui-menu .aui-menuitem-content{padding:0 20px;color:#000;text-decoration:none;cursor:default;float:none;border:0;margin:0;}.aui-skin-sam .aui-menu-horizontal .aui-menu-label,.aui-skin-sam .aui-menu-horizontal .aui-menuitem-content{padding:0 10px;border-style:solid;border-color:#808080;border-width:1px 0;margin:-1px 0;float:left;width:auto;}.aui-skin-sam .aui-menu-label,.aui-skin-sam .aui-menu .aui-menu .aui-menu-label{background:url(vertical-menu-submenu-indicator.png) right center no-repeat;}.aui-skin-sam .aui-menu-horizontal .aui-menu-label{background:url(../../../../assets/skins/sam/sprite.png) repeat-x 0 0;}.aui-skin-sam .aui-menubuttonnav .aui-menu-label,.aui-skin-sam .aui-splitbuttonnav .aui-menu-label{background-image:none;}.aui-skin-sam .aui-menubuttonnav .aui-menu-label{padding-right:0;}.aui-skin-sam .aui-menubuttonnav .aui-menu-label em{font-style:normal;padding-right:20px;display:block;background:url(horizontal-menu-submenu-indicator.png) right center no-repeat;}.aui-skin-sam .aui-splitbuttonnav .aui-menu-label{padding:0;}.aui-skin-sam .aui-splitbuttonnav .aui-menu-label a{float:left;width:auto;color:#000;text-decoration:none;cursor:default;padding:0 5px 0 10px;}.aui-skin-sam .aui-splitbuttonnav .aui-menu-label .aui-menu-toggle{padding:0;border-left:solid 1px #ccc;width:15px;overflow:hidden;text-indent:-1000px;background:url(horizontal-menu-submenu-indicator.png) 3px center no-repeat;}.aui-skin-sam .aui-menu-label-active,.aui-skin-sam .aui-menu-label-menuvisible,.aui-skin-sam .aui-menu .aui-menu .aui-menu-label-active,.aui-skin-sam .aui-menu .aui-menu .aui-menu-label-menuvisible{background-color:#B3D4FF;}.aui-skin-sam .aui-menuitem-active .aui-menuitem-content,.aui-skin-sam .aui-menu .aui-menu .aui-menuitem-active .aui-menuitem-content{background-image:none;background-color:#B3D4FF;border-left-width:0;margin-left:0;}.aui-skin-sam .aui-menu-horizontal .aui-menu-label-active,.aui-skin-sam .aui-menu-horizontal .aui-menuitem-active .aui-menuitem-content,.aui-skin-sam .aui-menu-horizontal .aui-menu-label-menuvisible{border-color:#7D98B8;background:url(../../../../assets/skins/sam/sprite.png) repeat-x 0 -1700px;}.aui-skin-sam .aui-menubuttonnav .aui-menu-label-active,.aui-skin-sam .aui-menubuttonnav .aui-menuitem-active .aui-menuitem-content,.aui-skin-sam .aui-menubuttonnav .aui-menu-label-menuvisible,.aui-skin-sam .aui-splitbuttonnav .aui-menu-label-active,.aui-skin-sam .aui-splitbuttonnav .aui-menuitem-active .aui-menuitem-content,.aui-skin-sam .aui-splitbuttonnav .aui-menu-label-menuvisible{border-left-width:1px;margin-left:-1px;}.aui-skin-sam .aui-splitbuttonnav .aui-menu-label-menuvisible{border-color:#808080;background:transparent;}.aui-skin-sam .aui-splitbuttonnav .aui-menu-label-menuvisible .aui-menu-toggle{border-color:#7D98B8;background:url(horizontal-menu-submenu-toggle.png) left center no-repeat;}
+
+
+*/
+
+
+
+
+
+
+
+
+</style> 
+
+<script type="text/javascript" charset="utf-8" src="alloy/build/yui/yui-min.js"></script> 
+<script type="text/javascript" charset="utf-8" src="alloy/build/aui-base/aui-base-debug.js"></script> 
+</head>
+<body  class="aui-skin-sam">
+<div id="pim" class="aui-menu">
+	<div class="aui-menu-content">	
+ 
+		<ul class="first-of-type">
+			<li class="aui-menuitem" id="1"><a class="aui-menuitem-content" href="http://mail.yahoo.com">Главная</a></li>
+			<li class="aui-menuitem item-menu item" id="2"><a class="aui-menu-label aui-menuitem-content" href="#p">Компания</a>
+		<div id="p" class="aui-menu">
+					<div class="aui-menu-content">
+						<ul>
+							<li class="aui-menuitem item" id="3">
+								<a class="aui-menuitem-content" href="http://mail.yahoo.com">Yahoo! Mail</a>
+							</li>
+							<li class="aui-menuitem item" id="4">
+								<a class="aui-menuitem-content" href="http://addressbook.yahoo.com">Yahoo! Address Book</a>
+							</li>
+							<li class="aui-menuitem item" id="5">
+								<a class="aui-menuitem-content" href="http://calendar.yahoo.com">Yahoo! Calendar</a>
+							</li>
+							<li class="aui-menuitem item" id="6">
+								<a class="aui-menuitem-content" href="http://notepad.yahoo.com">Yahoo! Notepad</a>
+							</li>
+						</ul>            
+					</div>	
+				</div> 
+ 
+		</li>
+			<li class="aui-menuitem item" id="7"><a class="aui-menuitem-content" href="http://addressbook.yahoo.com">Сотрудники</a></li>
+			<li class="aui-menuitem item" id="8"><a class="aui-menuitem-content" href="http://calendar.yahoo.com">Документы</a></li>
+			<li class="aui-menuitem item" id="9"><a class="aui-menuitem-content" href="http://notepad.yahoo.com">Сервисы</a></li>
+		
+			</ul>
+ 
+	</div>	
+</div>   
+
+<div class="menu aui-overlaycontext-hidden">
+<ul> 
+		<li class="item-up"> 
+			<a >сдинуть вверх</a> 
+		</li> 
+		<li class="item-down"> 
+			<a >сдвинуть вниз</a> 
+		</li> 
+		<li class="item-kill"> 
+			<a >удалить</a> 
+		</li> 
+		<li class="item-add"> 
+			<a >добавить пункт</a> 
+		</li> 
+		<li class="item-submenu"> 
+			<a >добавить подменю</a> 
+		</li> 
+		<li class="item-change" id="item-change"> 
+			<a >изменить</a> 
+		</li> 
+		
+	</ul> 
+</div> 
+
+
+
+
+<script type="text/javascript"> 
+AUI().ready('aui-overlay-context', 'node-menunav',function(A) {
+/*
+	var menu = A.one("#pim");
+ 
+ 
+				//	Use the "all" method to retrieve the 
+				//	Node instances representing each submenu.
+ 
+				menu.all(".aui-menu").each(function (node) {
+				
+					// Append a shadow element to the bounding box of each submenu
+ 
+				//	node.append('<div class="aui-menu-shadow"></div>');
+				
+				});
+ 
+ 
+				//	Call the "plug" method of the Node instance, passing in a reference to the
+				//	MenuNav Node Plugin.
+			
+				menu.plug(A.Plugin.NodeMenuNav);
+ 
+				//	Show the menu now that it is ready
+ 
+				menu.get("ownerDocument").get("documentElement").removeClass("aui-loading");
+ 
+			
+
+*/
+var D=new Date();
+user=10;
+	var menuOverlay = new A.OverlayContext(
+		{
+			boundingBox: '.menu',
+			hideDelay: 200,
+			hideOn: 'mouseleave',
+			showDelay: 0,
+			showOn: 'mouseenter',
+			trigger: '.item',
+			align: { node: null, points: [ 'tl', 'tc' ] },
+
+			on: {
+			show: function(event) {
+				// console.log('on show', event);
+				menuOverlay.get('currentNode').addClass('item-hover');
+			},
+			hide: function(event) {
+				// console.log('on hide', event);
+				A.all('.item').removeClass('item-hover');
+			},
+			xyChange: function(event) {
+				A.all('.item').removeClass('item-hover');
+			}
+			},
+			after:{xyChange: function(event) {
+				this.get('currentNode').addClass('item-hover');
+			}
+			}
+		}
+	)
+	.render();
+A.all('.item').removeClass('item-hover');
+A.all('div.menu li').each(function(){this.on('click',function(event){
+var node=menuOverlay.get('currentNode');
+var item=this;
+registrat(item, node);
+} )});
+
+function registrat(item, node){
+if (item.hasClass("item-up")) itemUp(node);
+else if (item.hasClass("item-down")) itemDown(node); 
+else if (item.hasClass("item-kill")) itemKill(node);
+else if (item.hasClass("item-add")) itemAdd(node);
+else if (item.hasClass("item-submenu")) itemSubmenu(node);
+else if (item.hasClass("item-change")) itemChange(node);
+menuOverlay.set('trigger','.item');
+alterText(A.one('#pim').html(),"menu");
+}
+
+function itemUp(node){
+if(node.previous())  {node.get('parentNode').insert(node,node.previous());
+menuOverlay.hide();
+}
+}
+function itemDown(node){
+if(node.next())  {
+node.get('parentNode').insert(node.next(),node);
+menuOverlay.hide();
+}
+
+}
+function itemKill(node){node.unplug().remove().destroy();menuOverlay.hide();}
+function itemAdd(node){
+if(node.hasClass('item-menu')) node.one('ul').append('<li class="aui-menuitem item"><a class="aui-menuitem-content" href="#">Новый пункт</a></li>');
+else node.get('parentNode').append('<li class="aui-menuitem item"><a class="aui-menuitem-content" href="#">Новый пункт</a></li>');
+menuOverlay.hide();
+
+}
+function itemSubmenu(node){
+var id='li_'+D.getTime()+'-'+user;
+var str='<li class="aui-menuitem item-menu item" id="2"><a class="aui-menu-label aui-menuitem-content" href="#'+id+'">Подменю</a><div id="'+id+'" class="aui-menu"><div class="aui-menu-content"><ul><li class="aui-menuitem item" id="3"><a class="aui-menuitem-content" href="#">Новый пункт</a></li></ul></div></div></li>'
+if(node.hasClass('item-menu')) node.one('ul').append(str);
+else node.get('parentNode').append(str);
+menuOverlay.hide();
+}
+function itemChange(node){
+
+var name=window.prompt("введите новое имя пункта", node.one('a').text());
+node.one('a').text(name);
+if(!node.hasClass('item-menu')) {
+var host= window.prompt("введите адрес страницы", node.one('a').getAttribute('href'));
+
+node.one('a').setAttribute('href',host); 
+}
+menuOverlay.hide();
+
+}
+function alterText(menu, servlet){
+var io=A.io.request(servlet, {
+			cache: false,
+			data: {
+			menu: menu
+			
+		},
+		method: 'post'});
+
+}
+
+
+
+//A.all('.item').on('mouseenter', function(event)(event.target.addClass('item-hover')));
+//A.all('.item').on('mousemove', function(event)(event.target.removeClass('item-hover')));
+	});	
+		</script>		
+
+
+
+
+</body>
+</html>

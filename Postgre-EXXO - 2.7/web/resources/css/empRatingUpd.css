@@ -1,0 +1,11 @@
+.exxo-table-container {width: 80%; font-size: 14px; border: 1px solid #dedede; border-bottom-color: #bfbfbf;}
+.one {width: 30%;}
+table.exxo-table td.tree, table.exxo-table td.fore {width: 15%; text-align: center;}
+.change {text-align: center;}
+#plus {margin: 10px; margin-left: 15px; font-size: 12px;}
+#plus a {color:#5b677d; text-decoration: none;}
+.exxo-fx-content table {width: 94%; font-size: 12px;}
+.exxo-fx-content table td {padding: 4px;}
+.exxo-fx-content input[type=text] {width: 333px; padding: 2px;}
+.exxo-fx-content textarea {width: 333px; padding: 2px; height: 260px;}
+.exxo-fx-content input[type=submit] {padding: 3px; display: block; width: 16em; margin: 20px auto; cursor: pointer;}

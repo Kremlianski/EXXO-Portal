@@ -1,0 +1,19 @@
+<ui:component xmlns="http://www.w3.org/1999/xhtml"
+              xmlns:h="http://xmlns.jcp.org/jsf/html"
+              xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
+    <h:outputStylesheet name="index.css" library="css"></h:outputStylesheet>
+    <div id="exxo-start-content-div">
+        <div id="exxo-start-ver">#{demo.ver}</div>
+        <div id="exxo-start-text">
+            <p>Вам необходимо ввести в базу данных портала пользователя с правами <strong>boss</strong>. Дальнейшие действия вы будете осуществлять от его имени.</p>
+            <p>
+                <h:form>
+                    <h:commandButton action="emp" value="Продолжить"></h:commandButton>
+                </h:form></p>
+        </div>
+        <div id="exxo-start-instruction">
+            <p>После того, как вы заведете пользователя, вам необходимо зарегистрировать его в портале и начать работу от его имени.</p>   
+
+        </div>
+    </div>
+</ui:component>

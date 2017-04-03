@@ -1,0 +1,10 @@
+#formGrid1 {width: 600px; margin: 20px auto;}
+#formGrid1 td {padding: 5px;}
+#formGrid1 input[type=text],#formGrid textarea {width: 100%; box-sizing: border-box; -moz-box-sizing:border-box; border:1px solid #dedede;}
+#formGrid1 input[type=text]:hover,#formGrid textarea:hover {border: 1px solid #bfbfbf;}
+#formGrid1 textarea {overflow: auto; width: 100%; border: 1px solid #dedede;}
+#formGrid1 textarea:hover { border: 1px solid #bfbfbf;}
+td.left {color: gray;}
+#butTable1 {margin: 50px; margin-left: 100px;}
+#main1 {background-color: white; padding: 0px 20px; margin-bottom: 20px; padding-bottom: 20px;}
+td.right {white-space: pre-line;}

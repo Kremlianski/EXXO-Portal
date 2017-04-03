@@ -1,0 +1,234 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html" xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:ui="http://java.sun.com/jsf/facelets">
+    <h:head>
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <title>Свойства файла</title>
+        <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
+        <meta http-equiv="content-style-type" content="text/css" />
+        <meta http-equiv="pragma" content="no-cache" />
+        <link rel="stylesheet" href="alloy/build/aui-skins/core/css/main.css" type="text/css" />
+        <link rel="stylesheet" href="alloy/build/aui-skins/classic/css/custom.css" type="text/css" />
+        <link rel="stylesheet" href="alloy/build/aui-skins/core/css/form.css" type="text/css" /> 
+        <style type="text/css">   
+            body {background-color:#d8d8ff; width: 100%; display: block; text-align: left;font-size: 12px; font-family: Arial, Helvetica, sans-serif;}
+            #c {background-color: white; width: 100%;}
+            #c td { vertical-align: top;}
+            #cone {width: 350px;}
+            #ctwo {}
+            #f {background-color:white; padding:50px; padding-top: 20px; width: 300px; margin: 10px; display: block;}
+            label {display:block; margin-top: 10px;}
+            input[type=text] {width: 250px;} 
+            input[type=submit] {padding: 4px;}
+            textarea {width: 250px; overflow: auto;}
+            #f td {padding: 20px 0px; vertical-align: top;}
+            #f table {margin-bottom: 20px; width:100%;}
+            #tagH {font-size: 12px; margin-left: 10px;}
+            #tags {padding: 10px; margin: 10px;}
+            .tag {padding:3px; display: inline-block; background-color: greenyellow; border: 1px solid green;margin:3px;color:black;-moz-border-radius: 4px;
+                  -webkit-border-radius: 4px;border-radius: 4px;}
+            #tagChange {margin-top: 10px; padding: 10px; text-align: left; clear: both;}
+            #tops {text-align: left; font-size: 12px; margin: 20px;}
+            #content {width: 800px; margin: auto auto; background-color: white; height: auto; padding-top: 10px; padding-bottom: 40px; border: 1px solid gray;}
+            .hidden {display: none;}
+            .emps:hover {cursor: pointer; color:red;}
+            .emps {color: green;}
+            #dt, .invis {padding: 3px;}
+            #topik {text-align: right; padding-right: 20px;}
+            #topik a {text-decoration: none; margin-bottom: 30px;}
+
+        </style>
+        <script type="text/javascript" charset="utf-8" src="alloy/build/yui/yui-min.js"></script>
+        <script type="text/javascript" charset="utf-8" src="alloy/build/aui-base/aui-base-debug.js"></script>
+    </h:head>
+    <h:body>
+        <ui:component>
+            #{filePropBean.initParam(param['id'])}
+            <div id="content" class="exxo-shadow">
+                <table id="c"  class="table"><tbody>
+                        <tr><td class="first">Допуск:</td><td class="second"><div id="dopuski">
+                                    <h:form id="dopusk"> 
+                                        <div id="dt"><h:selectOneMenu id="dopusk_type" value="#{filePropBean.dopusk_type}" disabled="#{filePropBean.isDisabled()}">
+                                                <f:selectItem itemValue="0" itemLabel="общий" />
+                                                <f:selectItem itemValue="1" itemLabel="по проекту" />
+                                                <f:selectItem itemValue="2" itemLabel="по группе" />
+                                                <f:selectItem itemValue="3" itemLabel="по подразделению" />
+                                                <f:selectItem itemValue="4" itemLabel="персональный" />
+                                            </h:selectOneMenu></div>
+                                        <div id="emp" class="invis hidden"><h:selectOneMenu value="#{filePropBean.getDef(4)}">
+                                                <f:selectItems value="#{filePropBean.getEmp()}"/>
+                                            </h:selectOneMenu></div>
+                                        <div id="gr" class="invis hidden"><h:selectOneMenu value="#{filePropBean.getDef(2)}">
+                                                <f:selectItems value="#{filePropBean.getGroups()}"/>
+                                            </h:selectOneMenu></div>
+                                        <div id="pr" class="invis hidden"><h:selectOneMenu value="#{filePropBean.getDef(1)}">
+                                                <f:selectItems value="#{filePropBean.getProjects()}"/>
+                                            </h:selectOneMenu></div>
+                                        <div id="unit" class="invis hidden"><h:selectOneMenu  value="#{filePropBean.getDef(3)}">
+                                                <f:selectItems value="#{filePropBean.getUnits()}"/>
+                                            </h:selectOneMenu>
+                                        </div>
+                                    </h:form>
+                                    <div id="empMenu" class="hidden"></div>               
+                                    <div id="empsDiv">
+                                        <h:outputFormat value="{0}" escape="false">
+                                            <f:param value=" #{filePropBean.getEmps()}"></f:param>
+                                        </h:outputFormat> 
+                                    </div>
+                                </div></td></tr>
+
+
+                        <h:form styleClass="exxo-form">
+                            <tr><td class="first"><label>Название</label></td><td class="second"><h:inputText value="#{filePropBean.name}" id="name"></h:inputText></td></tr>
+                            <tr><td class="first"><label>Описание</label></td><td class="second"><h:inputTextarea value="#{filePropBean.descr}" id="descr" rows="5"></h:inputTextarea></td></tr>
+                            <tr><td class="first"><label>Ключевые слова</label></td><td class="second"><h:inputTextarea value="#{filePropBean.tags}" id="tags" rows="5"></h:inputTextarea></td></tr>
+                            <tr><td class="first"><label>Сохранять версии</label></td><td class="second"><h:selectBooleanCheckbox id="vers" value="#{filePropBean.vers}" disabled="false"></h:selectBooleanCheckbox></td></tr>
+                            <h:inputHidden value="#{filePropBean.id}" id="id"/>
+
+                            <tr><td class="first"></td><td class="second"><h:commandButton action="fileProp.xhtml" actionListener="#{filePropBean.insertData}" value="Сохранить"  id="submit"/></td></tr>
+                        </h:form>
+                        <tr>
+                            <td class="first">Теги:</td>
+                            <td class="second">
+                                <div id="tags">
+                                    <h:outputFormat value="{0}" escape="false">
+                                        <f:param value="${filePropBean.list}"></f:param>
+                                    </h:outputFormat> 
+
+                                    <div id="tagChange"><a href ="addTags.jsp?el=${filePropBean.id}&amp;s=files">Изменить</a></div>
+
+                                </div>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            <script type="text/javascript">
+                AUI().ready('aui-node', 'aui-io', 'aui-toolbar', function (A) {
+                    var type = "0";
+                    var dropAr = "";
+                    dropRegistrat();
+                    chooseType();
+                    new A.Toolbar({activeState: false, children: [
+                            {label: '', icon: 'search', handler: {fn: function (e) {
+                                        location = 'addDopusk.jsp?id=${filePropBean.id}&amp;owner=${filePropBean.own}'
+                                    }}},
+                            {label: '', icon: 'image', handler: {fn: function (e) {
+                                        location = 'addDopPhoto.jsp?id=${filePropBean.id}&amp;owner=${filePropBean.own}'
+                                    }}},
+                            {label: '', icon: 'contact', handler: {fn: function (e) {
+                                        location = 'addDopCompany.jsp?id=${filePropBean.id}&amp;owner=${filePropBean.own}'
+                                    }}}
+                        ]}).render(A.one('#empMenu'));
+                    function chooseType() {
+                        type = A.one("#dt select").get("value");
+                        if (type == "1")
+                            setProject();
+                        else if (type == "2")
+                            setGroup();
+                        else if (type == "3")
+                            setUnit();
+                        else if (type == "4")
+                            setEmp();
+                        else
+                            setGen();
+                    }
+                    function setEmp() {
+                        var d = A.one("#emp select").get("value");
+                        closeAll();
+                        A.one("#emp").removeClass("hidden");
+                        A.one("#empMenu").removeClass("hidden");
+                        A.one("#emp select").set("value", d);
+                    }
+                    function setProject() {
+                        var d = A.one("#pr select").get("value");
+                        closeAll();
+                        A.one("#pr").removeClass("hidden");
+                        A.one("#pr select").set("value", d);
+                    }
+                    function setGroup() {
+                        var d = A.one("#gr select").get("value");
+                        closeAll();
+                        A.one("#gr").removeClass("hidden");
+                        A.one("#gr select").set("value", d);
+                    }
+                    function setUnit() {
+                        var d = A.one("#unit select").get("value");
+                        closeAll();
+                        A.one("#unit").removeClass("hidden");
+                        A.one("#unit select").set("value", d);
+                    }
+                    function setGen() {
+                        closeAll();
+                    }
+                    function closeAll() {
+                        A.one("#empMenu").addClass("hidden");
+                        A.all(".invis").each(function () {
+                            this.addClass("hidden");
+                        });
+                        A.all(".invis select").each(function () {
+                            this.set("value", "0");
+                        });
+
+                    }
+                    A.one("#dt select").on("change", function () {
+                        A.io.request('dopuskChoose', {data: {type: A.one("#dt select").get("value"), id: "${filePropBean.id}", owner: "${filePropBean.own}"}, method: 'post',
+                            on: {success: function (event, id, xhr) {
+                                    A.one("#empsDiv").html("");
+                                    chooseType();
+                                }}});
+                    });
+                    A.all(".invis select").each(function () {
+                        this.on("change", function () {
+                            var ar = ["", "pr", "gr", "unit", "emp"];
+                            var type = ar.indexOf(this.get("parentNode").getAttribute("id"));
+                            var dopusk = this.get("value");
+                            var node = this;
+                            A.one("#empsDiv").unplug();
+                            A.one("#empsDiv").plug(A.Plugin.IO, {uri: 'dopuskChange', data: {type: type, id: "${filePropBean.id}", owner: "${filePropBean.own}",
+                                    dopusk: dopusk}, method: 'post', after: {'success': function () {
+                                        if (type == 4)
+                                            node.set("value", "0");
+                                        dropRegistrat();
+                                    }}});
+                        })
+                    });
+
+                    function dropRegistrat() {
+                        dropAr = "";
+                        A.all(".emps").each(function () {
+                            this.on("click", function () {
+                                if (confirm("Удалить?"))
+                                    empsDrop(this)
+                            })
+                        });
+                    }
+                    function empsDrop(node) {
+                        node.purge().remove();
+                        dropAr = "";
+                        A.all(".emps").each(function () {
+                            if (dropAr == "")
+                                dropAr += this.getAttribute("id");
+                            else
+                                dropAr += "," + this.getAttribute("id");
+                        });
+
+                        A.one("#empsDiv").unplug();
+                        A.one("#empsDiv").plug(A.Plugin.IO, {uri: 'dopuskDrop', data: {id: "${filePropBean.id}", dopusk: dropAr, owner: "${filePropBean.own}"},
+                            method: 'post', after: {'success': function () {
+                                    dropRegistrat()
+                                }}});
+                    }
+                    var finish = A.one('#finish');
+                    if (finish != null) {
+                        finish.on("click", function () {
+                            location = 'fileLoader.jsp?id=${filePropBean.id}'
+                        })
+                    }
+                });
+            </script>
+        </ui:component>
+    </h:body>
+</html>

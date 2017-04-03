@@ -1,0 +1,30 @@
+<ui:composition  xmlns="http://www.w3.org/1999/xhtml" 
+                 xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+                 xmlns:cc="http://xmlns.jcp.org/jsf/composite"
+                 xmlns:h="http://xmlns.jcp.org/jsf/html"
+                 xmlns:f="http://xmlns.jcp.org/jsf/core">
+<cc:interface>
+<cc:attribute name="employee" type="ru.EXXO.employee.Employee" />
+<cc:attribute name="outcome" default="employee.xhtml" />
+<cc:attribute name="birthday" default="false" type="java.lang.Boolean" />
+<cc:attribute name="room" default="false" type="java.lang.Boolean" />
+<cc:clientBehavior name="click" event="click" targets="#{cc.id}:empLink" />
+</cc:interface>
+<cc:implementation>
+<div id="emp#{cc.attrs.employee.id}" class="emps exxo-employee-mini-card" >
+<span class="imgE"><img src="IMG?id=#{cc.attrs.employee.id}"/></span>
+<span class="texts exxo-shadow1"><span class="fio">
+        <h:outputLink value="#{cc.attrs.outcome}" id="empLink"  class="q1">
+            <h:outputText value="#{cc.attrs.employee.fio}" />
+            <f:param name="id" value="#{cc.attrs.employee.id}" />
+        </h:outputLink>     
+</span><span class="position q2">#{cc.attrs.employee.position.concat("                                                    ").substring(0,52)}</span>
+<span class="room q2">#{cc.attrs.employee.unit.unit.concat("                                                    ").substring(0,52)}</span>
+<h:outputText class="other q2" value="#{cc.attrs.employee.birthday}" rendered="#{cc.attrs.birthday}" >
+ <f:convertDateTime pattern="MMMMMMMM, d" />
+</h:outputText>
+<h:outputText class="other q2" value="#{cc.attrs.employee.room}" rendered="#{cc.attrs.room}" />
+</span></div>
+<h:outputStylesheet library="css" name="empMiniCard.css" />
+</cc:implementation>
+</ui:composition>

@@ -1,0 +1,29 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:ui="http://java.sun.com/jsf/facelets">
+    <h:head>
+    </h:head>
+    <h:body>
+        <ui:component>
+            #{changeBlogStatusBean.initParams(param['id'])}
+            <div id="content" class="exxo-shadow">
+                <h:form>
+                    <h:selectBooleanCheckbox value="#{changeBlogStatusBean.blocked}" id="blocked"/><span id="bb">Заблокиорвать</span> <br /><br/>
+                    <h:inputTextarea value="#{changeBlogStatusBean.blockedText}" id="blockedText" cols="50" rows="5" /><br /><br/>
+                    <h:inputHidden value="#{changeBlogStatusBean.id}" id="id"/>
+                    <h:inputHidden value="#{changeBlogStatusBean.user}" id="user"/>
+                    <h:commandButton action="changeBlogStatus.jsp" actionListener="#{changeBlogStatusBean.insertData()}" value="Сохранить"/>
+                </h:form>
+            </div>
+            <script type="text/javascript">
+                AUI().ready('aui-node', function (A) {
+                    A.one('a#back').on('click', function () {
+                        location = 'blog.jsp?id=${changeBlogStatusBean.id}';
+                    })
+                });
+            </script>
+        </ui:component>
+    </h:body>
+</html>

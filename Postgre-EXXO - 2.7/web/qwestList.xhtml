@@ -1,0 +1,75 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:ui="http://java.sun.com/jsf/facelets">
+    <h:head><meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <title>Редактирование опросов</title>
+        <link rel="stylesheet" href="alloy/build/aui-skins/core/css/main.css" type="text/css" />
+        <link rel="stylesheet" href="alloy/build/aui-skins/classic/css/custom.css" type="text/css" />
+        <link rel="stylesheet" href="alloy/build/aui-skins/core/css/form.css" type="text/css" /> 
+        <style type="text/css">
+            #container {padding:5px;margin:10px auto;height: 100%;background-color: white; width: 800px;border: 1px solid gray; text-align: left;}
+            body {width:100%;height:100%; background-color: #d8d8ff; font-size: 11px; text-align: center;}    
+            #content {font-size:11pt;margin-top:10px;}
+            #content table{width:100%;background-color: white;}
+            .first {width:50%;padding-left: 10px;}
+            .second{width:20%;padding-left:10px;}
+            .third{width:30%;padding-left:10px;}
+            th {color:white;background-color:  #426487;padding:5px;border-left: 1px solid white;}
+            #content table td{border-bottom-color: #DEDEDE;border-bottom-style: solid;border-bottom-width: 1px;}
+            .hover {background-color: #ffae40;cursor:pointer;}
+            #topik {width:100%;text-align: right;margin-bottom: 30px;}
+            #topik a{ text-decoration: none;margin-right: 30px;}
+            h1{font-size: 16px; font-weight: normal;text-align: left; margin-left: 10px} 
+            .even {background-color: #e3e3e3;}   
+            .third a {text-decoration: none; display: block;   padding: 5px; padding-left: 30px;}
+            .edit{background-image: url('edit.png'); background-position: 5px 5px; background-repeat: no-repeat;}
+            .drop{background-image: url('drop.png'); background-position: 5px 6px; background-repeat: no-repeat;}
+            #topik a{padding-left: 25px;background-image: url('add.png'); background-position: center left; background-repeat: no-repeat;}
+            .third a:hover {background-color:#ffc473;color: black;}
+        </style>
+    </h:head>
+    <h:body><div id="content-wrapper">
+            <ui:component>
+                <div id="container" class="exxo-shadow">
+                    <div id="content">
+                        <h:dataTable value="#{qwestListBean.qwestResultData}" var="r"
+                                     styleClass="list-table"
+                                     headerClass="list-table-header"
+                                     rowClasses="odd, even"
+                                     columnClasses="first,exxo-date, second, third"
+                                     >
+
+                            <h:column>
+                                <!-- column header -->
+                                <f:facet name="header">Вопрос</f:facet>
+                                <!-- row record -->
+                                <a href="qwestResults.jsp?id=#{r.quest_id}">#{r.question}</a>
+                            </h:column>
+
+                            <h:column>
+                                <f:facet name="header">Дата завершения</f:facet>
+                                    #{r.stop}
+                            </h:column>
+                            <h:column>
+                                <!-- column header -->
+                                <f:facet name="header">Изменить</f:facet>
+                                <!-- row record -->
+                                <a href="settingQwest.jsp?quest_id=#{r.quest_id}" class="edit">Изменить</a>
+                            </h:column>
+                            <h:column>
+                                <!-- column header -->
+                                <f:facet name="header">Удалить</f:facet>
+                                <a href="javascript: {if(window.confirm('Удалить?')) location='dropQwest?id=#{r.quest_id}';}" class="drop">Удалить</a>
+
+                            </h:column>
+
+                        </h:dataTable></div></div>
+            </ui:component>
+        </div>
+
+    </h:body>
+</html>
+

@@ -1,0 +1,238 @@
+<ui:component xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+              xmlns:h="http://xmlns.jcp.org/jsf/html"
+              xmlns:f="http://xmlns.jcp.org/jsf/core">
+    <table id="table-grid"><tr><td id="tdMenu"><div class="exxo-menu exxo-shadow" id="menu"><ui:include src="menu-blog.xhtml" /></div>
+            </td><td id="center">
+
+                ${blogInsertBean.initParam(param['edit'],param['id'])}
+                <div id="content" class="exxo-shadow">
+
+                    <div id="dopuski">
+                        <h:form>      
+                            <table class="mytop">
+                                <tr>
+                                    <td class="one" valign="top">
+                                        <div id="dopuskT">Допуск:</div></td><td>
+
+                                        <div id="dt"><h:selectOneMenu id="dopusk_type" value="#{blogInsertBean.dopusk_type}" disabled="#{blogInsertBean.disabled}">
+                                                <f:selectItem itemValue="0" itemLabel="общий" />
+                                                <f:selectItem itemValue="1" itemLabel="по проекту" />
+                                                <f:selectItem itemValue="2" itemLabel="по группе" />
+                                                <f:selectItem itemValue="3" itemLabel="по подразделению" />
+                                                <f:selectItem itemValue="4" itemLabel="персональный" />
+                                            </h:selectOneMenu></div>
+                                        <div id="emp" class="invis hidden"><h:selectOneMenu value="#{blogInsertBean.getDef(4)}"  disabled="#{blogInsertBean.disabled}">
+                                                <f:selectItems value="#{blogInsertBean.getEmp()}"/>
+                                            </h:selectOneMenu></div>
+                                        <div id="gr" class="invis hidden"><h:selectOneMenu value="#{blogInsertBean.getDef(2)}" disabled="#{blogInsertBean.disabled}">
+                                                <f:selectItems value="#{blogInsertBean.getGroups()}"/>
+                                            </h:selectOneMenu></div>
+                                        <div id="pr" class="invis hidden"><h:selectOneMenu value="#{blogInsertBean.getDef(1)}" disabled="#{blogInsertBean.disabled}">
+                                                <f:selectItems value="#{blogInsertBean.getProjects()}"/>
+                                            </h:selectOneMenu></div>
+                                        <div id="unit" class="invis hidden"><h:selectOneMenu  value="#{blogInsertBean.getDef(3)}" disabled="#{blogInsertBean.disabled}">
+                                                <f:selectItems value="#{blogInsertBean.getUnits()}"/>
+                                            </h:selectOneMenu></div>
+                                        <div id="empMenu" class="hidden"></div>     
+                                        <div id="empsDiv">
+                                            <h:outputFormat value="{0}" escape="false">
+                                                <f:param value=" #{blogInsertBean.getEmps()}"></f:param>
+                                            </h:outputFormat> 
+                                        </div>
+                                    </td>
+                                </tr>
+                            </table>
+                        </h:form>
+                    </div>
+                    <h:form id="form">
+                        <div id="bus">
+                            <table class="mytop">
+                                <tr>
+                                    <td class="one" valign="top">
+                                        <label>По делу: </label>
+                                    </td>
+                                    <td class='two'>
+                                        <span>
+                                            <h:selectBooleanCheckbox id="business" value="#{blogInsertBean.business}" />
+                                        </span>
+                                    </td>
+                                </tr>
+                            </table>
+                        </div> 
+                        <div id="f">
+                            <table class="mytop">
+                                <tr>
+                                    <td class="one" valign="top">
+                                        <label>Тема:</label>
+                                    </td>
+                                    <td>
+                                        <div id="tema">
+                                            <h:inputText value="#{blogInsertBean.name}" id="name"></h:inputText>
+                                        </div>
+                                    </td>
+                                    <td class='three'>   
+                                        <div id="submitB"> 
+                                            <h:commandButton action="blogInsert.jsp" actionListener="#{blogInsertBean.insertData}" value="Сохранить"  id="submit"/>
+                                        </div>
+                                    </td>
+                                </tr>
+                            </table>
+
+
+                            <h:inputHidden value="#{blogInsertBean.owner}" id="owner"/>
+                            <h:inputHidden value="#{blogInsertBean.edit}" id="edit"/>
+                            <h:inputHidden value="#{blogInsertBean.status}" id="status"/>
+
+                        </div>
+                        <div id="msgpost" class="">
+                            <h:inputTextarea id="msgpost" value="#{blogInsertBean.text}"></h:inputTextarea>  
+
+                        </div>
+
+
+                    </h:form></div> 
+            </td>
+        </tr>
+    </table>
+
+    <div id="imges">
+        <div id="imgesInner">
+            <div id="close">
+                <span>ЗАКРЫТЬ</span>
+            </div>
+            <div id="inserter" class="exxo-images">
+
+            </div>
+
+        </div>
+
+    </div>    
+    <script type="text/javascript">
+        AUI().ready('aui-node', 'aui-io', 'aui-toolbar', function (A) {
+            var type = "0";
+            var dropAr = "";
+            chooseType();
+            var disable = '#{blogInsertBean.disabled}';
+            dropRegistrat();
+            if (disable == 'false') {
+                new A.Toolbar({activeState: false, children: [
+                        {label: '', icon: 'search', handler: {fn: function (e) {
+                                    location = 'blogDopusk.jsp'
+                                }}},
+                        {label: '', icon: 'image', handler: {fn: function (e) {
+                                    location = 'blogDopPhoto.jsp'
+                                }}},
+                        {label: '', icon: 'contact', handler: {fn: function (e) {
+                                    location = 'blogDopCompany.jsp'
+                                }}}
+                    ]}).render(A.one('#empMenu'));
+                A.all('#empMenu button').each(function () {
+                    this.setAttribute('type', 'button');
+                });
+            }
+            function chooseType() {
+                type = A.one("#dt select").get("value");
+                if (type == "1")
+                    setProject();
+                else if (type == "2")
+                    setGroup();
+                else if (type == "3")
+                    setUnit();
+                else if (type == "4")
+                    setEmp();
+                else
+                    setGen();
+            }
+            function setEmp() {
+                var d = A.one("#emp select").get("value");
+                closeAll();
+                A.one("#emp").removeClass("hidden");
+                A.one("#empMenu").removeClass("hidden");
+                A.one("#emp select").set("value", d);
+            }
+            function setProject() {
+                var d = A.one("#pr select").get("value");
+                closeAll();
+                A.one("#pr").removeClass("hidden");
+                A.one("#pr select").set("value", d);
+            }
+            function setGroup() {
+                var d = A.one("#gr select").get("value");
+                closeAll();
+                A.one("#gr").removeClass("hidden");
+                A.one("#gr select").set("value", d);
+            }
+            function setUnit() {
+                var d = A.one("#unit select").get("value");
+                closeAll();
+                A.one("#unit").removeClass("hidden");
+                A.one("#unit select").set("value", d);
+            }
+            function setGen() {
+                closeAll();
+            }
+            function closeAll() {
+                A.one("#empMenu").addClass("hidden");
+                A.all(".invis").each(function () {
+                    this.addClass("hidden");
+                });
+                A.all(".invis select").each(function () {
+                    this.set("value", "0");
+                });
+
+            }
+            A.one("#dt select").on("change", function () {
+                A.io.request('dopuskTMPChoose', {data: {type: A.one("#dt select").get("value")}, method: 'post',
+                    on: {success: function (event, id, xhr) {
+                            A.one("#empsDiv").html("");
+                            chooseType();
+                        }}});
+            });
+            A.all(".invis select").each(function () {
+                this.on("change", function () {
+                    var ar = ["", "pr", "gr", "unit", "emp"];
+                    var type = ar.indexOf(this.get("parentNode").getAttribute("id"));
+                    var dopusk = this.get("value");
+                    var node = this;
+                    A.one("#empsDiv").unplug();
+                    A.one("#empsDiv").plug(A.Plugin.IO, {uri: 'dopuskTMPChange', data: {type: type,
+                            dopusk: dopusk}, method: 'post', after: {'success': function () {
+                                if (type == 4)
+                                    node.set("value", "0");
+                                dropRegistrat();
+                            }}});
+                })
+            });
+
+            function dropRegistrat() {
+                if (disable == 'false') {
+                    dropAr = "";
+                    A.all(".emps").each(function () {
+                        this.on("click", function () {
+                            if (confirm("Удалить?"))
+                                empsDrop(this)
+                        })
+                    });
+                }
+            }
+            function empsDrop(node) {
+                node.purge().remove();
+                dropAr = "";
+                A.all(".emps").each(function () {
+                    if (dropAr == "")
+                        dropAr += this.getAttribute("id");
+                    else
+                        dropAr += "," + this.getAttribute("id");
+                });
+
+                A.one("#empsDiv").unplug();
+                A.one("#empsDiv").plug(A.Plugin.IO, {uri: 'dopuskTMPDrop', data: {dopusk: dropAr},
+                    method: 'post', after: {'success': function () {
+                            dropRegistrat()
+                        }}});
+            }
+            A.one('#content').setStyle('minHeight', (A.DOM.winHeight() - 120) + 'px');
+        });
+    </script>
+    <script type="text/javascript" src="blog_editor.js" /> 
+</ui:component>

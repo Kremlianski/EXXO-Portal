@@ -1,0 +1,59 @@
+<ui:composition  xmlns="http://www.w3.org/1999/xhtml" 
+                 xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+                 xmlns:cc="http://xmlns.jcp.org/jsf/composite"
+                 xmlns:h="http://xmlns.jcp.org/jsf/html"
+                 xmlns:c="http://xmlns.jcp.org/jsp/jstl/core">
+    <cc:interface>
+        <cc:attribute name="elementId"></cc:attribute>
+        <cc:attribute name="trigger"></cc:attribute>
+        <cc:attribute name="targetId"></cc:attribute>
+        <cc:attribute name="width" default="auto"></cc:attribute>
+        <cc:attribute name="height" default="auto"></cc:attribute>
+        <cc:attribute name="autoSize" default="no-autosize"></cc:attribute>
+        <cc:attribute name="mask" default="1"></cc:attribute>
+        <cc:attribute name="triggerEvent"></cc:attribute>
+    </cc:interface>
+    <cc:implementation>
+        <div id="#{cc.attrs.elementId}" class="exxo-fx-element">
+            <div class="exxo-fx-close"><span>ЗАКРЫТЬ</span></div>    
+            <div class="exxo-fx-content"></div>
+        </div>
+        <h:outputScript>
+            AUI().ready('anim-node-plugin','aui-overlay-mask','event-custom', function(A){
+            var div = A.one("##{cc.attrs.elementId}");
+            var conf={
+            from:{opacity: 0},
+            to: {opacity: 1},
+            on:{'start': function(){
+            if(!this.get('reverse')){
+            overlayMask.set('target', document).show();
+            this.get('node').setStyle('display','block');
+            }}},
+            after: {'end': function(){
+            this.set('reverse', !this.get('reverse')); 
+            this.stop();
+            if(this.get('node').getStyle('opacity')==0) this.get('node').setStyle('display','none');
+            if(!this.get('reverse'))overlayMask.set('target', document).hide();
+            }}};
+            div.setStyle('width','#{cc.attrs.width}');
+            div.setStyle('height','#{cc.attrs.height}');
+            if('#{cc.attrs.autoSize}'=='autosize'){
+            div.setStyle("width",A.DOM.winWidth()-198+"px");
+            div.setStyle("height",A.DOM.winHeight()-98+"px");
+            }
+            div.setStyle('opacity',0);
+            div.plug(A.Plugin.NodeFX, conf);
+            var overlayMask = new A.OverlayMask().render();
+            var target=A.one("##{cc.attrs.targetId}");
+            target.appendTo(div.one(".exxo-fx-content"));
+            var trigger=A.one("#{cc.attrs.trigger}");
+            trigger.on('click', function(){div.fx.run();});
+            div.one('.exxo-fx-close span').on('click', function(){div.fx.run();});
+            <c:if test="#{!empty cc.attrs.triggerEvent}">
+                A.Global.on('#{cc.attrs.triggerEvent}',function(e){div.fx.run();});
+            </c:if>
+            });
+        </h:outputScript>
+        <h:outputStylesheet library="css" name="fx-element.css"></h:outputStylesheet>
+    </cc:implementation>
+</ui:composition>

@@ -1,0 +1,4 @@
+input[type=submit] {padding: 5px;width: 8em; margin-right: 10px; cursor: pointer; font-size: 11px;}
+#inner {margin-top: 30px;}
+#butTable,#butTable1 {margin: 50px; margin-left: 0px;}
+#main {background-color: white;  margin-bottom: 20px;}

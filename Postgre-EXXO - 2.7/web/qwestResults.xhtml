@@ -1,0 +1,99 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:c="http://java.sun.com/jsp/jstl/core">
+    <h:head><meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <title>Результаты голосования</title>
+        <link rel="stylesheet" href="alloy/build/aui-skins/core/css/main.css" type="text/css" />
+        <link rel="stylesheet" href="alloy/build/aui-skins/classic/css/custom.css" type="text/css" />
+        <link rel="stylesheet" href="alloy/build/aui-skins/core/css/form.css" type="text/css" /> 
+        <style type="text/css">
+            #container {padding:5px;margin:10px auto;height: 100%;background-color: white; width: 800px;border: 1px solid gray; text-align: left;}
+            body {width:100%;height:100%; background-color: #d8d8ff; font-size: 11px; text-align: center;}    
+            #content {font-size:11pt;margin-top:20px;}
+            #content table{width:100%;background-color: white;}
+            .first {width:70%;padding: 10px; font-weight: bolder;}
+            .second{width:30%;padding:10px;color: red;}
+            th {color:white;background-color:  #426487;padding:5px;border-left: 1px solid white;}
+            #content table td{border-bottom-color: #DEDEDE;border-bottom-style: solid;border-bottom-width: 1px;}
+            .hover {background-color: #ffae40;cursor:pointer;}
+            #topik {width:100%;text-align: left;margin-bottom: 30px;}
+            #topik a{ text-decoration: none;margin-right: 30px;}
+            h1{font-size: 16px; font-weight: normal;text-align: left; margin-left: 10px} 
+            .even {background-color: #e3e3e3;}   
+            .third a {text-decoration: none; display: block;   padding: 5px; padding-left: 30px;}
+            .edit{background-image: url('edit.png'); background-position: 5px 5px; background-repeat: no-repeat;}
+            .drop{background-image: url('drop.png'); background-position: 5px 6px; background-repeat: no-repeat;}
+            #topik span {padding: 10px; font-weight: bolder;}
+            .third a:hover {background-color:#ffc473;color: black;}
+            #table2 {margin:20px; margin-top: 50px; font-size: 10px; border: 1px solid #d8d8ff}
+            #table2 td {width:50%;}
+            .odd2 td, .even2 td{padding-left: 10px;}
+            #top {text-align: right; padding-right: 20px;}
+            #top a {text-decoration: none; margin-bottom: 30px;}
+            #csv {text-align: right; padding: 4px;}
+        </style>
+    </h:head>
+    <h:body><div id="content-wrapper">
+            <ui:component>
+                #{qwestResultBean.initParams(param['id'])}
+                <div id="container" class="exxo-shadow">
+                    <div id="content">
+                        <div id="topik"><span>ВОПРОС:</span>#{qwestResultBean.question}</div>
+                        <h:dataTable value="#{qwestResultBean.qwestResultData}" var="r"
+                                     styleClass="list-table exxo-table"
+                                     headerClass="list-table-header"
+                                     rowClasses="odd, even"
+                                     columnClasses="first, second, third"
+                                     >
+
+                            <h:column>
+                                <!-- column header -->
+                                <f:facet name="header">Вариант ответа</f:facet>
+                                <!-- row record -->
+                                #{r.answer}
+                            </h:column>
+
+                            <h:column>
+                                <f:facet name="header">Проголосовало</f:facet>
+                                #{r.result} (#{r.procent}%)
+                            </h:column>
+
+
+                        </h:dataTable><div id="table2">
+                            <h:panelGroup rendered="#{!qwestResultBean.anonim}">
+                                <div id="csv"><a href="qwestCSV?id=#{param['id']}"><img src="img/ico/table.png" /></a></div>
+                            </h:panelGroup>
+                            <h:dataTable value="#{qwestResultBean.qwestList}" var="rr"
+                                         styleClass="list-table2 exxo-table"
+                                         headerClass="list-table2-header"
+                                         rowClasses="odd2, even2"
+                                         columnClasses="first2, second2" rendered="#{!qwestResultBean.anonim}"
+                                         >
+
+                                <h:column>
+                                    <!-- column header -->
+                                    <f:facet name="header">Сотрудник</f:facet>
+                                    <!-- row record -->
+                                    <a href="empCard.jsp?id=#{rr.user_id}">#{rr.fio}</a>
+                                </h:column>
+
+                                <h:column>
+                                    <f:facet name="header">Выбор</f:facet>
+                                        #{rr.answer}
+                                </h:column>
+
+
+                            </h:dataTable></div>
+
+
+                    </div></div>
+            </ui:component>
+        </div>
+
+    </h:body>
+</html>
+

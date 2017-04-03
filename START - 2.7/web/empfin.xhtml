@@ -1,0 +1,74 @@
+<ui:composition  xmlns="http://www.w3.org/1999/xhtml" 
+                 xmlns:h="http://xmlns.jcp.org/jsf/html"
+                 xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+                 xmlns:EXXO-START="http://xmlns.jcp.org/jsf/composite/EXXO-START"
+                 template="./mainTemplate.xhtml" 
+                 xmlns:f="http://xmlns.jcp.org/jsf/core">
+    <ui:define name="top">
+        <EXXO-START:top-menu page="insert-class"></EXXO-START:top-menu>
+    </ui:define>
+    <ui:define name="head">
+        <EXXO-START:head title="Вы завели следующие данные"></EXXO-START:head>
+    </ui:define>
+    <ui:define name="head-bot"></ui:define>
+    <ui:define name="content">
+        #{empBean.initUser()}
+        <h:outputStylesheet library="css" name="empfin.css"></h:outputStylesheet>
+        <h:panelGrid columns="2" columnClasses="right, left" id="mainGrid">
+            <h:outputText value="Фамилия Имя Отчество"></h:outputText><h:outputText value="#{empBean.emp.fio}"></h:outputText>
+            <h:outputText value="Фотография" rendered="#{photoBean.photo}"></h:outputText><h:panelGroup rendered="#{photoBean.photo}">
+                <img src="preImgLoader" />
+            </h:panelGroup>
+            <h:outputText value="Дата рождения"></h:outputText><h:outputText value="#{empBean.birthday.properTime}"></h:outputText>
+            <h:outputText value="Дата приема на работу" rendered="#{not empty empBean.work.properTime}"></h:outputText><h:outputText value="#{empBean.work.properTime}"  rendered="#{not empty empBean.work.properTime}"></h:outputText>
+            <h:outputText value="Подразделение"></h:outputText><h:outputText value="#{empBean.supervizor}"></h:outputText>
+            <h:outputText value="Должность"></h:outputText>
+            <h:outputText value="#{empBean.emp.position}" style="font-weight: bold" rendered="#{empBean.emp.head}"></h:outputText>
+            <h:outputText value="#{empBean.emp.position}" rendered="#{not empBean.emp.head}"></h:outputText>
+            <h:outputText value="Должностные обязанности" rendered="#{not empty empBean.emp.responsibility}"></h:outputText>
+            <h:panelGroup rendered="#{not empty empBean.emp.responsibility}" style="white-space: pre-line;">#{empBean.emp.responsibility}</h:panelGroup>
+            <h:outputText value="Образование" rendered="#{not empty empBean.emp.education}"></h:outputText>
+            <h:panelGroup rendered="#{not empty empBean.emp.education}"  style="white-space: pre-line;">#{empBean.emp.education}</h:panelGroup>
+            <h:outputText value="Офис" rendered="#{not empty empBean.emp.office}"></h:outputText>
+            <h:outputText value="#{empBean.emp.office}" rendered="#{not empty empBean.emp.office}"></h:outputText>
+            <h:outputText value="Комната" rendered="#{not empty empBean.emp.room}"></h:outputText>
+            <h:outputText value="#{empBean.emp.room}" rendered="#{not empty empBean.emp.room}"></h:outputText>
+            <h:outputText value="Телефон городской" rendered="#{not empty empBean.emp.tel}"></h:outputText>
+            <h:outputText value="#{empBean.emp.tel}" rendered="#{not empty empBean.emp.tel}"></h:outputText>
+            <h:outputText value="Телефон местный" rendered="#{not empty empBean.emp.tellocal}"></h:outputText>
+            <h:outputText value="#{empBean.emp.tellocal}" rendered="#{not empty empBean.emp.tellocal}"></h:outputText>
+            <h:outputText value="Телефон мобильный" rendered="#{not empty empBean.emp.tellmob}"></h:outputText>
+            <h:outputText value="#{empBean.emp.tellmob}" rendered="#{not empty empBean.emp.tellmob}"></h:outputText>
+            <h:outputText value="Электронная почта" rendered="#{not empty empBean.emp.email}"></h:outputText>
+            <h:outputText value="#{empBean.emp.email}" rendered="#{not empty empBean.emp.email}"></h:outputText>
+        </h:panelGrid>
+        <h:form id="form" prependId="false">
+            <h:panelGrid columns="2" columnClasses="right, left" id="autoriz">
+                <h:outputLabel value="Логин" for="login"></h:outputLabel>
+                <h:panelGroup>
+                    <h:inputText value="#{empBean.login}" required="true" id="login" validatorMessage="Логин должен содержать латинские буквы (строчные и заглавные), цифры и _. Должен содержать не менее 4 символов!" requiredMessage="Поле необходимо заполнить">
+                        <f:validateRegex pattern="^\w{4,}$" for="login" />
+                    </h:inputText>
+                    <h:message for="login" tooltip="true" styleClass="error"></h:message>
+                </h:panelGroup>
+                <h:outputLabel value="Пароль" for="pass"></h:outputLabel>
+                <h:panelGroup>
+                    <h:inputSecret value="#{empBean.pass}" required="true" id="pass" validatorMessage="Пароль должен содержать латинские буквы (строчные и заглавные), цифры и _. Должен содержать не менее 6 символов!" requiredMessage="Поле необходимо заполнить">
+                        <f:validateRegex pattern="^\w{6,}$" for="pass"/>
+                    </h:inputSecret>
+                    <h:message for="pass"  tooltip="true" styleClass="error"></h:message>
+                </h:panelGroup>
+                <h:outputLabel value="Пароль еще раз" for="pass1"></h:outputLabel>  <h:panelGroup><h:inputSecret value="#{empBean.pass1}" required="true" id="pass1" requiredMessage="Поле необходимо заполнить"></h:inputSecret>    
+                    <h:message for="pass1"  tooltip="true" styleClass="error"></h:message>
+                    <h:outputText styleClass="error" value="#{empBean.errorMessage}"></h:outputText>
+                </h:panelGroup>
+            </h:panelGrid>
+            <h:panelGrid columns="2" id="butTable">
+                <h:button value="Редактировать" outcome="emp.xhtml">
+                    <f:param name="edit" value="1"></f:param>
+                </h:button>   
+                <h:commandButton action="#{empBean.insert()}" value="Сохранить"></h:commandButton> 
+            </h:panelGrid>
+        </h:form>
+    </ui:define>
+</ui:composition>

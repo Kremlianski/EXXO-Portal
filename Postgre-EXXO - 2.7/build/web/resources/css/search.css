@@ -1,0 +1,5 @@
+div.exxo-search .matched {}
+div.exxo-search .matched b {background-color: #fc0;color: #222;}
+div.exxo-search .excluded {background-color: #eee;color: #888;}
+div.exxo-search {display: inline-block; width: 150px;}
+div.exxo-search input {font-size: 14px; padding: 2px; border-radius: 4px; border: 1px solid #bfbfbf;}

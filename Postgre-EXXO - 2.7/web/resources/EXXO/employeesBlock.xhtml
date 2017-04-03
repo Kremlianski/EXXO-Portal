@@ -1,0 +1,66 @@
+<ui:composition  xmlns="http://www.w3.org/1999/xhtml" 
+                 xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+                 xmlns:cc="http://xmlns.jcp.org/jsf/composite"
+                 xmlns:h="http://xmlns.jcp.org/jsf/html"
+                 xmlns:f="http://xmlns.jcp.org/jsf/core"
+                 xmlns:EXXO="http://xmlns.jcp.org/jsf/composite/EXXO">
+    <cc:interface>
+        <cc:attribute name="employees" required="true" type="java.util.ArrayList" />
+        <cc:attribute name="setting" default="false" type="java.lang.Boolean" />
+        <cc:attribute name="settingCommand" method-signature="java.lang.String settingCommand()"/>
+        <cc:attribute name="settingParamName" />
+        <cc:attribute name="settingParamValue" default="" />
+        <cc:attribute name="birthday" default="false" type="java.lang.Boolean" />
+        <cc:attribute name="room" default="false" type="java.lang.Boolean" />
+        <cc:actionSource name="links" targets=":empBlockForma:linkTable :empBlockForma:linkBlock" />
+        <cc:actionSource name="linkTable" targets=":empBlockForma:linkTable" />
+        <cc:actionSource name="linkBlock" targets=":empBlockForma:linkBlock" />
+        <cc:clientBehavior name="click" event="action" targets=":empBlockForma:linkTable :empBlockForma:linkBlock" />
+    </cc:interface>
+    <cc:implementation>
+        <div id="exxo-employee-list">
+        <h:form prependId="false" id="empBlockForma">
+            <h:panelGrid columns="3" class="empBlockMenu">
+                <h:commandButton value="Таблица" id="linkTable" immediate="true"  actionListener="#{employeeBlockBean.switchOn()}"  image="small/application_view_list.png"  disabled="#{employeeBlockBean.table}" />
+                <h:commandButton id="linkBlock" immediate="true"   actionListener="#{employeeBlockBean.switchOff()}" image="small/application_view_icons.png"  disabled="#{not employeeBlockBean.table}" />
+                <h:commandButton id="linkSetting" image="small/settings.png" rendered="#{cc.attrs.setting}" action="#{cc.attrs.settingCommand}">
+                    <f:param name="#{cc.attrs.settingParamName}" value="#{cc.attrs.settingParamValue}" rendered="#{cc.attrs.settingParamName!=null}" />
+                </h:commandButton><h:panelGroup rendered="#{not cc.attrs.setting}" />
+                <h:panelGroup layout="block" rendered="#{employeeBlockBean.table}" class="active" /><div /><h:panelGroup layout="block" rendered="#{not employeeBlockBean.table}" class="active" /><div />
+            </h:panelGrid>
+            <h:panelGroup id="exxo-employee-block" rendered="#{not employeeBlockBean.table and not empty cc.attrs.employees}" layout="block" class="exxo-employee-block">
+            <ui:repeat value="#{cc.attrs.employees}" var="e">
+                <EXXO:empMiniCard employee="#{e}" birthday="#{cc.attrs.birthday}" room="#{cc.attrs.room}" />
+           </ui:repeat>
+        </h:panelGroup>
+            <h:panelGroup rendered="#{employeeBlockBean.table  and not empty cc.attrs.employees}"><div class="exxo-shadow" id="tableContainer">
+                    <h:dataTable var="emp" value="#{cc.attrs.employees}" rendered="#{employeeBlockBean.table  and not empty cc.attrs.employees}" id="exxo-employee-table" class="exxo-table exxo-employee-table" rowClasses="emps">
+            <h:column rendered="#{cc.attrs.birthday}">
+                <h:outputText value="#{emp.birthday}" class="q2 birthTd exxo-date">
+                <f:convertDateTime pattern="MMMMMMMM, d" />
+                </h:outputText>     
+            </h:column>
+            <h:column rendered="#{cc.attrs.room}">
+                <h:outputText value="#{emp.room}"  class="q2 roomTd"/>     
+            </h:column>            
+            <h:column>
+                <h:outputLink value="employee.xhtml?id=#{emp.id}" class="q1" ><h:outputText value="#{emp.fio}" /></h:outputLink>
+            </h:column>
+            <h:column>
+                <h:outputLink value="employee.xhtml?id=#{emp.id}" class="q2" ><h:outputText value="#{emp.position}" /></h:outputLink>
+            </h:column>
+            <h:column>
+                <h:outputLink value="empListComp.jsp?uid=#{emp.unit.id}" class="q2" ><h:outputText value="#{emp.unit.unit}" /></h:outputLink>
+            </h:column>
+            </h:dataTable></div>
+            </h:panelGroup>
+            <h:panelGroup rendered="#{empty cc.attrs.employees}">
+                <div class="empListEmpty"><h2>Список пуст</h2>
+                </div>
+            </h:panelGroup>
+        </h:form>
+        </div>
+        <h:outputScript library="scripts" name="fixBag.js" target="head" />
+        <h:outputStylesheet library="css" name="employeesBlock.css" />
+    </cc:implementation>
+</ui:composition>

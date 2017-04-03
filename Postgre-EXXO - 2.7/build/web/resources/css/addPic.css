@@ -1,0 +1,22 @@
+#main {padding: 25px; font-size: 12px; background-color: white; width: 80%; border: 1px solid #dedede; border-bottom-color: #bfbfbf;}
+#filelist {margin-top: 40px;}
+#uploadFilesButtonContainer, #selectFilesButtonContainer, #overallProgress {display: inline-block;}
+#overallProgress {float: right; color: #bfbfbf;}
+.serverdata {font-size: 12px;}
+#ddmessage {color: #bfbfbf;}
+#filenames {width: 100%;}
+#filenames td,#filenames th{padding: 4px;}
+#gal, #own {display: none; visibility: hidden; width: 0; height: 0;}
+.check {width: 18px; height: 18px; background-image: url('/EXXO/check.png'); background-repeat: no-repeat;}
+.error {width: 18px; height: 18px; background-image: url('/EXXO/drop.png'); background-repeat: no-repeat;}
+#nofiles {font-size: 20px;text-align: center;}
+.disabled {display: none !important;}
+#lMenu {margin-top: 20px;width: 168px;background-color: white;padding: 0;border-left: 1px solid #DEDEDE;border-right: 1px solid #DEDEDE; border-bottom: 1px solid #BFBFBF; margin-left:10px;}
+#lMenu a{display: block; padding: 6px; text-decoration: none; border-top:1px solid #DEDEDE; font-size: 12px; color:#22225A;}
+#lMenu a:hover {background-color: #E3E2FD;}
+#form {font-size: 12px; width: 400px;}
+#form table {width: 100%}
+#form td {padding: 4px;}
+#form textarea {height: 100px;}
+#form input[type=text], #form textarea {width: 90%;}
+#form input[type=submit] {padding: 4px; margin: 10px auto; display:block; width: 50px;}

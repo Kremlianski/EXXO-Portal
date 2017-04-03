@@ -1,0 +1,5 @@
+#main {font-size: 16px; height: auto; border: 1px solid #dedede; border-bottom-color: #bfbfbf; width: 650px; background-color: white; padding: 20px; position: relative;}
+p{margin-top: 30px;}
+h3 {text-align: center;}
+#back {padding: 10px; text-align: right; width: auto; position: absolute; right: 0px; bottom: 0px;}
+#back a {color: gray; text-decoration: none;}

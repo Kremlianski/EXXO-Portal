@@ -1,0 +1,25 @@
+<ui:composition  xmlns="http://www.w3.org/1999/xhtml" 
+                 xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+                 xmlns:cc="http://xmlns.jcp.org/jsf/composite"
+                 xmlns:h="http://xmlns.jcp.org/jsf/html"
+                 xmlns:EXXO="http://xmlns.jcp.org/jsf/composite/EXXO">
+    <cc:interface>
+        <cc:attribute name="employeeId" type="java.lang.Integer"></cc:attribute>
+    </cc:interface>
+  <cc:implementation>
+                #{ratingBlockBean.init(cc.attrs.employeeId)}
+      <h:panelGroup layout="block" id="ratings" class="exxo-shadow exxo-table-container" rendered="#{not empty ratingBlockBean.voices}">
+          <ui:repeat var="v" value="#{ratingBlockBean.voices}">
+              <h:panelGrid columns="1">
+                  <h:panelGrid columns="1">
+                   <h:outputText value="#{v.getRating().name}" />
+                  <EXXO:rating voice="#{v}" />
+                  </h:panelGrid>
+              </h:panelGrid>
+          </ui:repeat>
+      </h:panelGroup>
+      <h:panelGroup layout="block" rendered="#{empty ratingBlockBean.voices}" >
+          <h:outputText value="Список компетенций пуст!" style="font-size: 12px;" />
+      </h:panelGroup>
+  </cc:implementation>
+</ui:composition>

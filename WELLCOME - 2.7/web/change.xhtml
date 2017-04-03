@@ -1,0 +1,35 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html">
+    <h:head><meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <title>Смена логина, пароля</title>
+        <style type='text/css'>
+            body {background-color:#d8d8ff;  text-align: center;font-size: 12px; font-family: Arial, Helvetica, sans-serif;line-height: normal;}
+            #f {background-color:white; padding:40px; width: 400px; margin: auto auto; display: block; border: 1px solid gray; -moz-border-radius: 8px;
+                -webkit-border-radius: 8px; border-radius: 8px;}
+            input {width: 200px;} 
+            .in { border: 1px solid gray; -moz-border-radius: 8px;
+                  -webkit-border-radius: 8px; border-radius: 8px; padding: 3px; background-color: #d8d8ff;}
+            #f td {padding: 20px 0px;}
+            #f table {margin-bottom: 20px; width:100%;}
+            td.one {text-align: left; padding-right: 10px;}
+            td.two {text-align: right; padding-left: 10px;}
+        </style>
+    </h:head>
+    <h:body>
+        <div id='f'>
+            #{changeBean.getMassage()}
+            <h:form id="form"><table><tr><td class='one'>Логин (можно новый)</td><td class='two'>
+                            <h:inputText id="login" label="login" required="false" value="#{changeBean.user}"  styleClass="in" /></td></tr>
+                    <tr><td class='one'>Новый пароль</td><td class='two'><h:inputSecret id="pass" label="password" required="false" value="#{changeBean.pass}" styleClass="in" /></td></tr>
+                    <tr><td class='one'>Пароль еще раз</td><td class='two'><h:inputSecret id="pass1" label="password1" required="false" value="#{changeBean.pass1}"  styleClass="in" /></td></tr>
+                </table>   
+                #{changeBean.setMassage()}
+                <h:commandButton id="submit" value="Изменить" action="#{changeBean.getAction()}" actionListener="#{changeBean.change()}" />
+
+            </h:form>
+        </div>
+    </h:body>
+</html>
+

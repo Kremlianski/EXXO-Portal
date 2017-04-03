@@ -1,0 +1,79 @@
+<ui:composition  xmlns="http://www.w3.org/1999/xhtml" 
+                 xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+                 xmlns:cc="http://xmlns.jcp.org/jsf/composite"
+                 xmlns:h="http://xmlns.jcp.org/jsf/html"
+                 xmlns:f="http://xmlns.jcp.org/jsf/core"
+                 xmlns:c="http://xmlns.jcp.org/jsp/jstl/core">
+    <cc:interface>
+    <cc:attribute name="nodeId" required="true"></cc:attribute>
+    <cc:attribute name="dayString" required="true"></cc:attribute>
+    <cc:attribute name="dayScript" required="true"></cc:attribute>
+    <cc:attribute name="yearInterval" default="0"></cc:attribute>
+    <cc:attribute name="target"></cc:attribute>
+    <cc:attribute name="yearRange" default="[year-10, year+10]"></cc:attribute>
+    <cc:attribute name="inputClass" default="aui-field-required"></cc:attribute>
+    <cc:attribute name="firedEvent"></cc:attribute>
+    </cc:interface>
+    <cc:implementation>
+<div id="#{cc.attrs.nodeId}" class="exxo-date-selected">
+    <span></span>
+    <h:inputText value="#{cc.attrs.dayString}" requiredMessage="Необходимо ввести дату" class="#{cc.attrs.inputClass}" >
+    </h:inputText>
+</div>
+<h:outputScript>
+AUI({lang: 'ru'}).ready('aui-datepicker','datatype-date-format', 'event-custom', function(A){
+A.one('body').addClass('yui3-skin-sam');
+A.one("##{cc.attrs.nodeId} input").setStyle('display','none');
+var now=new Date();
+var Year=now.getFullYear();
+var startdate=now;
+startdate.setFullYear(Year+#{cc.attrs.yearInterval});
+#{cc.attrs.dayScript};
+A.DataType.Date.Locale['ru'] = A.merge(A.DataType.Date.Locale, {
+"a":["вс","пн","вт","ср","чт","пт","сб"],"A":["Воскресенье","Понедельник","Вторник","Среда","Четверг","Пятница","Суббота"],
+"b":["января","февраля","марта","апреля","мая","июня","июля","августа","сентября","октября","ноября","декабря"],
+"B":["январь","февраль","март","апрель","май","июнь","июль","август","сентябрь","октябрь","ноябрь","декабрь"],
+"c":"%a, %d %b %Y %k:%M:%S %Z","p":["AM","PM"],"P":["am","pm"],"x":"%d.%m.%y","X":"%k:%M:%S"});
+//startdate.setMonth(startdate.getMonth()-1);
+var dayString="#{cc.attrs.dayString}";
+if(dayString!=""){
+if(A.one("#{cc.attrs.target}")) A.one("#{cc.attrs.target}").text(A.DataType.Date.format(startdate,{format:'%A,  %e %b %Y', locale:'ru'}));
+}
+new A.DatePickerSelect({
+locale: 'ru',
+appendOrder: [ 'y', 'm', 'd' ],
+calendar:{dates:startdate,selectedDates:startdate,
+dateFormat: '%y-%m-%d',
+setValue:false},
+yearRange: #{cc.attrs.yearRange},
+on: {
+'calendar:selectionChange': function(event) {
+var newdate=event.newSelection[0];
+if(newdate){ 
+var Year= newdate.getFullYear();
+var Month= newdate.getMonth();
+var Day= newdate.getDate();
+}
+StrDate=Year+"-"+(Month+1)+"-"+Day;
+DateSelected=new Date(Year,Month,Day);
+if(A.one("##{cc.attrs.nodeId} input")) A.one("##{cc.attrs.nodeId} input").val(StrDate);
+
+<c:if test="#{cc.attrs.inputClass=='aui-field-required'}">
+var N = A.one('##{cc.attrs.nodeId} div.aui-form-validator-message');
+if(N!=null) N.remove(true);   
+</c:if>
+
+<c:if test="#{!empty cc.attrs.firedEvent}">
+A.fire(evName, {date: DateSelected});
+
+</c:if>
+if(A.one("#{cc.attrs.target}")) A.one("#{cc.attrs.target}").text(A.DataType.Date.format(DateSelected,{format:'%A,  %e %b %Y', locale:'ru'}));}}}).render('##{cc.attrs.nodeId} span');
+
+<c:if test="#{!empty cc.attrs.firedEvent}">
+var evName="#{cc.attrs.firedEvent}";    
+A.publish(evName,{broadcast:2});
+</c:if>
+});
+</h:outputScript>        
+  </cc:implementation>
+</ui:composition>

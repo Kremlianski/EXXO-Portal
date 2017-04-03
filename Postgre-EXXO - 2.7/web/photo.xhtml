@@ -1,0 +1,83 @@
+<ui:composition  xmlns="http://www.w3.org/1999/xhtml" 
+                 xmlns:h="http://xmlns.jcp.org/jsf/html"
+                 xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+                 template="./main.xhtml" 
+                 xmlns:f="http://xmlns.jcp.org/jsf/core"
+                 xmlns:EXXO="http://xmlns.jcp.org/jsf/composite/EXXO"
+                 xmlns:c="http://xmlns.jcp.org/jsp/jstl/core">
+    <ui:define name="title">Информация о сотруднике</ui:define>
+    <ui:define name="METAS">
+        <f:metadata>
+            <f:viewAction action="#{empBean.initNav()}"></f:viewAction>
+            <c:set var="body_id" value="photo_xhtml" />
+        </f:metadata>
+    </ui:define>
+    <ui:define name="mainMenu">
+        <ui:include src="menu-emp.xhtml"></ui:include>
+    </ui:define>
+    <ui:define name="mainContent">
+        <table id="small">
+            <tbody>
+                <tr>
+                    <td id="tdmain"  valign="top">        
+                        <div id="main" class="empIns_jsp exxo-shadow">
+                            <table id="inner" style="width: 100%;"><tr><td style="width: 50px;"></td>
+                                    <td>
+                                        <h:panelGroup rendered="#{photoBean.photo}">
+                                            <h:form id="imgupdater" prependId="false">
+                                                <img src="ImgLoader?t=#{empBean.timer}" id="image" />
+                                                <h:inputHidden id="width" value="#{photoBean.width}"></h:inputHidden>
+                                                <h:inputHidden id="height"  value="#{photoBean.height}"></h:inputHidden>
+                                                <h:inputHidden id="x" value="#{photoBean.x}"></h:inputHidden>
+                                                <h:inputHidden id="y" value="#{photoBean.y}"></h:inputHidden>
+                                                <h:panelGrid columns="3" id="butTable">
+                                                    <h:commandButton value="Назад" action="#{empBean.empTarget(true)}">
+                                                        <f:param name="edit" value="1"></f:param>
+                                                    </h:commandButton>
+                                                    <h:commandButton value="Кадрировать" actionListener="#{photoBean.updateImage()}"></h:commandButton>
+                                                    <h:commandButton value="Продолжить" action="#{empBean.empfinTarget()}"></h:commandButton>
+                                                </h:panelGrid>
+                                            </h:form>
+                                        </h:panelGroup>
+                                        <h:panelGroup id="error" rendered="#{not photoBean.photo}">
+                                            #{empBean.error}
+                                        </h:panelGroup>  
+                                        <h:form rendered="#{not photoBean.photo}" prependId="false">
+                                            <h:panelGrid columns="2" rendered="#{not photoBean.photo}" id="butTable1">
+                                                <h:commandButton value="Назад" action="#{empBean.empTarget(true)}">
+                                                    <f:param name="edit" value="1"></f:param>
+                                                </h:commandButton>
+                                                <h:commandButton value="Продолжить" action="#{empBean.empfinTarget()}"></h:commandButton>   
+                                            </h:panelGrid>  
+                                        </h:form>
+                                        <h:outputScript library="scripts" name="photo.js" target="body"></h:outputScript>
+                                        <h:outputStylesheet library="css" name="photo.css"></h:outputStylesheet></td>
+                                    <td style="width: 50px;"></td></tr></table>
+                        </div>
+                    </td></tr></tbody></table>    
+    </ui:define>
+    <ui:define name="head">
+        <link rel="stylesheet" href="index.css" type="text/css" />    
+        <link rel="stylesheet" href="css/topMenu.css" type="text/css" />
+        <link rel="stylesheet" href="css/exxo.css" type="text/css" />
+        <h:outputStylesheet>
+            <h:outputText value="#{cSS.css}" escape="false" />
+            <h:outputText value="#{cSS1.getCss('photo.xhtml')}" escape="false" />
+        </h:outputStylesheet>
+    </ui:define>
+    <ui:define name="topMenu" >
+        <ul class="topMenu">
+            <ui:include src="topMenu.xhtml"></ui:include>
+            <li>
+                <h:outputLink value="employees.xhtml" class="footmenu" >
+                    <h:outputText value="Закончить" /> 
+                </h:outputLink>
+            </li>
+            <li>
+                <h:outputLink value="http://exxo.ru/howto/staff-howto.html#addnew" class="footmenu howto" target="_blank">
+                    <h:outputText value="?"></h:outputText>
+                </h:outputLink>
+            </li>
+        </ul>    
+    </ui:define>
+</ui:composition>

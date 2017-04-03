@@ -1,0 +1,8 @@
+table.exxo-table th {border: 0;}
+#empRoles {width: 100%; font-size: 14px;}
+#main {width: auto; margin-right: 30px; border: 1px solid #dedede; margin-bottom: 20px;}
+.name {font-weight: bold;}
+.descr a {text-decoration: none; color: black;}
+#empRoles a:hover {text-decoration: none;}
+#users h3 {text-align: center; color: gray;}
+.countLink {padding-left: 10px;}

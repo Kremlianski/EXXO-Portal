@@ -1,0 +1,78 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
+    <h:head>
+        <ui:insert name="IE">
+            <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        </ui:insert><title>
+            <ui:insert name="title"></ui:insert></title>
+        <ui:insert name="libs">
+            <link rel="stylesheet" href="/FILES/alloy/build/aui-skin-classic/css/aui-skin-classic-all-min.css" type="text/css" media="screen" />
+            <script src="/FILES/alloy/build/aui/aui.js" type="text/javascript"></script>   
+        </ui:insert>
+        <ui:insert name="head"></ui:insert>
+        <ui:insert name="METAS"></ui:insert>
+    </h:head>
+    <h:body styleClass="yui3-skin-sam" id="#{body_id}">
+        <div id="content-wrapper">
+            <div id="header">
+                <table id="tableH">
+                    <tbody>
+                        <tr>
+                            <td id="tdlogo">
+                                <img src="LOGO" id="logo" /></td>
+                            <td>
+                                <div id="head">
+                                    <table>
+                                        <tbody>
+                                            <tr>
+                                                <td id="slogan" valign="center">
+                                                    <h:outputText value="#{mainBean.slogan}" escape="false"></h:outputText></td>
+                                                <td>
+                                                    <ui:insert name="poisk" >
+                                                        <div id="poisk"><form id="searcher" action="find" method="post"><span id="b"></span><input type="text" name="target" id="target" /><select name="variant"><option>Сотрудники</option><option>Документы</option><option>Сообщения</option><option>Фотографии</option></select></form></div>
+                                                    </ui:insert>
+                                                </td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                                <div id="foot">
+                                    <ui:insert name="topMenu" >
+                                        <ul class="topMenu"><ui:include src="topMenu.xhtml"></ui:include></ul>    
+                                    </ui:insert>
+                                </div>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            <table id="grid" class="grid">
+                <tbody id="atbody">
+                    <tr id="tr">
+                        <td id="menu-td" class="menu-td" valign="top">
+                            <div class="exxo-menu exxo-shadow" id="menu">
+                                <ui:insert name="mainMenu"></ui:insert>
+                            </div>
+                            <ui:insert name="underMainMenu"></ui:insert>
+                        </td>
+                        <td id="column-3" valign="top">
+                            <ui:insert name="mainContent"></ui:insert>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+            <div id="FOOTER">
+                <ui:insert name="footer">
+                    <a href="rights">правовая информация</a><a href="http://exxo.ru/">сайт разработчика</a><a href="changeLog">ВЫХОД</a>
+                </ui:insert>
+            </div>
+        </div>
+        <ui:insert name="container"></ui:insert>  
+        <h:outputScript library="scripts" name="top-menu-fixed.js" />
+        <script type="text/javascript" src="scripts/poisk.js"></script>
+        <script type="text/javascript" src="scripts/topMenu.js"></script>
+    </h:body>
+</html>

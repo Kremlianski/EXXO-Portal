@@ -1,0 +1,85 @@
+<ui:composition  xmlns="http://www.w3.org/1999/xhtml"
+xmlns:h="http://xmlns.jcp.org/jsf/html"
+xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+template="./main.xhtml"
+xmlns:f="http://xmlns.jcp.org/jsf/core"
+xmlns:EXXO="http://xmlns.jcp.org/jsf/composite/EXXO"
+xmlns:c="http://xmlns.jcp.org/jsp/jstl/core">
+<ui:define name="title">Информация о сотруднике</ui:define>
+<ui:define name="mainMenu">
+    <ui:include src="menu-emp.xhtml"></ui:include>
+</ui:define>
+<ui:define name="mainContent">
+<div id="main" class="empIns_jsp exxo-shadow">
+    <h:outputStylesheet library="css" name="empfin.css"></h:outputStylesheet>
+    <h:panelGrid columns="2" columnClasses="right, left" id="mainGrid">
+        <h:outputText value="Фамилия Имя Отчество"></h:outputText><h:outputText value="#{empBean.emp.fio}"></h:outputText>
+        <h:outputText value="Фотография" rendered="#{photoBean.photo}"></h:outputText><h:panelGroup rendered="#{photoBean.photo}">
+            <img src="preImgLoader" />
+        </h:panelGroup>
+        <h:outputText value="Дата рождения"></h:outputText><h:outputText value="#{empBean.birthday.properTime}"></h:outputText>
+        <h:outputText value="Дата приема на работу" rendered="#{not empty empBean.work.properTime}"></h:outputText><h:outputText value="#{empBean.work.properTime}"  rendered="#{not empty empBean.work.properTime}"></h:outputText>
+        <h:outputText value="Подразделение"></h:outputText><h:outputText value="#{empBean.supervizor}"></h:outputText>
+        <h:outputText value="Должность"></h:outputText>
+        <h:outputText value="#{empBean.emp.position}" style="font-weight: bold" rendered="#{empBean.emp.head}"></h:outputText>
+        <h:outputText value="#{empBean.emp.position}" rendered="#{not empBean.emp.head}"></h:outputText>
+        <h:outputText value="Должностные обязанности" rendered="#{not empty empBean.emp.responsibility}"></h:outputText>
+        <h:panelGroup rendered="#{not empty empBean.emp.responsibility}" style="white-space: pre-line;">#{empBean.emp.responsibility}</h:panelGroup>
+        <h:outputText value="Образование" rendered="#{not empty empBean.emp.education}"></h:outputText>
+        <h:panelGroup rendered="#{not empty empBean.emp.education}"  style="white-space: pre-line;">#{empBean.emp.education}</h:panelGroup>
+        <h:outputText value="Офис" rendered="#{not empty empBean.emp.office.name}"></h:outputText>
+        <h:outputText value="#{empBean.emp.office.name}" rendered="#{not empty empBean.emp.office}"></h:outputText>
+        <h:outputText value="Комната" rendered="#{not empty empBean.emp.room}"></h:outputText>
+        <h:outputText value="#{empBean.emp.room}" rendered="#{not empty empBean.emp.room}"></h:outputText>
+        <h:outputText value="Телефон городской" rendered="#{not empty empBean.emp.tel}"></h:outputText>
+        <h:outputText value="#{empBean.emp.tel}" rendered="#{not empty empBean.emp.tel}"></h:outputText>
+        <h:outputText value="Телефон местный" rendered="#{not empty empBean.emp.tellocal}"></h:outputText>
+        <h:outputText value="#{empBean.emp.tellocal}" rendered="#{not empty empBean.emp.tellocal}"></h:outputText>
+        <h:outputText value="Телефон мобильный" rendered="#{not empty empBean.emp.tellmob}"></h:outputText>
+        <h:outputText value="#{empBean.emp.tellmob}" rendered="#{not empty empBean.emp.tellmob}"></h:outputText>
+        <h:outputText value="Электронная почта" rendered="#{not empty empBean.emp.email}"></h:outputText>
+        <h:outputText value="#{empBean.emp.email}" rendered="#{not empty empBean.emp.email}"></h:outputText>
+    </h:panelGrid>
+    <h:form id="form" prependId="false">
+    <h:panelGrid columns="2" id="butTable">
+    <h:commandButton value="Редактировать" action="#{empBean.empTarget(true)}">
+    <f:param name="edit" value="1"></f:param>
+    </h:commandButton>
+        <h:commandButton action="#{empBean.insert}" value="Сохранить" >
+        </h:commandButton>
+    </h:panelGrid>
+    </h:form>
+</div>
+</ui:define>
+<ui:define name="head">
+<link rel="stylesheet" href="index.css" type="text/css" />
+<link rel="stylesheet" href="css/topMenu.css" type="text/css" />
+<link rel="stylesheet" href="css/exxo.css" type="text/css" />
+<h:outputStylesheet>
+<h:outputText value="#{cSS.css}" escape="false" />
+<h:outputText value="#{cSS1.getCss('empfin.xhtml')}" escape="false" />
+</h:outputStylesheet>
+</ui:define>
+<ui:define name="topMenu" >
+<ul class="topMenu">
+<ui:include src="topMenu.xhtml"></ui:include>
+<li>
+<h:outputLink value="employees.xhtml" class="footmenu" >
+<h:outputText value="Закончить" />
+</h:outputLink>
+</li>
+<li>
+<h:outputLink value="http://exxo.ru/howto/staff-howto.html#addnew" class="footmenu howto" target="_blank">
+<h:outputText value="?"></h:outputText>
+</h:outputLink>
+</li>
+</ul>
+</ui:define>
+<ui:define name="METAS">
+    <f:metadata>
+        <f:viewAction action="#{empBean.initNav()}"></f:viewAction>
+        <c:set var="body_id" value="empfin_xhtml" />
+    </f:metadata>
+</ui:define>
+</ui:composition>
+
